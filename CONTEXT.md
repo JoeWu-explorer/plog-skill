@@ -21,7 +21,7 @@ A readable story unit attributed to a person or narrator, such as spoken dialogu
 _Avoid_: Copy block, text sticker
 
 **Confirmed Quote**:
-Words that the user explicitly identifies as having been spoken in the photographed scene and that should remain verbatim unless the user asks for an edit.
+Words that the user explicitly identifies as having been spoken in the photographed scene and that should remain verbatim unless the user asks for an edit. Confirmation does not override privacy, human-dignity, or reputational-safety boundaries; a disallowed quote is omitted or replaced with non-factual narration, never silently rewritten and still presented as confirmed.
 _Avoid_: Rewritten quote, inferred speech
 
 **Creative Voice**:
@@ -45,8 +45,56 @@ A coherent visual treatment selected from the Source Photo's light, color, mood,
 _Avoid_: Filter, preset
 
 **Identity Fidelity**:
-The requirement that recognizable faces, expressions, age cues, bodies, clothing, and interpersonal gestures remain faithful to the Source Photo unless the user explicitly requests a stronger transformation.
+The requirement that recognizable faces, expressions, age cues, bodies, skin tone, clothing, and interpersonal gestures remain faithful to the Source Photo. Default Looks and Directed Revisions do not alter person pixels; an explicitly requested Strong Look may stylize them only while preserving these identity invariants and must be discarded when that cannot be verified.
 _Avoid_: Likeness enhancement, face optimization
+
+**Submission Authority**:
+The working assumption that a user may use an ordinary private Source Photo they submit. It removes the need for a mandatory consent form but is not proof of every depicted person's consent, and it does not permit identification, surveillance, harassment, humiliation, or retaliation.
+_Avoid_: Verified consent, ownership proof
+
+**Sensitive Context**:
+A private or protected fact explicitly supplied by the user, such as health, disability, ethnicity, religion, or gender identity. It may be used only when the user directly requests it, it is necessary to the story, and the treatment remains neutral; it must never be inferred from appearance or turned into a joke or further inference.
+_Avoid_: Sensitive inference, visual diagnosis
+
+**Minor Safeguard**:
+The additional protection applied whenever a Source Photo contains a baby, child, teen, or a person whose adult age is uncertain: no sexualization, humiliation, adultification, dangerous-behavior glorification, body or ability jokes, age or body alteration, reduced clothing coverage, or unnecessary exposure of identifying location or school details.
+_Avoid_: Child mode, cute exception
+
+**Local Processing Default**:
+The rule that Source Photo pixels remain on the user's device during the normal workflow. Sending a photograph to an external image service is allowed only for a user-requested Strong Look after an explicit disclosure and confirmation for that run.
+_Avoid_: Silent upload, implied cloud consent
+
+**Privacy Exposure**:
+Clearly visible information in a Source Photo that creates a material sharing risk, such as an address, license plate, identity document, school identifier, private screen content, or recognizable uninvolved bystander. It triggers one minimal clarification unless the Narrative Treatment can naturally exclude it; location-revealing details involving a minor may not be silently retained.
+_Avoid_: Background detail, automatic redaction
+
+**Source Preservation**:
+The rule that the original Source Photo is never overwritten. Temporary derivatives are removed after success or failure, and every Finished Image is exported without EXIF, IPTC, XMP, location, or device metadata.
+_Avoid_: In-place edit, metadata copy
+
+**Revision Record**:
+Any durable, user-inspectable description later adopted to reproduce a Finished Image or support Directed Revision. It may contain only information needed for rerendering and must not store face embeddings, identity-recognition results, source metadata, or inferred Sensitive Context.
+_Avoid_: Biometric profile, hidden dossier
+
+**Safe Continuation**:
+A conservative Narrative Treatment that preserves the user's safe intent after declining only an unsafe or unsupported part of a request. The entire request stops only when its source scenario or central purpose is itself unsafe or out of scope.
+_Avoid_: Silent sanitization, blanket refusal
+
+**Memorial Treatment**:
+A Narrative Treatment centered on death, grief, afterlife, revival, or unconfirmed final words or inner voice attributed to a deceased person. An ordinary evidence-grounded scene does not become Memorial Treatment merely because the user says that a depicted person later died.
+_Avoid_: Any photo containing a deceased person, ordinary remembrance
+
+**Reputational Fabrication**:
+Creative Voice that makes a real person appear to state or reveal a consequential fact, endorsement, political position, crime, insult, sexual history, medical condition, relationship conflict, or other potentially harmful claim. It is never permitted, even when formatted as playful dialogue.
+_Avoid_: Harmless Creative Voice, Confirmed Quote
+
+**Human Dignity**:
+The protection owed to every depicted person, regardless of age: no sexualization, humiliation, or jokes or narratives built around body, ability, trauma, violence, or criminality.
+_Avoid_: Adult exception, consent to ridicule
+
+**Sensitive Scene**:
+A non-graphic care, recovery, hospital-visit, injury, or emotionally weighty family scene whose private context comes from the user and is treated with Quiet Documentary. Nudity or sexual content, graphic injury or death, abuse, exploitation, and victim-shaming are not Sensitive Scenes supported by v1.
+_Avoid_: Visual diagnosis, trauma spectacle
 
 **Warm Wit**:
 The default narrative register: affectionate, observant, and lightly surprising without ridicule, adultification, or jokes about a person's body or ability.
