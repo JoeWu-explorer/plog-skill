@@ -72,6 +72,18 @@ _Avoid_: Background detail, automatic redaction
 The rule that the original Source Photo is never overwritten. Temporary derivatives are removed after success or failure, and every Finished Image is exported without EXIF, IPTC, XMP, location, or device metadata.
 _Avoid_: In-place edit, metadata copy
 
+**Core Rendering Capability**:
+The minimum local capability that can produce a valid Finished Image with verified Chinese text while leaving all Source Photo pixels unobscured when precise subject-safe placement is unavailable.
+_Avoid_: Full feature set, degraded image quality
+
+**Enhanced Placement**:
+An optional layout capability that uses locally detected subject-safe regions to place Voice Elements within the photographic area without covering faces or key interactions.
+_Avoid_: Required face recognition, guessed safe area
+
+**Edge Narration**:
+A Voice Element placed in added canvas outside the Source Photo rather than over its pixels, preserving narrative output when Enhanced Placement is unavailable or unreliable.
+_Avoid_: Overlay fallback, guessed bubble placement
+
 **Revision Record**:
 Any durable, user-inspectable description later adopted to reproduce a Finished Image or support Directed Revision. It may contain only information needed for rerendering and must not store face embeddings, identity-recognition results, source metadata, or inferred Sensitive Context.
 _Avoid_: Biometric profile, hidden dossier
