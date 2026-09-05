@@ -41,7 +41,7 @@ The readability limit for a Finished Image: normally no more than three Voice El
 _Avoid_: Caption dump, one bubble per person
 
 **Look**:
-A coherent visual treatment combining composition, typography, photographic color and light, contrast, grain, and restrained material texture, selected from the Source Photo and narrative context. It includes the photograph's atmosphere as well as the Voice Elements' appearance; a paper-colored caption or an indiscriminate filter alone does not constitute a Look.
+A coherent visual treatment combining composition, typography, photographic color and light, contrast, grain, and restrained material texture, determined anew from each Source Photo, its narrative context, and the user's stated style preferences. No fixed filter, atmosphere, font, text color, or composition is implied by a previously accepted example. It includes the photograph's atmosphere as well as the Voice Elements' appearance; effects that do not serve the photograph may be omitted.
 _Avoid_: Filter, preset
 
 **Atmosphere Treatment**:
