@@ -6,6 +6,18 @@ from evaluation import new_evaluation, summarize
 
 
 class EvaluationTests(unittest.TestCase):
+    def test_verified_generation_can_wait_for_owner_without_being_untested_or_passed(self):
+        evidence = new_evaluation('a' * 40, 'b' * 64)
+        evidence['attempts'][0].update(status='awaiting_review', delivery='pass', real_service=True, clean_session=True)
+        result = summarize(evidence)
+        self.assertEqual(result['awaiting_review'], 1)
+        self.assertEqual(result['untested'], 17)
+        self.assertEqual(result['passed'], 0)
+        self.assertEqual(result['status'], 'not_passed')
+        evidence['attempts'][0]['real_service'] = False
+        with self.assertRaises(ValueError):
+            summarize(evidence)
+
     def test_unrun_matrix_keeps_eighteen_denominator_and_cannot_pass(self):
         result = summarize(new_evaluation('a' * 40, 'b' * 64))
         self.assertEqual(result['first_generation_total'], 18)

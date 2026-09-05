@@ -13,6 +13,7 @@ BEHAVIORS = ('photo_only', 'quote_attribution', 'quotes_traditional_creative', '
 REVISIONS = ('text_only', 'atmosphere_only', 'old_version_move_text')
 DIMENSIONS = ('composition', 'chinese_typography', 'atmosphere', 'narrative', 'save_share_value')
 STATUSES = ('untested', 'unsupported', 'fail', 'pass')
+ATTEMPT_STATUSES = STATUSES + ('awaiting_review',)
 
 
 def new_evaluation(commit: str, package_sha256: str) -> dict[str, Any]:
@@ -29,7 +30,7 @@ def summarize(evidence: dict[str, Any]) -> dict[str, Any]:
     misdelivered = False
     all_deliveries_reviewed = True
     for row in evidence['attempts']:
-        if row['sample'] not in SAMPLES or type(row['round']) is not int or row['round'] not in (1, 2) or type(row['attempt']) is not int or row['attempt'] < 1 or row['status'] not in STATUSES or row['delivery'] not in STATUSES or type(row['misdelivered']) is not bool:
+        if row['sample'] not in SAMPLES or type(row['round']) is not int or row['round'] not in (1, 2) or type(row['attempt']) is not int or row['attempt'] < 1 or row['status'] not in ATTEMPT_STATUSES or row['delivery'] not in STATUSES or type(row['misdelivered']) is not bool:
             raise ValueError('Invalid attempt identity, status or delivery flag.')
         identity = (row['sample'], row['round'], row['attempt'])
         if identity in identities:
@@ -38,6 +39,8 @@ def summarize(evidence: dict[str, Any]) -> dict[str, Any]:
         misdelivered |= row['misdelivered']
         scores = row['scores']
         human_pass = isinstance(row['human_reviewer'], str) and bool(row['human_reviewer'].strip()) and isinstance(scores, dict) and set(scores) == set(DIMENSIONS) and all(type(v) is int and 4 <= v <= 5 for v in scores.values())
+        if row['status'] == 'awaiting_review' and not (row['delivery'] == 'pass' and row['real_service'] is True and row['clean_session'] is True):
+            raise ValueError('Awaiting review requires actual service, clean session and Delivery Verification.')
         if row['status'] == 'pass' and not (row['delivery'] == 'pass' and row['real_service'] is True and row['clean_session'] is True and human_pass):
             raise ValueError('Every pass, including retries, requires actual service, clean session, Delivery Verification and all five human scores >=4.')
         if row['delivery'] == 'pass' and not human_pass:
@@ -48,7 +51,7 @@ def summarize(evidence: dict[str, Any]) -> dict[str, Any]:
     if set(first) != expected:
         raise ValueError('Keep all 18 fixed first attempts, including untested inputs.')
     passed = [key for key, row in first.items() if row['status'] == 'pass']
-    counts = {status: sum(row['status'] == status for row in first.values()) for status in STATUSES}
+    counts = {status: sum(row['status'] == status for row in first.values()) for status in ATTEMPT_STATUSES}
     for name, keys in [('behaviors', BEHAVIORS), ('revisions', REVISIONS)]:
         if set(evidence[name]) != set(keys) or any(value not in STATUSES for value in evidence[name].values()):
             raise ValueError('Keep the full behavior and revision matrix.')
@@ -58,7 +61,7 @@ def summarize(evidence: dict[str, Any]) -> dict[str, Any]:
     release_pass = len(passed) >= 16 and all_inputs and matrix_pass and not misdelivered and environment_recorded and all_deliveries_reviewed
     return {'candidate_commit': evidence['candidate_commit'], 'package_sha256': evidence['package_sha256'],
             'status': 'pass' if release_pass else 'not_passed', 'first_generation_total': 18, 'passed': len(passed),
-            'untested': counts['untested'], 'unsupported': counts['unsupported'], 'failed': counts['fail'],
+            'untested': counts['untested'], 'unsupported': counts['unsupported'], 'failed': counts['fail'], 'awaiting_review': counts['awaiting_review'],
             'all_inputs_succeeded': all_inputs, 'misdelivery_blocks_release': misdelivered,
             'behavior_passed': sum(v == 'pass' for v in evidence['behaviors'].values()), 'behavior_total': 15,
             'revision_passed': sum(v == 'pass' for v in evidence['revisions'].values()), 'revision_total': 3,
