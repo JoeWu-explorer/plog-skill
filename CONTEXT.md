@@ -172,6 +172,14 @@ _Avoid_: Restart, regenerate everything
 A generated or revised image that has passed the required checks and is retained as an available result. A newer accepted image does not overwrite an earlier one; a failed attempt is not an Accepted Version. Acceptance here does not imply the user's final aesthetic approval.
 _Avoid_: Latest attempt, unchecked candidate
 
+**Delivery Verification**:
+The checks applied to each generated or revised candidate before it becomes an Accepted Version, including fidelity to the Source Photo, exact intended text, attribution, visual coherence, and valid private delivery. An unresolved or unverifiable candidate cannot pass.
+_Avoid_: Generation succeeded, user aesthetic approval
+
+**Release Evaluation**:
+The assessment of a candidate product version against a fixed set of photographs, revisions, and failure scenarios, including human review of complete images for visual quality. It retains failed attempts in the evidence and is distinct from each image's Delivery Verification.
+_Avoid_: Best-example showcase, automatic quality score, per-user approval step
+
 **Revision Base**:
 The Accepted Version selected as the starting point for a Directed Revision, together with the Source Photo needed to verify fidelity. It defaults to the latest accepted result unless the user chooses another retained version.
 _Avoid_: Failed draft, source substitute
