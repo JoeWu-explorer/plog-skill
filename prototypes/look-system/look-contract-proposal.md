@@ -1,6 +1,6 @@
 # Look 合同收束提案
 
-状态：历史收束提案。视觉部分已归档为[选择 v1 的 Look 系统的完整决议](https://github.com/JoeWu-explorer/photo-dialogue/issues/9#issuecomment-5550061809)，以该决议为准。默认产品路线仍待[统一生成式默认流程与既有合同](https://github.com/JoeWu-explorer/photo-dialogue/issues/15)明确；下文建议不得视为已确认的默认流程。
+状态：已归档的历史提案，全文仅保留讨论记录，不作为实施规范。视觉规则以[选择 v1 的 Look 系统的完整决议](https://github.com/JoeWu-explorer/photo-dialogue/issues/9#issuecomment-5550061809)为准；默认处理流程已由用户确认并归档到[统一生成式默认流程与既有合同](https://github.com/JoeWu-explorer/photo-dialogue/issues/15#issuecomment-5550078321)。下文的待决策表述已过时，请查阅这两处唯一决议。
 
 ## 已确认的方向
 

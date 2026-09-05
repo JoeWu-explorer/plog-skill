@@ -49,7 +49,7 @@ The coordinated handling of light softness, warm and cool tones, shadow color, h
 _Avoid_: Uniform yellow wash, decorative overlay pack
 
 **Identity Fidelity**:
-The requirement that recognizable faces, expressions, age cues, bodies, skin tone, clothing, and interpersonal gestures remain faithful to the Source Photo. Default Looks and Directed Revisions do not alter person pixels; an explicitly requested Strong Look may stylize them only while preserving these identity invariants and must be discarded when that cannot be verified.
+The requirement that recognizable faces, expressions, age cues, bodies, skin tone, clothing, and interpersonal gestures remain faithful to the Source Photo. Generative treatment may change pixels, but must preserve these identity invariants; an output with material drift or unverifiable fidelity cannot be accepted as a Finished Image.
 _Avoid_: Likeness enhancement, face optimization
 
 **Submission Authority**:
@@ -64,9 +64,13 @@ _Avoid_: Sensitive inference, visual diagnosis
 The additional protection applied whenever a Source Photo contains a baby, child, teen, or a person whose adult age is uncertain: no sexualization, humiliation, adultification, dangerous-behavior glorification, body or ability jokes, age or body alteration, reduced clothing coverage, or unnecessary exposure of identifying location or school details.
 _Avoid_: Child mode, cute exception
 
-**Local Processing Default**:
-The rule that Source Photo pixels remain on the user's device during the normal workflow. Sending a photograph to an external image service is allowed only for a user-requested Strong Look after an explicit disclosure and confirmation for that run.
-_Avoid_: Silent upload, implied cloud consent
+**Generative Art Direction**:
+The default creation approach in which the photograph and its intended Chinese Voice Elements are composed together into an integrated visual work, guided by a Look determined for that Source Photo. The generated result must be checked against the source people, scene and intended text before acceptance.
+_Avoid_: Fixed style transfer, unverified one-shot output
+
+**Per-run Processing Authorization**:
+The user's informed authorization to send the identified Source Photo to the stated image service for the current treatment. Clear authorization already given for that operation is carried forward without a repeated confirmation or password-like phrase; it does not authorize unrelated photographs, services or public sharing.
+_Avoid_: Silent upload, permanent blanket consent, repeated consent ritual
 
 **Privacy Exposure**:
 Clearly visible information in a Source Photo that creates a material sharing risk, such as an address, license plate, identity document, school identifier, private screen content, or recognizable uninvolved bystander. It triggers one minimal clarification unless the Narrative Treatment can naturally exclude it; location-revealing details involving a minor may not be silently retained.
@@ -77,23 +81,23 @@ The rule that the original Source Photo is never overwritten. Temporary derivati
 _Avoid_: In-place edit, metadata copy
 
 **Core Rendering Capability**:
-The minimum local capability that can produce a valid Finished Image with verified Chinese text while leaving all Source Photo pixels unobscured when precise subject-safe placement is unavailable.
+The ability to create the requested integrated image, inspect its people and Chinese text against the source, and deliver a valid private output. An unavailable creation service or an unmet verification requirement prevents completion; a simpler local result is not an automatic equivalent.
 _Avoid_: Full feature set, degraded image quality
 
 **Enhanced Placement**:
-An optional layout capability that uses locally detected subject-safe regions to place Voice Elements within the photographic area without covering faces or key interactions.
+Optional assistance for locating subject-safe space for Voice Elements without covering faces or key interactions. It supports composition but does not replace inspection of the finished result.
 _Avoid_: Required face recognition, guessed safe area
 
 **Edge Narration**:
-A Voice Element placed in added canvas below the Source Photo rather than over its pixels, preserving narrative output when Enhanced Placement is unavailable or unreliable.
+A Voice Element placed in added canvas below the Source Photo. It is an available composition choice when appropriate to the photograph and narrative, not a mandatory group layout or an automatic response to failed generation.
 _Avoid_: Overlay fallback, guessed bubble placement
 
 **Layout Recipe**:
-A deterministic composition rule that defines how the Source Photo, Voice Elements, attribution, and reading order share one Finished Image without changing the Source Photo's orientation.
+A composition approach that relates the Source Photo, Voice Elements, attribution, and reading order within one Finished Image while preserving the source orientation. Recipes guide per-photo art direction rather than prescribe fixed positions or an exhaustive set of templates.
 _Avoid_: Template, preset, people-count layout
 
 **Safety-gated Hybrid**:
-The v1 Layout Recipe family: Single-voice Overlay, Two-voice Overlay, and Edge Narration. Overlay is allowed only when every Voice Element fits legibly outside all protected faces, gestures, shared objects, and Interaction Paths; an uncertain or failed check selects Edge Narration.
+The previously prototyped family of Single-voice Overlay, Two-voice Overlay, and Edge Narration, retained as optional composition approaches. All protect faces, gestures, shared objects, and Interaction Paths; they do not exhaust the generative layout choices or define a mandatory fallback.
 _Avoid_: People-count template set, always-overlay layout
 
 **Single-voice Overlay**:
@@ -153,8 +157,8 @@ A Voice Element that does not assert an unconfirmed relationship, identity, or p
 _Avoid_: Relationship guess, inferred identity
 
 **Strong Look**:
-An explicitly requested Look that may substantially reinterpret the photograph while remaining subject to Identity Fidelity.
-_Avoid_: Default style, automatic restyle
+An explicitly requested increase in visual stylization beyond the source-responsive treatment selected for the current image. It remains subject to Identity Fidelity and is distinct from the generative technique used by the default workflow.
+_Avoid_: Synonym for all generation, automatic maximum stylization
 
 **Directed Revision**:
 A natural-language request to change one aspect of a Finished Image while preserving unrelated narrative and visual decisions.
