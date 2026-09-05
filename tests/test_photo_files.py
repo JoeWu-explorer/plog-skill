@@ -85,3 +85,23 @@ class PhotoFilesTests(unittest.TestCase):
             Image.new('RGB', (8, 8)).save(source, icc_profile=b'invalid')
             with self.assertRaises(PhotoError):
                 inspect_photo(source)
+
+    def test_interrupted_publication_does_not_delete_a_replacement_file(self):
+        import os
+        from unittest.mock import patch
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            source = root / 'source.png'
+            Image.new('RGB', (8, 8)).save(source)
+            output = root / 'output.png'
+            real_link = os.link
+            def replaced_then_interrupted(src, dst):
+                real_link(src, dst)
+                Path(dst).unlink()
+                Path(dst).write_bytes(b'user replacement')
+                raise KeyboardInterrupt('interrupted after another writer replaced the link')
+            with patch('os.link', side_effect=replaced_then_interrupted):
+                with self.assertRaises(KeyboardInterrupt):
+                    export_png(source, output, source=source)
+            self.assertEqual(output.read_bytes(), b'user replacement')
+            self.assertFalse(list(root.glob('.photo-*')))

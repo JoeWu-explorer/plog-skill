@@ -64,3 +64,38 @@ class EvaluationTests(unittest.TestCase):
         evidence['attempts'].append(retry)
         with self.assertRaises(ValueError):
             summarize(evidence)
+
+    def test_sixteen_passes_cannot_hide_two_unexecuted_first_attempts(self):
+        from evaluation import DIMENSIONS
+        evidence = new_evaluation('a' * 40, 'b' * 64)
+        evidence['environment'] = dict.fromkeys(('codex', 'platform', 'python', 'image_service', 'service_version_or_unavailable'), 'test fixture')
+        for index, row in enumerate(evidence['attempts']):
+            if index not in (1, 3):
+                row.update(status='pass', delivery='pass', real_service=True, clean_session=True, human_reviewer='owner', scores=dict.fromkeys(DIMENSIONS, 4))
+        for key in ('behaviors', 'revisions'):
+            evidence[key] = dict.fromkeys(evidence[key], 'pass')
+        result = summarize(evidence)
+        self.assertEqual(result['passed'], 16)
+        self.assertEqual(result['untested'], 2)
+        self.assertEqual(result['status'], 'not_passed')
+
+    def test_completed_low_scores_are_reviewed_failures_not_missing_reviews(self):
+        from evaluation import DIMENSIONS
+        evidence = new_evaluation('a' * 40, 'b' * 64)
+        evidence['environment'] = dict.fromkeys(('codex', 'platform', 'python', 'image_service', 'service_version_or_unavailable'), 'test fixture')
+        for row in evidence['attempts']:
+            row.update(status='pass', delivery='pass', real_service=True, clean_session=True, human_reviewer='owner', scores=dict.fromkeys(DIMENSIONS, 4))
+        for index in (1, 3):
+            evidence['attempts'][index]['status'] = 'fail'
+            evidence['attempts'][index]['scores']['atmosphere'] = 3
+        for key in ('behaviors', 'revisions'):
+            evidence[key] = dict.fromkeys(evidence[key], 'pass')
+        result = summarize(evidence)
+        self.assertEqual(result['passed'], 16)
+        self.assertEqual(result['failed'], 2)
+        self.assertTrue(result['all_deliveries_reviewed'])
+        self.assertEqual(result['status'], 'pass')
+        for invalid in (0, 6, True, '3', None):
+            with self.subTest(invalid_score=invalid):
+                evidence['attempts'][1]['scores']['atmosphere'] = invalid
+                self.assertEqual(summarize(evidence)['status'], 'not_passed')

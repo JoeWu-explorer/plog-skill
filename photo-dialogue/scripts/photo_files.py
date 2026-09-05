@@ -106,6 +106,17 @@ def export_png(candidate: Path, destination: Path, *, source: Path) -> Path:
             raise PhotoError('Source Photo changed during export.')
         os.link(staged, destination)  # exclusive publication, also rejects dangling symlinks
         return destination
+    except BaseException:
+        # link() can publish before Python receives a catchable interrupt.
+        # Remove only our own hard link, never an existing/replaced user file.
+        try:
+            published = destination.lstat()
+            owned = staged.stat()
+            if (published.st_dev, published.st_ino) == (owned.st_dev, owned.st_ino):
+                destination.unlink()
+        except FileNotFoundError:
+            pass
+        raise
     finally:
         staged.unlink(missing_ok=True)
 

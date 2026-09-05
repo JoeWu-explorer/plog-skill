@@ -161,3 +161,28 @@ class RevisionTests(unittest.TestCase):
             with self.assertRaises(RecordError):
                 append(work, source=source, source_sha256=inspected_hash, candidate=candidate, version=details())
             self.assertFalse((work / 'revision.json').exists())
+
+    def test_interrupt_after_png_publication_allows_retry_without_orphan(self):
+        import os
+        from unittest.mock import patch
+        for existing in (False, True):
+            with self.subTest(existing=existing), tempfile.TemporaryDirectory() as folder:
+                root = Path(folder)
+                source = root / 'source.png'
+                Image.new('RGB', (8, 8)).save(source)
+                work = root / 'work'
+                args = dict(source=source, source_sha256=sha256(source), candidate=source, version=details())
+                if existing:
+                    append(work, **args)
+                previous = {p.name: p.read_bytes() for p in work.iterdir()} if existing else {}
+                real_link = os.link
+                def interrupted_after_link(src, dst):
+                    real_link(src, dst)
+                    raise KeyboardInterrupt('controlled interruption after PNG publication')
+                with patch('os.link', side_effect=interrupted_after_link):
+                    with self.assertRaises(KeyboardInterrupt):
+                        append(work, **args)
+                self.assertEqual({p.name: p.read_bytes() for p in work.iterdir()}, previous)
+                saved = append(work, **args)
+                self.assertEqual(saved['id'], 'v002' if existing else 'v001')
+                self.assertEqual(select(work)['id'], saved['id'])

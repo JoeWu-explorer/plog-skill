@@ -38,12 +38,13 @@ def summarize(evidence: dict[str, Any]) -> dict[str, Any]:
         identities.add(identity)
         misdelivered |= row['misdelivered']
         scores = row['scores']
-        human_pass = isinstance(row['human_reviewer'], str) and bool(row['human_reviewer'].strip()) and isinstance(scores, dict) and set(scores) == set(DIMENSIONS) and all(type(v) is int and 4 <= v <= 5 for v in scores.values())
+        human_reviewed = isinstance(row['human_reviewer'], str) and bool(row['human_reviewer'].strip()) and isinstance(scores, dict) and set(scores) == set(DIMENSIONS) and all(type(v) is int and 1 <= v <= 5 for v in scores.values())
+        human_pass = human_reviewed and all(v >= 4 for v in scores.values())
         if row['status'] == 'awaiting_review' and not (row['delivery'] == 'pass' and row['real_service'] is True and row['clean_session'] is True):
             raise ValueError('Awaiting review requires actual service, clean session and Delivery Verification.')
         if row['status'] == 'pass' and not (row['delivery'] == 'pass' and row['real_service'] is True and row['clean_session'] is True and human_pass):
             raise ValueError('Every pass, including retries, requires actual service, clean session, Delivery Verification and all five human scores >=4.')
-        if row['delivery'] == 'pass' and not human_pass:
+        if row['delivery'] == 'pass' and not human_reviewed:
             all_deliveries_reviewed = False
         if row['attempt'] == 1:
             first[(row['sample'], row['round'])] = row
@@ -58,7 +59,8 @@ def summarize(evidence: dict[str, Any]) -> dict[str, Any]:
     matrix_pass = all(value == 'pass' for key in ('behaviors', 'revisions') for value in evidence[key].values())
     all_inputs = {key[0] for key in passed} == set(SAMPLES)
     environment_recorded = all(evidence['environment'].get(key) for key in ('codex', 'platform', 'python', 'image_service', 'service_version_or_unavailable'))
-    release_pass = len(passed) >= 16 and all_inputs and matrix_pass and not misdelivered and environment_recorded and all_deliveries_reviewed
+    all_first_attempts_executed = all(row['status'] != 'untested' and row['clean_session'] is True for row in first.values())
+    release_pass = all_first_attempts_executed and len(passed) >= 16 and all_inputs and matrix_pass and not misdelivered and environment_recorded and all_deliveries_reviewed
     return {'candidate_commit': evidence['candidate_commit'], 'package_sha256': evidence['package_sha256'],
             'status': 'pass' if release_pass else 'not_passed', 'first_generation_total': 18, 'passed': len(passed),
             'untested': counts['untested'], 'unsupported': counts['unsupported'], 'failed': counts['fail'], 'awaiting_review': counts['awaiting_review'],
