@@ -81,8 +81,24 @@ An optional layout capability that uses locally detected subject-safe regions to
 _Avoid_: Required face recognition, guessed safe area
 
 **Edge Narration**:
-A Voice Element placed in added canvas outside the Source Photo rather than over its pixels, preserving narrative output when Enhanced Placement is unavailable or unreliable.
+A Voice Element placed in added canvas below the Source Photo rather than over its pixels, preserving narrative output when Enhanced Placement is unavailable or unreliable.
 _Avoid_: Overlay fallback, guessed bubble placement
+
+**Layout Recipe**:
+A deterministic composition rule that defines how the Source Photo, Voice Elements, attribution, and reading order share one Finished Image without changing the Source Photo's orientation.
+_Avoid_: Template, preset, people-count layout
+
+**Safety-gated Hybrid**:
+The v1 Layout Recipe family: Single-voice Overlay, Two-voice Overlay, and Edge Narration. Overlay is allowed only when every Voice Element fits legibly outside all protected faces, gestures, shared objects, and Interaction Paths; an uncertain or failed check selects Edge Narration.
+_Avoid_: People-count template set, always-overlay layout
+
+**Single-voice Overlay**:
+One spoken, inner, or narrator Voice Element placed in a verified safe region inside the Source Photo; person-attributed voice uses a directional tail and narrator voice does not.
+_Avoid_: Floating caption, multi-bubble scatter
+
+**Two-voice Overlay**:
+One ordered two-person exchange placed in verified safe space inside the Source Photo, with each Voice Element pointing to its confirmed or neutrally located speaker.
+_Avoid_: Ambiguous attribution, unordered bubbles
 
 **Revision Record**:
 Any durable, user-inspectable description later adopted to reproduce a Finished Image or support Directed Revision. It may contain only information needed for rerendering and must not store face embeddings, identity-recognition results, source metadata, or inferred Sensitive Context.
