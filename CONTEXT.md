@@ -109,7 +109,7 @@ One ordered two-person exchange placed in verified safe space inside the Source 
 _Avoid_: Ambiguous attribution, unordered bubbles
 
 **Revision Record**:
-Any durable, user-inspectable description later adopted to reproduce a Finished Image or support Directed Revision. It may contain only information needed for rerendering and must not store face embeddings, identity-recognition results, source metadata, or inferred Sensitive Context.
+Any durable, user-inspectable description later adopted to support continuing a Directed Revision. It may contain only information needed for that purpose and must not store face embeddings, identity-recognition results, source metadata, or inferred Sensitive Context. It does not guarantee pixel-identical reproduction of a generative result.
 _Avoid_: Biometric profile, hidden dossier
 
 **Safe Continuation**:
@@ -161,8 +161,16 @@ An explicitly requested increase in visual stylization beyond the source-respons
 _Avoid_: Synonym for all generation, automatic maximum stylization
 
 **Directed Revision**:
-A natural-language request to change one aspect of a Finished Image while preserving unrelated narrative and visual decisions.
+A natural-language request to change specified aspects of a Finished Image based on a selected Accepted Version, while retaining unrelated narrative and visual decisions. The revised result is checked again; a failed revision does not replace an accepted result.
 _Avoid_: Restart, regenerate everything
+
+**Accepted Version**:
+A generated or revised image that has passed the required checks and is retained as an available result. A newer accepted image does not overwrite an earlier one; a failed attempt is not an Accepted Version. Acceptance here does not imply the user's final aesthetic approval.
+_Avoid_: Latest attempt, unchecked candidate
+
+**Revision Base**:
+The Accepted Version selected as the starting point for a Directed Revision, together with the Source Photo needed to verify fidelity. It defaults to the latest accepted result unless the user chooses another retained version.
+_Avoid_: Failed draft, source substitute
 
 **Group Narration**:
 A shared narrator or collective Voice Element used when individual attribution would overcrowd a photograph containing many people.
