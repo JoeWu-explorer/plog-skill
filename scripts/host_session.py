@@ -6,11 +6,13 @@ actual host events and does not decide visual quality or human acceptance.
 from __future__ import annotations
 
 import argparse
+from collections import deque
 import hashlib
 import json
 import os
 from pathlib import Path
 import queue
+import signal
 import subprocess
 import threading
 import time
@@ -37,10 +39,11 @@ def run_case(codex: Path, case: dict[str, Any], destination: Path, *, timeout: i
     destination.mkdir(mode=0o700, parents=True, exist_ok=False)
     (destination / 'case.json').write_text(json.dumps(case, ensure_ascii=False, indent=2))
     messages: queue.Queue[dict[str, Any] | None] = queue.Queue()
+    pending: deque[dict[str, Any]] = deque()
     started = time.monotonic()
     result: dict[str, Any] = {'status': 'running', 'clean_session': True, 'installed_manifest_sha256': installed_digest, 'image_calls': [], 'messages': [], 'tool_requests': [], 'turns': []}
     with (destination / 'host-stderr.txt').open('w') as errors, (destination / 'events.jsonl').open('w') as events:
-        process = subprocess.Popen([str(codex), 'app-server', '--stdio'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=errors, text=True, bufsize=1)
+        process = subprocess.Popen([str(codex), 'app-server', '--stdio'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=errors, text=True, bufsize=1, start_new_session=True)
 
         def reader() -> None:
             assert process.stdout is not None
@@ -51,14 +54,17 @@ def run_case(codex: Path, case: dict[str, Any], destination: Path, *, timeout: i
                     continue
             messages.put(None)
 
-        threading.Thread(target=reader, daemon=True).start()
+        reader_thread = threading.Thread(target=reader, daemon=True)
+        reader_thread.start()
 
         def send(value: dict[str, Any]) -> None:
             assert process.stdin is not None
             process.stdin.write(json.dumps(value, ensure_ascii=False) + '\n')
             process.stdin.flush()
 
-        def receive() -> dict[str, Any]:
+        def receive(*, include_pending: bool = True) -> dict[str, Any]:
+            if include_pending and pending:
+                return pending.popleft()
             remaining = timeout - (time.monotonic() - started)
             if remaining <= 0:
                 raise TimeoutError('Target host test timed out; no automatic retry.')
@@ -75,11 +81,12 @@ def run_case(codex: Path, case: dict[str, Any], destination: Path, *, timeout: i
 
         def response(number: int) -> dict[str, Any]:
             while True:
-                message = receive()
+                message = receive(include_pending=False)
                 if message.get('id') == number:
                     if 'error' in message:
                         raise RuntimeError(str(message['error']))
                     return message['result']
+                pending.append(message)
 
         try:
             send({'id': 1, 'method': 'initialize', 'params': {'clientInfo': {'name': 'photo-dialogue-product-test', 'version': '1.0'}, 'capabilities': {'experimentalApi': True}}})
@@ -133,16 +140,35 @@ def run_case(codex: Path, case: dict[str, Any], destination: Path, *, timeout: i
             result['status'] = 'incomplete'
             result['error'] = str(exc)
         finally:
-            process.terminate()
+            try:
+                os.killpg(process.pid, signal.SIGTERM)
+            except ProcessLookupError:
+                pass
             try:
                 process.wait(timeout=5)
             except subprocess.TimeoutExpired:
-                process.kill()
+                os.killpg(process.pid, signal.SIGKILL)
                 process.wait()
+            reader_thread.join(timeout=5)
+            if reader_thread.is_alive():
+                try:
+                    os.killpg(process.pid, signal.SIGKILL)
+                except ProcessLookupError:
+                    pass
+                reader_thread.join(timeout=5)
+            if process.stdin is not None:
+                process.stdin.close()
+            # An escaped descendant could still hold the pipe. Do not wait on
+            # the reader's stream lock and prevent the evidence from being saved.
+            if process.stdout is not None and not reader_thread.is_alive():
+                process.stdout.close()
             result['elapsed_seconds'] = round(time.monotonic() - started, 2)
             result['cost'] = None
             result['quality'] = 'not assessed by harness'
-            result['installed_candidate_unchanged'] = (skill / 'INSTALL-MANIFEST.json').read_bytes() == manifest_bytes and all(hashlib.sha256((skill / name).read_bytes()).hexdigest() == digest for name, digest in manifest['files'].items())
+            try:
+                result['installed_candidate_unchanged'] = (skill / 'INSTALL-MANIFEST.json').read_bytes() == manifest_bytes and all(hashlib.sha256((skill / name).read_bytes()).hexdigest() == digest for name, digest in manifest['files'].items())
+            except OSError:
+                result['installed_candidate_unchanged'] = False
             if not result['installed_candidate_unchanged']:
                 result['status'] = 'incomplete'
                 result['error'] = 'Installed candidate changed during the test.'
