@@ -109,8 +109,12 @@ One ordered two-person exchange placed in verified safe space inside the Source 
 _Avoid_: Ambiguous attribution, unordered bubbles
 
 **Revision Record**:
-Any durable, user-inspectable description later adopted to support continuing a Directed Revision. It may contain only information needed for that purpose and must not store face embeddings, identity-recognition results, source metadata, or inferred Sensitive Context. It does not guarantee pixel-identical reproduction of a generative result.
+A minimal, user-inspectable local record saved with the results to support continuing a Directed Revision: the source reference, exact image text, visual intent, and relationships between accepted versions. It does not imply a retained copy of the Source Photo, authorize new processing, or guarantee pixel-identical reproduction. It excludes face embeddings, identity-recognition results, source metadata, inferred Sensitive Context, and unrelated private information.
 _Avoid_: Biometric profile, hidden dossier
+
+**Revision Recovery**:
+Restoring the selected Accepted Version, source reference, exact text, and visual intent from a Revision Record so a new request can continue the work. Missing or changed source material requires the user to provide or identify it; a finished image is not silently substituted for the Source Photo.
+_Avoid_: Automatic identity reconstruction, permanent source archive
 
 **Safe Continuation**:
 A conservative Narrative Treatment that preserves the user's safe intent after declining only an unsafe or unsupported part of a request. The entire request stops only when its source scenario or central purpose is itself unsafe or out of scope.
