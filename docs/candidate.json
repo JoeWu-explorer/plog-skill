@@ -1,10 +1,14 @@
 {
-  "candidate_commit": "8fde28bfdd327e705be234c0feeb8584b07a9708",
-  "package": "photo-dialogue-8fde28b.zip",
-  "package_sha256": "ea217cdee1b33dd6ed4fd7f72bc603f3ee8301ef61fbd4732e8cbdff9d25ac7d",
+  "candidate_commit": "4a5972e2c08ab9e16265cf7864efad64f0b09b23",
+  "package": "photo-dialogue-4a5972e.zip",
+  "package_sha256": "df1c5710fefb63bd614a2aefd618c019266c8e32d84b6ec04f0e8c9e9aaa3abd",
   "deterministic_tests": {
-    "count": 26,
-    "macos_cpython": [
+    "count": 30,
+    "platforms": [
+      "macOS arm64",
+      "Linux arm64"
+    ],
+    "cpython": [
       "3.11.15",
       "3.12.13",
       "3.13.13"
@@ -12,14 +16,34 @@
     "status": "pass"
   },
   "typecheck": "pass",
-  "codex_cli": "0.146.0",
+  "codex_cli": "0.153.3",
   "user_scope_discovery": "pass",
-  "clean_host_generation_revision_recovery": "untested",
-  "linux": "untested",
+  "clean_host_generation_revision_recovery": "pass",
+  "linux": "pass",
   "release_evaluation": {
     "total_first_attempts": 18,
-    "untested": 18,
-    "status": "not_passed"
+    "execution": "completed",
+    "human_review": "deferred_until_implementation_complete",
+    "status": "not_passed",
+    "native_image_calls": 18,
+    "delivery_pass_awaiting_human": 15,
+    "failed": 3,
+    "misdelivered": 1,
+    "untested": 0,
+    "release_gate_met": false
   },
-  "public_release": "not_authorized_not_executed"
+  "public_release": "not_authorized_not_executed",
+  "behavior_checks": {
+    "passed": 15,
+    "total": 15
+  },
+  "revision_paths": {
+    "passed": 3,
+    "total": 3
+  },
+  "known_open_defects": [
+    "dense_scene_identity_drift",
+    "delivery_self_check_false_acceptance",
+    "low_light_face_reconstruction"
+  ]
 }

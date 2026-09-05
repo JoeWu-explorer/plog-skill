@@ -2,7 +2,7 @@
 
 把一张人物照片做成中文叙事成图，再用自然语言修改。它是可安装的 Codex Skill：上传照片，可补一句场景，技能按当前照片决定叙事、光色、字体与构图；生成后对照原图和确切中文核验，成功保存后给出 PNG 预览、下载入口和最小修改记录。
 
-**当前为开发候选，尚未通过发布验收。** 文件处理、版本记录、安装维护和评测工具已实现；早期真实生成演示发现了场景细节变化，结果未被接受。完整真人评审、干净会话生成/修改/恢复和正式展示仍待完成。详见 [实施与验证记录](docs/implementation-status.md)。
+**当前为可安装的开发候选，尚未通过发布验收。** 首次成图、多人原话、定向修改、恢复导出、失败保护和安装维护均已实现。30 项确定性测试在 macOS/Linux 的 Python 3.11–3.13 六组环境通过；真实宿主生成与恢复已走通，固定 18 次私密成图验收已完成：15 次通过代理底线核验、3 次失败，其中 1 次误交付被独立检查纠正；人工视觉评分安排在最后。当前未达到发布门槛。详见 [实施与验证记录](docs/implementation-status.md)。
 
 ## 使用体验
 
@@ -15,13 +15,14 @@
 
 ## 候选安装与维护
 
-当前固定工程候选为 `8fde28bfdd327e705be234c0feeb8584b07a9708`，仅在本地提交，尚未推送或公开发布。正式固定版本安装入口将在干净会话验收通过后发布。当前可从本地候选 checkout 构建并安装，下面命令已用于独立目录安装验证；发布候选的确切提交和包校验值见 [候选报告](docs/implementation-status.md)。使用已安装的合格 CPython 3.11–3.13，将 `python3.13` 替换为你选择的同一个解释器。
+当前固定工程候选为 `4a5972e2c08ab9e16265cf7864efad64f0b09b23`，仅在本地提交，尚未推送或公开发布。候选制品为 `dist/photo-dialogue-4a5972e.zip`，校验信息见下方报告。当前可从本地候选 checkout 构建并安装，下面命令已用于独立目录安装验证；发布候选的确切提交和包校验值见 [候选报告](docs/implementation-status.md)。使用已安装的合格 CPython 3.11–3.13，将 `python3.13` 替换为你选择的同一个解释器。
 
 ```sh
 python3.13 scripts/distribution.py build dist/photo-dialogue-candidate.zip
 python3.13 scripts/distribution.py install dist/photo-dialogue-candidate.zip
 python3.13 -m venv ~/.local/share/photo-dialogue/venv
 ~/.local/share/photo-dialogue/venv/bin/python -m pip install --require-hashes -r ~/.agents/skills/photo-dialogue/requirements.lock
+export CAP_PYTHON="$HOME/.local/share/photo-dialogue/venv/bin/python"
 ```
 
 安装默认目标 `~/.agents/skills/photo-dialogue`；`--target` 可指定独立测试位置。发现旧安装位置或已有目录时不会默默覆盖/重复安装。包不包含测试照、原型、环境、私人输出或开发机路径。联网装依赖需用户已授权，包构建/安装器本身不联网。
@@ -34,9 +35,9 @@ python3.13 -m venv ~/.local/share/photo-dialogue/venv
 
 支持目标是一张含 1–6 名参与者的静态 JPEG、PNG、WebP；HEIC/HEIF 为可选依赖，安装后必须通过功能自检。原方向默认保留，可按要求调整画幅。动画、多页、RAW、超人数或无法核验的人物图会说明问题。
 
-本地已验证 macOS / CPython 3.11–3.13 / Pillow 12.3.0；HEIF 在 macOS / Python 3.13 / pillow-heif 1.6.0 实测。Linux 已配置测试矩阵，尚不能据此声称通过。Windows、其他 Python 和所有 Agent 客户端不作兼容承诺。
+已验证 macOS arm64 与 Linux arm64 / CPython 3.11–3.13 / Pillow 12.3.0；HEIF 在 macOS Python 3.13 与 Linux 三个 Python 版本上通过 pillow-heif 1.6.0 实测，缺失依赖时正确说明不支持。目标宿主实测为 Codex 0.153.3；旧 CLI 0.146.0 无法运行当前配置模型，不能据此承诺兼容。Windows、其他 Python 和所有 Agent 客户端不作兼容承诺。
 
-生成式人物细节和中文仍可能失败；失败不作为成品交付，不自动重试、换服务或退回贴字。不能承诺完全本地、无限免费、零错字、像素不变或任意照片必成功。普通非露骨照护场景可克制表达；隐私、人物尊严、未成年人和不支持用途边界见 [人物与隐私](photo-dialogue/references/people-and-privacy.md)。
+生成式人物细节和中文仍可能失败。技能要求失败不作为成品交付，不自动重试、换服务或退回贴字；本候选实测仍发生 1 次人物漂移误交付，已在独立核验中判为失败，不能依赖技能自检作保真保证。不能承诺完全本地、无限免费、零错字、像素不变或任意照片必成功。普通非露骨照护场景可克制表达；隐私、人物尊严、未成年人和不支持用途边界见 [人物与隐私](photo-dialogue/references/people-and-privacy.md)。
 
 ## 示例、验收与许可
 

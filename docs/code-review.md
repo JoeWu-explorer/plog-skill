@@ -1,19 +1,27 @@
 # Code review
 
-Baseline: `4dc0ebd011ce2fd8acaefe5076985aacfd8450ae`. Initial implementation reviewed: `e2c250e27af5cf2d3d3ab6b856137a28180361ef`. Two independent read-only agents reviewed Standards and Spec, followed by focused review of the fixes. No agent generated visual acceptance scores.
+Baseline: `4dc0ebd011ce2fd8acaefe5076985aacfd8450ae`. Implementation and focused fixes through `4a5972e2c08ab9e16265cf7864efad64f0b09b23` were reviewed along Standards and Spec by two independent read-only agents. This is engineering review; no agent supplied human visual scores.
 
 ## Standards
 
-1. Post-commit interruption could delete the PNG newly referenced by revision.json. Fixed by reading publication state before rollback; registered or uncertain files are preserved. A controlled interrupt immediately after OS replacement reproduces the old failure and now leaves all versions recoverable.
-2. Failed update publication plus failed rollback could delete the previous installation inside TemporaryDirectory. Fixed by keeping the backup outside automatic cleanup, reporting its recovery path, and rechecking local changes after staging/moving. A controlled dual rename failure now preserves the old install.
+Five concrete defects were found and fixed:
 
-Focused re-review confirmed both resolved; no new concrete defect or actionable Fowler-smell finding in these changes.
+1. An interruption after publishing revision.json could delete its newly registered PNG. Rollback now preserves registered or uncertain files; an injected post-replace interrupt reproduces the former failure and passes after the fix.
+2. Failed update publication and failed rollback could remove the old installation through temporary-directory cleanup. Backups now survive outside automatic cleanup; the dual-failure test preserves the old install.
+3. A missing installed file at test shutdown could discard the result evidence. Changed or unreadable candidates now produce an incomplete result with evidence preserved.
+4. Waiting for a host RPC response discarded interleaved notifications. An ordered pending queue now replays them; a real subprocess protocol test verifies image and turn events arriving before responses.
+5. A descendant retaining stdout could hang test shutdown indefinitely. Isolated process-group termination and bounded reader joins now preserve completion evidence; the real descendant-pipe regression passes.
+
+Focused re-review confirmed these fixes, with no remaining concrete finding in the reviewed changes.
 
 ## Spec
 
-1. A low-scoring retry could bypass the release score gate. Fixed by validating every attempt, while counting only the 18 fixed first attempts. Delivered results without complete passing human review also block release.
-2. First acceptance could bind an earlier candidate to a source changed during generation. Fixed by requiring the SHA-256 retained from pre-generation inspect, rejecting changes before saving, and passing that value through the CLI and Skill instructions.
+Three findings were reported, one shared with Standards:
 
-Focused re-review confirmed both resolved and no new concrete defect in these changes. Known missing release evidence remains: successful clean-host generation/modification/recovery, full environment and human visual evaluation, reviewed formal examples and complete publication review.
+1. A low-scoring retry could bypass the release gate. Every attempt now requires all five passing human scores; only the fixed 18 first attempts count toward the threshold.
+2. First acceptance could bind a generated candidate to a source changed during generation. Saving now requires the SHA-256 retained before generation and rejects later changes.
+3. The host harness lost notifications while waiting for responses, invalidating attempt counts and status. The same pending-queue fix above preserves the actual sequence.
 
-Initial findings: Standards 2, Spec 2 concrete defects plus known acceptance gaps. Remaining concrete findings after focused re-review: 0 on each axis. Release remains not passed.
+Focused re-review confirmed the fixes, with no remaining concrete finding in the reviewed changes. Seven unique defects were repaired across both axes. Separately, a real no-upload product test exposed an unauthorized local-typesetting fallback; the installed entry contract was strengthened and a fresh host regression observed zero external calls and zero accepted image.
+
+Human visual review and the final publication decision remain separate. Passing code review does not assert a passing Release Evaluation.
