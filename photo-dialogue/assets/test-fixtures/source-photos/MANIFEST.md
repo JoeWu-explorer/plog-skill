@@ -4,7 +4,7 @@ This is the public, repository-safe core fixture set for Photo Dialogue v1. The 
 
 The set is sufficient for the map's layout, Look, Identity Fidelity, and evaluation decisions because it spans every supported participant count, all three source orientations, sparse and crowded compositions, different lighting conditions, individual and group interaction, and the age groups that trigger different narrative and safety behavior.
 
-It does not prove real-person consent handling, camera-specific artifacts, or identity preservation across the full diversity of real photographs. Before public release, maintainers should run a local-only smoke test with two or three ordinary user-submitted photographs under Submission Authority. Those photographs must never be committed, uploaded, or added to durable test output.
+It does not prove real-person consent handling, camera-specific artifacts, or identity preservation across the full diversity of real photographs. Real-photo release checks must use explicitly provided or designated photographs and follow the [current generative processing contract](https://github.com/JoeWu-explorer/photo-dialogue/issues/15#issuecomment-5550078321) and [local revision-record contract](https://github.com/JoeWu-explorer/photo-dialogue/issues/16#issuecomment-5550212078). Informed authorization for the current image-service operation permits that processing; it does not permit public upload or publication. Sources, results, and private review details stay outside the repository. Accepted results and minimal records may be retained privately; do not duplicate originals by default. The acceptance decision sets the final release sample size and checks.
 
 ## Rights and permitted use
 
