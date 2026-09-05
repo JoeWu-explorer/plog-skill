@@ -24,11 +24,21 @@ def run_case(codex: Path, case: dict[str, Any], destination: Path, *, timeout: i
     for item in case.get('sources', []):
         if hashlib.sha256(Path(item['path']).read_bytes()).hexdigest() != item['sha256']:
             raise ValueError('Source changed since the test plan was fixed.')
+    skill = Path(case.get('skill_path', str(Path.home() / '.agents/skills/photo-dialogue')))
+    manifest_bytes = (skill / 'INSTALL-MANIFEST.json').read_bytes()
+    manifest = json.loads(manifest_bytes)
+    for name, digest in manifest['files'].items():
+        target = (skill / name).resolve()
+        if not target.is_relative_to(skill.resolve()) or hashlib.sha256(target.read_bytes()).hexdigest() != digest:
+            raise ValueError('Installed skill does not match its package manifest.')
+    installed_digest = hashlib.sha256(manifest_bytes).hexdigest()
+    if case.get('installed_manifest_sha256', installed_digest) != installed_digest:
+        raise ValueError('Installed skill differs from the fixed test candidate.')
     destination.mkdir(mode=0o700, parents=True, exist_ok=False)
     (destination / 'case.json').write_text(json.dumps(case, ensure_ascii=False, indent=2))
     messages: queue.Queue[dict[str, Any] | None] = queue.Queue()
     started = time.monotonic()
-    result: dict[str, Any] = {'status': 'running', 'clean_session': True, 'image_calls': [], 'messages': [], 'tool_requests': [], 'turns': []}
+    result: dict[str, Any] = {'status': 'running', 'clean_session': True, 'installed_manifest_sha256': installed_digest, 'image_calls': [], 'messages': [], 'tool_requests': [], 'turns': []}
     with (destination / 'host-stderr.txt').open('w') as errors, (destination / 'events.jsonl').open('w') as events:
         process = subprocess.Popen([str(codex), 'app-server', '--stdio'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=errors, text=True, bufsize=1)
 
@@ -91,7 +101,7 @@ def run_case(codex: Path, case: dict[str, Any], destination: Path, *, timeout: i
                 if index == 0:
                     inputs += [{'type': 'localImage', 'path': source['path']} for source in case.get('sources', []) if source.get('attach', True)]
                 send({'id': 10 + index, 'method': 'turn/start', 'params': {'threadId': result['thread_id'], 'input': inputs}})
-                response(10 + index)
+                turn = response(10 + index)
                 while True:
                     message = receive()
                     method = message.get('method')
@@ -104,6 +114,9 @@ def run_case(codex: Path, case: dict[str, Any], destination: Path, *, timeout: i
                             result['messages'].append(item.get('text', ''))
                     elif method == 'item/tool/call':
                         result['tool_requests'].append(data)
+                        if case.get('stop_on_tool_call') and len(result['tool_requests']) == 1:
+                            send({'id': 1000, 'method': 'turn/steer', 'params': {'threadId': result['thread_id'], 'expectedTurnId': turn['turn']['id'], 'input': [{'type': 'text', 'text': '停止，不要继续处理或保存任何迟到结果。', 'text_elements': []}]}})
+                            response(1000)
                         responses = case.get('tool_responses', [])
                         call_index = len(result['tool_requests']) - 1
                         answer = responses[min(call_index, len(responses) - 1)] if responses else {'contentItems': [{'type': 'inputText', 'text': 'Test adapter unavailable.'}], 'success': False}
@@ -129,6 +142,10 @@ def run_case(codex: Path, case: dict[str, Any], destination: Path, *, timeout: i
             result['elapsed_seconds'] = round(time.monotonic() - started, 2)
             result['cost'] = None
             result['quality'] = 'not assessed by harness'
+            result['installed_candidate_unchanged'] = (skill / 'INSTALL-MANIFEST.json').read_bytes() == manifest_bytes and all(hashlib.sha256((skill / name).read_bytes()).hexdigest() == digest for name, digest in manifest['files'].items())
+            if not result['installed_candidate_unchanged']:
+                result['status'] = 'incomplete'
+                result['error'] = 'Installed candidate changed during the test.'
             (destination / 'result.json').write_text(json.dumps(result, ensure_ascii=False, indent=2))
             (destination / 'messages.md').write_text('\n\n'.join(result['messages']))
             for path in destination.glob('*'):
