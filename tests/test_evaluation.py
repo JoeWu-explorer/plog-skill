@@ -16,7 +16,7 @@ class EvaluationTests(unittest.TestCase):
     def test_retry_cannot_erase_failure_or_reduce_denominator(self):
         evidence = new_evaluation('a' * 40, 'b' * 64)
         evidence['attempts'][0]['status'] = 'fail'
-        retry = dict(evidence['attempts'][0], attempt=2, status='pass')
+        retry = dict(evidence['attempts'][0], attempt=2, status='pass', delivery='pass', real_service=True, clean_session=True, human_reviewer='test reviewer', scores={'composition':4, 'chinese_typography':4, 'atmosphere':4, 'narrative':4, 'save_share_value':4})
         evidence['attempts'].append(retry)
         self.assertEqual(summarize(evidence)['failed'], 1)
         self.assertEqual(summarize(evidence)['passed'], 0)
@@ -44,3 +44,11 @@ class EvaluationTests(unittest.TestCase):
         self.assertEqual(summarize(evidence)['status'], 'pass')
         evidence['attempts'][0]['misdelivered'] = True
         self.assertEqual(summarize(evidence)['status'], 'not_passed')
+
+    def test_delivered_retry_must_also_pass_every_human_dimension(self):
+        from evaluation import DIMENSIONS
+        evidence = new_evaluation('a' * 40, 'b' * 64)
+        retry = dict(evidence['attempts'][0], attempt=2, status='pass', delivery='pass', real_service=True, clean_session=True, human_reviewer='test reviewer', scores=dict.fromkeys(DIMENSIONS, 2))
+        evidence['attempts'].append(retry)
+        with self.assertRaises(ValueError):
+            summarize(evidence)

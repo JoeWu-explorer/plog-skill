@@ -157,10 +157,13 @@ def recover(work: Path, *, source: Path, version_id: str | None = None) -> dict[
         return {'source': record['source'], 'version': version, 'image': str((work / version['output']).resolve())}
 
 
-def append(work: Path, *, source: Path, candidate: Path, version: dict[str, Any], parent_id: str | None = None) -> dict[str, Any]:
+def append(work: Path, *, source: Path, source_sha256: str, candidate: Path, version: dict[str, Any], parent_id: str | None = None) -> dict[str, Any]:
     """Call only after Delivery Verification. Failed saves keep accepted versions intact."""
     work, source = Path(work), Path(source).resolve()
     _version_details(version)
+    if not isinstance(source_sha256, str) or re.fullmatch('[0-9a-f]{64}', source_sha256) is None:
+        raise RecordError('Provide the source SHA-256 captured before generation.')
+    _check_source({'source': {'sha256': source_sha256}}, source)
     if not work.exists():
         work.mkdir(parents=True, mode=0o700)
     with _locked(work):
@@ -175,7 +178,7 @@ def append(work: Path, *, source: Path, candidate: Path, version: dict[str, Any]
             if parent_id is not None:
                 raise RecordError('First version cannot have a parent.')
             parent = None
-            record = {'schema_version': 1, 'source': {'path': str(source), 'sha256': sha256(source)}, 'current_version': 'v001', 'versions': []}
+            record = {'schema_version': 1, 'source': {'path': str(source), 'sha256': source_sha256}, 'current_version': 'v001', 'versions': []}
         version_id = f"v{len(record['versions']) + 1:03d}"
         entry = {'id': version_id, 'output': version_id + '.png', 'parent_id': parent, **version}
         output = work / entry['output']
@@ -191,7 +194,15 @@ def append(work: Path, *, source: Path, candidate: Path, version: dict[str, Any]
             _commit(work, record)
         except BaseException:
             if saved:
-                output.unlink(missing_ok=True)
+                # The OS may publish the record before an interrupt is raised.
+                # Remove only a candidate known not to be referenced on disk.
+                try:
+                    published = json.loads(record_path.read_text()) if record_path.exists() else {'versions': []}
+                    registered = any(item.get('output') == entry['output'] for item in published['versions'])
+                except (OSError, ValueError, KeyError, TypeError, AttributeError):
+                    registered = True  # uncertain state: preserve the image for recovery
+                if not registered:
+                    output.unlink(missing_ok=True)
             raise
         return entry
 
@@ -209,6 +220,7 @@ def main() -> None:
     parser.add_argument('work', type=Path)
     parser.add_argument('--source', type=Path)
     parser.add_argument('--candidate', type=Path)
+    parser.add_argument('--source-sha256', help='Source checksum captured by inspect before generation')
     parser.add_argument('--details', type=Path, help='Private JSON with change_target, voice_elements, visual_intent')
     parser.add_argument('--version')
     parser.add_argument('--destination', type=Path)
@@ -229,9 +241,9 @@ def main() -> None:
             export_text(args.work, args.destination, args.version)
             result = {'saved': str(args.destination)}
         else:
-            if args.source is None or args.candidate is None or args.details is None:
-                parser.error('append requires --source, --candidate and --details; use only after visual verification')
-            result = append(args.work, source=args.source, candidate=args.candidate, version=json.loads(args.details.read_text()), parent_id=args.version)
+            if args.source is None or args.candidate is None or args.details is None or args.source_sha256 is None:
+                parser.error('append requires --source, --source-sha256, --candidate and --details; use only after visual verification')
+            result = append(args.work, source=args.source, source_sha256=args.source_sha256, candidate=args.candidate, version=json.loads(args.details.read_text()), parent_id=args.version)
         print(json.dumps(result, ensure_ascii=False))
     except (RecordError, PhotoError, OSError, ValueError) as exc:
         parser.exit(1, f'{exc}\n')

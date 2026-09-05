@@ -13,9 +13,11 @@ from distribution import build
 
 def check(root: Path, *, release: bool = False) -> dict[str, int]:
     runtime = root / 'photo-dialogue'
+    references_checked = 0
     for document in runtime.rglob('*.md'):
         for target in re.findall(r'\]\(([^)]+)\)', document.read_text()):
             if '://' not in target and not target.startswith('#'):
+                references_checked += 1
                 resolved = (document.parent / target.split('#')[0]).resolve()
                 if not resolved.is_relative_to(runtime.resolve()) or not resolved.is_file():
                     raise ValueError(f'Broken or external runtime reference in {document.name}: {target}')
@@ -30,7 +32,7 @@ def check(root: Path, *, release: bool = False) -> dict[str, int]:
             raise ValueError(f'Publication blocked by unresolved asset license: {path}')
     with tempfile.TemporaryDirectory() as temporary:
         build(root, Path(temporary) / 'skill.zip')
-    return {'runtime_markdown_references': 5, 'inventoried_assets': len(inventory)}
+    return {'runtime_markdown_references': references_checked, 'inventoried_assets': len(inventory)}
 
 
 def main() -> None:

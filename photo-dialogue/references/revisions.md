@@ -19,10 +19,10 @@
 ```sh
 "$PD_PYTHON" "$PD_SKILL/scripts/revision_record.py" select "$PD_WORK" --version v001
 "$PD_PYTHON" "$PD_SKILL/scripts/revision_record.py" recover "$PD_WORK" --source "$PD_SOURCE" --version v001
-"$PD_PYTHON" "$PD_SKILL/scripts/revision_record.py" append "$PD_WORK" --source "$PD_SOURCE" --candidate "$PD_CANDIDATE" --details "$PD_DETAILS" --version v001
+"$PD_PYTHON" "$PD_SKILL/scripts/revision_record.py" append "$PD_WORK" --source "$PD_SOURCE" --source-sha256 "$PD_SOURCE_SHA256" --candidate "$PD_CANDIDATE" --details "$PD_DETAILS" --version v001
 ```
 
-首次 append 省略 --version；修改省略则基于当前最新接受版本。append 仅供已完成视觉核验的候选使用，脚本本身不判定人物或文字正确。PD_DETAILS 是本次私密临时区的 JSON，成功/失败后清理，只含：
+PD_SOURCE_SHA256 必须是本次生成前 inspect 返回的原图校验，不能在生成后重新取值绕过变化检测。首次 append 省略 --version；修改省略则基于当前最新接受版本。append 仅供已完成视觉核验的候选使用，脚本本身不判定人物或文字正确。PD_DETAILS 是本次私密临时区的 JSON，成功/失败后清理，只含：
 
 ```json
 {

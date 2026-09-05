@@ -118,15 +118,28 @@ def install(package: Path, target: Path, *, update: bool = False) -> None:
             output = staging / name
             output.parent.mkdir(parents=True, exist_ok=True)
             output.write_bytes(value)
-        backup = Path(temporary) / 'previous'
+        backup_root: Path | None = None
+        backup: Path | None = None
         if existed:
+            _unchanged(target)  # staging may have taken time; protect intervening edits
+            backup_root = Path(tempfile.mkdtemp(prefix='.photo-dialogue-backup-', dir=target.parent))
+            backup = backup_root / 'photo-dialogue'
             target.rename(backup)
         try:
+            if backup is not None:
+                _unchanged(backup)
             staging.rename(target)
         except BaseException:
-            if existed:
-                backup.rename(target)
+            if backup is not None:
+                try:
+                    backup.rename(target)
+                except BaseException as restore_error:
+                    raise DistributionError(f'Update and rollback failed. Previous installation preserved at {backup}') from restore_error
+                if backup_root is not None:
+                    backup_root.rmdir()
             raise
+        if backup_root is not None:
+            shutil.rmtree(backup_root)
 
 
 def uninstall(target: Path) -> None:

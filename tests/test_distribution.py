@@ -71,3 +71,27 @@ class DistributionTests(unittest.TestCase):
                     uninstall(target)
                 self.assertTrue(path.exists())
                 path.unlink()
+
+    def test_failed_update_and_failed_rollback_preserve_recoverable_previous_install(self):
+        import os
+        from unittest.mock import patch
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            package = build(ROOT, root / 'candidate.zip')
+            target = root / 'photo-dialogue'
+            install(package, target)
+            original = (target / 'SKILL.md').read_bytes()
+            real_rename = os.rename
+            calls = 0
+            def failing_rename(src, dst, *args, **kwargs):
+                nonlocal calls
+                calls += 1
+                if calls >= 2:
+                    raise OSError('controlled publish and restore failure')
+                return real_rename(src, dst, *args, **kwargs)
+            with patch('os.rename', side_effect=failing_rename):
+                with self.assertRaises((OSError, DistributionError)):
+                    install(package, target, update=True)
+            backups = list(root.glob('.photo-dialogue-backup-*'))
+            self.assertEqual(len(backups), 1)
+            self.assertEqual((backups[0] / 'photo-dialogue' / 'SKILL.md').read_bytes(), original)

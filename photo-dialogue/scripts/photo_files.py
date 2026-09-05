@@ -65,8 +65,11 @@ def _decode(path: Path) -> tuple[Image.Image, str]:
 
 
 def inspect_photo(path: Path) -> dict[str, Any]:
+    before = sha256(Path(path))
     image, format_name = _decode(Path(path))
-    return {'format': format_name, 'size': list(image.size), 'mode': image.mode, 'sha256': sha256(Path(path))}
+    if sha256(Path(path)) != before:
+        raise PhotoError('Source Photo changed during inspection.')
+    return {'format': format_name, 'size': list(image.size), 'mode': image.mode, 'sha256': before}
 
 
 def verify_png(path: Path) -> dict[str, Any]:
