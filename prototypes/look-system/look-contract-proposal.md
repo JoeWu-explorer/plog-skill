@@ -1,6 +1,6 @@
 # Look 合同收束提案
 
-状态：视觉方向已有真人反馈；默认产品路线尚待明确，不能把本提案当作既定决议。
+状态：历史收束提案。视觉部分已归档为[选择 v1 的 Look 系统的完整决议](https://github.com/JoeWu-explorer/photo-dialogue/issues/9#issuecomment-5550061809)，以该决议为准。默认产品路线仍待[统一生成式默认流程与既有合同](https://github.com/JoeWu-explorer/photo-dialogue/issues/15)明确；下文建议不得视为已确认的默认流程。
 
 ## 已确认的方向
 
