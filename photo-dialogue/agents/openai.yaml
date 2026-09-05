@@ -1,0 +1,6 @@
+interface:
+  display_name: "照片有话说"
+  short_description: "把人物照片做成中文叙事成图，并用自然语言修改"
+  default_prompt: "使用 $photo-dialogue，把我提供的照片做成中文叙事成图，按这张照片决定视觉方向，并核对人物和文字。"
+policy:
+  allow_implicit_invocation: true

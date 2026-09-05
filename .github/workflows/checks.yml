@@ -1,0 +1,30 @@
+name: Deterministic checks
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  files-and-package:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python: ['3.11', '3.12', '3.13']
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install --require-hashes -r photo-dialogue/requirements.lock -r tests/requirements-dev.lock
+      - run: python photo-dialogue/scripts/self_check.py --workspace "${{ runner.temp }}"
+      - run: python -m unittest discover -s tests
+      - run: python -m mypy --ignore-missing-imports photo-dialogue/scripts scripts
+      - run: python scripts/check_repository.py
+      - run: python scripts/distribution.py build "${{ runner.temp }}/photo-dialogue.zip"
+      - run: python scripts/distribution.py install "${{ runner.temp }}/photo-dialogue.zip" --target "${{ runner.temp }}/skills/photo-dialogue"
+      - run: python "${{ runner.temp }}/skills/photo-dialogue/scripts/self_check.py" --workspace "${{ runner.temp }}"
+      - run: python -m pip install --require-hashes -r photo-dialogue/requirements-heif.lock
+      - run: python photo-dialogue/scripts/self_check.py --workspace "${{ runner.temp }}"
+      - run: python scripts/distribution.py uninstall --target "${{ runner.temp }}/skills/photo-dialogue"

@@ -13,7 +13,7 @@
 </main>
 <div class="switch"><button id="prev" aria-label="上一张">←</button><span id="current"></span><button id="next" aria-label="下一张">→</button></div>
 <script>
-const base='../../photo-dialogue/assets/test-fixtures/source-photos/';
+const base='../../tests/fixtures/source-photos/';
 const defs=`<defs><pattern id="paper" width="13" height="17" patternUnits="userSpaceOnUse"><rect width="13" height="17" fill="#f8ecd5"/><path d="M2 4h2M8 12h1" stroke="#b0926b" stroke-width=".7" opacity=".18"/></pattern><filter id="lift" x="-15%" y="-15%" width="140%" height="150%"><feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#372a19" flood-opacity=".15"/></filter></defs>`;
 const cases=[
 {id:'single',title:'单声画内 · 留一点慢',file:'01-solo-tea.png',w:1024,h:1535,extra:0,story:'周末早晨，她独自在窗边泡茶。创作内心声音从上方留白落向人物，保留倒水与杯子之间的动作。',design:'柔软的纸形承接两行宋体，短尾指向人物；照片的灰绿与木色仍是画面主体。',voice:`<g class="voices"><path d="M212 290 C266 269 561 276 634 310 C677 331 679 443 643 480 C615 510 519 514 465 512 Q460 552 425 594 Q440 548 423 515 C332 518 225 514 192 482 C152 444 158 329 212 290Z" fill="url(#paper)" stroke="#ba9d76" stroke-width="2" filter="url(#lift)"/><text x="420" y="374" text-anchor="middle" fill="#56422e" font-size="53" letter-spacing="2"><tspan x="420">今天的进度，</tspan><tspan x="420" dy="80">先到这一杯。</tspan></text></g>`},
