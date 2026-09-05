@@ -1,0 +1,25 @@
+{
+  "candidate_commit": "8fde28bfdd327e705be234c0feeb8584b07a9708",
+  "package": "photo-dialogue-8fde28b.zip",
+  "package_sha256": "ea217cdee1b33dd6ed4fd7f72bc603f3ee8301ef61fbd4732e8cbdff9d25ac7d",
+  "deterministic_tests": {
+    "count": 26,
+    "macos_cpython": [
+      "3.11.15",
+      "3.12.13",
+      "3.13.13"
+    ],
+    "status": "pass"
+  },
+  "typecheck": "pass",
+  "codex_cli": "0.146.0",
+  "user_scope_discovery": "pass",
+  "clean_host_generation_revision_recovery": "untested",
+  "linux": "untested",
+  "release_evaluation": {
+    "total_first_attempts": 18,
+    "untested": 18,
+    "status": "not_passed"
+  },
+  "public_release": "not_authorized_not_executed"
+}
