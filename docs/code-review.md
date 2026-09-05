@@ -1,5 +1,7 @@
 # Code review
 
+> 后续代码审查的三项问题已在 `b35dde2` 修复，本机安装已更新；当前包和复审结果见 [修复记录](review-fixes.md)。下文保留 `4a5972e` 的原始验收与发布材料，不能算作新包重新通过真实成图验收。
+
 Baseline: `4dc0ebd011ce2fd8acaefe5076985aacfd8450ae`. Implementation and focused fixes through `4a5972e2c08ab9e16265cf7864efad64f0b09b23` were reviewed along Standards and Spec by two independent read-only agents. This is engineering review; no agent supplied human visual scores.
 
 ## Standards

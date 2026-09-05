@@ -1,9 +1,9 @@
 {
-  "candidate_commit": "4a5972e2c08ab9e16265cf7864efad64f0b09b23",
-  "package": "photo-dialogue-4a5972e.zip",
-  "package_sha256": "df1c5710fefb63bd614a2aefd618c019266c8e32d84b6ec04f0e8c9e9aaa3abd",
+  "candidate_commit": "b35dde276c834a97e6ce81d112861e006e2fa9ee",
+  "package": "photo-dialogue-b35dde2.zip",
+  "package_sha256": "1ff2366dde40ce557bf99527c8f4e48d127ff7c4507c28508c46de237e47b793",
   "deterministic_tests": {
-    "count": 30,
+    "count": 34,
     "platforms": [
       "macOS arm64",
       "Linux arm64"
@@ -22,14 +22,9 @@
   "linux": "pass",
   "release_evaluation": {
     "total_first_attempts": 18,
-    "execution": "completed",
-    "human_review": "deferred_until_implementation_complete",
+    "execution": "not_rerun_for_this_package",
+    "human_review": "pending",
     "status": "not_passed",
-    "native_image_calls": 18,
-    "delivery_pass_awaiting_human": 15,
-    "failed": 3,
-    "misdelivered": 1,
-    "untested": 0,
     "release_gate_met": false
   },
   "public_release": "not_authorized_not_executed",
@@ -45,5 +40,28 @@
     "dense_scene_identity_drift",
     "delivery_self_check_false_acceptance",
     "low_light_face_reconstruction"
-  ]
+  ],
+  "previous_visual_candidate": {
+    "candidate_commit": "4a5972e2c08ab9e16265cf7864efad64f0b09b23",
+    "package": "photo-dialogue-4a5972e.zip",
+    "package_sha256": "df1c5710fefb63bd614a2aefd618c019266c8e32d84b6ec04f0e8c9e9aaa3abd",
+    "release_evaluation": {
+      "total_first_attempts": 18,
+      "execution": "completed",
+      "human_review": "deferred_until_implementation_complete",
+      "status": "not_passed",
+      "native_image_calls": 18,
+      "delivery_pass_awaiting_human": 15,
+      "failed": 3,
+      "misdelivered": 1,
+      "untested": 0,
+      "release_gate_met": false
+    }
+  },
+  "review_fixes": {
+    "reported": 3,
+    "fixed": 3,
+    "standards_remaining": 0,
+    "spec_remaining": 0
+  }
 }
