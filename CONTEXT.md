@@ -41,8 +41,12 @@ The readability limit for a Finished Image: normally no more than three Voice El
 _Avoid_: Caption dump, one bubble per person
 
 **Look**:
-A coherent visual treatment selected from the Source Photo's light, color, mood, and narrative context; it must not be treated as an indiscriminate whole-image filter.
+A coherent visual treatment combining composition, typography, photographic color and light, contrast, grain, and restrained material texture, selected from the Source Photo and narrative context. It includes the photograph's atmosphere as well as the Voice Elements' appearance; a paper-colored caption or an indiscriminate filter alone does not constitute a Look.
 _Avoid_: Filter, preset
+
+**Atmosphere Treatment**:
+The coordinated handling of light softness, warm and cool tones, shadow color, highlight roll-off, grain, and restrained bloom within a Look. It supports the photographed moment while preserving recognizable people and natural skin tones.
+_Avoid_: Uniform yellow wash, decorative overlay pack
 
 **Identity Fidelity**:
 The requirement that recognizable faces, expressions, age cues, bodies, skin tone, clothing, and interpersonal gestures remain faithful to the Source Photo. Default Looks and Directed Revisions do not alter person pixels; an explicitly requested Strong Look may stylize them only while preserving these identity invariants and must be discarded when that cannot be verified.
