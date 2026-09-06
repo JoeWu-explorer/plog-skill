@@ -1,6 +1,6 @@
 # 代码审查修复记录
 
-> 下文记录历史代码修复 `b35dde2`。当前安装与独立完整矩阵见 [候选清单](candidate.json) 和 [最新验证](person-fidelity-fixes.md)。
+> 下文记录历史代码修复 `b35dde2`。当前安装与独立完整矩阵见 [候选清单](../candidate.json) 和 [最新验证](../person-fidelity-fixes.md)。
 
 审查基线 `1d589b1`，修复提交 `b35dde276c834a97e6ce81d112861e006e2fa9ee`。三项已复现问题均修复，相关回归测试先验证失败再通过。
 

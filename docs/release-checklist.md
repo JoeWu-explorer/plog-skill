@@ -4,7 +4,7 @@
 
 > 当前固定包为 `2a6156c`，详见 [候选清单](candidate.json) 和 [最新验证](person-fidelity-fixes.md)。历史核查有各自时间与提交范围，不能替代最终公开审阅。
 
-当前工程与验收执行完成，**发布门槛未通过**。证据与完整失败统计见 [实施报告](implementation-status.md)，具体审阅材料见 [发布材料](release-materials.md)。
+当前工程与验收执行完成，**发布门槛未通过**。证据与完整失败统计见 [实施报告](history/implementation-status.md)，具体审阅材料见 [发布材料](history/release-materials.md)。
 
 - [x] 固定包独立重建一致；目标 Codex 干净会话实际发现、显式调用、自动选用、生成、修改和恢复。
 - [x] macOS/Linux arm64、Python 3.11–3.13 六组环境在 `b35dde2` 通过 34 项确定性测试（此后 Python 实现未变）、类型及仓库检查；安装维护与可选 HEIF 实测完成。
