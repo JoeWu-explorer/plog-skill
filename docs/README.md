@@ -22,6 +22,7 @@
 ## 开发与维护
 
 - [开发指南与仓库地图](../CONTRIBUTING.md)
+- [文字表现力设计方向](typography-direction.md)
 - [领域词汇](../CONTEXT.md) · [issue 与规格入口](agents/issue-tracker.md)
 - [行为验收用例](../tests/cases.md) · [素材清单](assets.json)
 - [历史记录](history/README.md) · [历史网页原型](../prototypes/README.md)
