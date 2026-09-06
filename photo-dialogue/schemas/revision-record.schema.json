@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Photo Dialogue Revision Record v1",
+  "description": "Private data, never processing authorization. Runtime additionally verifies ordered parents, current version, source checksums and contained output files.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "source",
+    "current_version",
+    "versions"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4096,
+          "pattern": "^/"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "current_version": {
+      "type": "string",
+      "pattern": "^v[0-9]{3,}$"
+    },
+    "versions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "output",
+          "parent_id",
+          "change_target",
+          "voice_elements",
+          "visual_intent"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^v[0-9]{3,}$"
+          },
+          "output": {
+            "type": "string",
+            "pattern": "^v[0-9]{3,}\\.png$"
+          },
+          "parent_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^v[0-9]{3,}$"
+          },
+          "change_target": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "voice_elements": {
+            "type": "array",
+            "maxItems": 3,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "text",
+                "kind",
+                "attribution"
+              ],
+              "properties": {
+                "text": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 2000
+                },
+                "kind": {
+                  "enum": [
+                    "confirmed_quote",
+                    "creative_dialogue",
+                    "inner_voice",
+                    "narration"
+                  ]
+                },
+                "attribution": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                }
+              }
+            }
+          },
+          "visual_intent": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000
+          }
+        }
+      }
+    }
+  }
+}

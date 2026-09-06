@@ -41,11 +41,15 @@ The readability limit for a Finished Image: normally no more than three Voice El
 _Avoid_: Caption dump, one bubble per person
 
 **Look**:
-A coherent visual treatment selected from the Source Photo's light, color, mood, and narrative context; it must not be treated as an indiscriminate whole-image filter.
+A coherent visual treatment combining composition, typography, photographic color and light, contrast, grain, and restrained material texture, determined anew from each Source Photo, its narrative context, and the user's stated style preferences. No fixed filter, atmosphere, font, text color, or composition is implied by a previously accepted example. It includes the photograph's atmosphere as well as the Voice Elements' appearance; effects that do not serve the photograph may be omitted.
 _Avoid_: Filter, preset
 
+**Atmosphere Treatment**:
+The coordinated handling of light softness, warm and cool tones, shadow color, highlight roll-off, grain, and restrained bloom within a Look. It supports the photographed moment while preserving recognizable people and natural skin tones.
+_Avoid_: Uniform yellow wash, decorative overlay pack
+
 **Identity Fidelity**:
-The requirement that recognizable faces, expressions, age cues, bodies, skin tone, clothing, and interpersonal gestures remain faithful to the Source Photo. Default Looks and Directed Revisions do not alter person pixels; an explicitly requested Strong Look may stylize them only while preserving these identity invariants and must be discarded when that cannot be verified.
+The requirement that recognizable faces, expressions, age cues, bodies, skin tone, clothing, and interpersonal gestures remain faithful to the Source Photo. Generative treatment may change pixels, but must preserve these identity invariants; an output with material drift or unverifiable fidelity cannot be accepted as a Finished Image.
 _Avoid_: Likeness enhancement, face optimization
 
 **Submission Authority**:
@@ -60,9 +64,13 @@ _Avoid_: Sensitive inference, visual diagnosis
 The additional protection applied whenever a Source Photo contains a baby, child, teen, or a person whose adult age is uncertain: no sexualization, humiliation, adultification, dangerous-behavior glorification, body or ability jokes, age or body alteration, reduced clothing coverage, or unnecessary exposure of identifying location or school details.
 _Avoid_: Child mode, cute exception
 
-**Local Processing Default**:
-The rule that Source Photo pixels remain on the user's device during the normal workflow. Sending a photograph to an external image service is allowed only for a user-requested Strong Look after an explicit disclosure and confirmation for that run.
-_Avoid_: Silent upload, implied cloud consent
+**Generative Art Direction**:
+The default creation approach in which the photograph and its intended Chinese Voice Elements are composed together into an integrated visual work, guided by a Look determined for that Source Photo. The generated result must be checked against the source people, scene and intended text before acceptance.
+_Avoid_: Fixed style transfer, unverified one-shot output
+
+**Per-run Processing Authorization**:
+The user's informed authorization to send the identified Source Photo to the stated image service for the current treatment. Clear authorization already given for that operation is carried forward without a repeated confirmation or password-like phrase; it does not authorize unrelated photographs, services or public sharing.
+_Avoid_: Silent upload, permanent blanket consent, repeated consent ritual
 
 **Privacy Exposure**:
 Clearly visible information in a Source Photo that creates a material sharing risk, such as an address, license plate, identity document, school identifier, private screen content, or recognizable uninvolved bystander. It triggers one minimal clarification unless the Narrative Treatment can naturally exclude it; location-revealing details involving a minor may not be silently retained.
@@ -72,9 +80,41 @@ _Avoid_: Background detail, automatic redaction
 The rule that the original Source Photo is never overwritten. Temporary derivatives are removed after success or failure, and every Finished Image is exported without EXIF, IPTC, XMP, location, or device metadata.
 _Avoid_: In-place edit, metadata copy
 
+**Core Rendering Capability**:
+The ability to create the requested integrated image, inspect its people and Chinese text against the source, and deliver a valid private output. An unavailable creation service or an unmet verification requirement prevents completion; a simpler local result is not an automatic equivalent.
+_Avoid_: Full feature set, degraded image quality
+
+**Enhanced Placement**:
+Optional assistance for locating subject-safe space for Voice Elements without covering faces or key interactions. It supports composition but does not replace inspection of the finished result.
+_Avoid_: Required face recognition, guessed safe area
+
+**Edge Narration**:
+A Voice Element placed in added canvas below the Source Photo. It is an available composition choice when appropriate to the photograph and narrative, not a mandatory group layout or an automatic response to failed generation.
+_Avoid_: Overlay fallback, guessed bubble placement
+
+**Layout Recipe**:
+A composition approach that relates the Source Photo, Voice Elements, attribution, and reading order within one Finished Image while preserving the source orientation. Recipes guide per-photo art direction rather than prescribe fixed positions or an exhaustive set of templates.
+_Avoid_: Template, preset, people-count layout
+
+**Safety-gated Hybrid**:
+The previously prototyped family of Single-voice Overlay, Two-voice Overlay, and Edge Narration, retained as optional composition approaches. All protect faces, gestures, shared objects, and Interaction Paths; they do not exhaust the generative layout choices or define a mandatory fallback.
+_Avoid_: People-count template set, always-overlay layout
+
+**Single-voice Overlay**:
+One spoken, inner, or narrator Voice Element placed in a verified safe region inside the Source Photo; person-attributed voice uses a directional tail and narrator voice does not.
+_Avoid_: Floating caption, multi-bubble scatter
+
+**Two-voice Overlay**:
+One ordered two-person exchange placed in verified safe space inside the Source Photo, with each Voice Element pointing to its confirmed or neutrally located speaker.
+_Avoid_: Ambiguous attribution, unordered bubbles
+
 **Revision Record**:
-Any durable, user-inspectable description later adopted to reproduce a Finished Image or support Directed Revision. It may contain only information needed for rerendering and must not store face embeddings, identity-recognition results, source metadata, or inferred Sensitive Context.
+A minimal, user-inspectable local record saved with the results to support continuing a Directed Revision: the source reference, exact image text, visual intent, and relationships between accepted versions. It does not imply a retained copy of the Source Photo, authorize new processing, or guarantee pixel-identical reproduction. It excludes face embeddings, identity-recognition results, source metadata, inferred Sensitive Context, and unrelated private information.
 _Avoid_: Biometric profile, hidden dossier
+
+**Revision Recovery**:
+Restoring the selected Accepted Version, source reference, exact text, and visual intent from a Revision Record so a new request can continue the work. Missing or changed source material requires the user to provide or identify it; a finished image is not silently substituted for the Source Photo.
+_Avoid_: Automatic identity reconstruction, permanent source archive
 
 **Safe Continuation**:
 A conservative Narrative Treatment that preserves the user's safe intent after declining only an unsafe or unsupported part of a request. The entire request stops only when its source scenario or central purpose is itself unsafe or out of scope.
@@ -121,12 +161,28 @@ A Voice Element that does not assert an unconfirmed relationship, identity, or p
 _Avoid_: Relationship guess, inferred identity
 
 **Strong Look**:
-An explicitly requested Look that may substantially reinterpret the photograph while remaining subject to Identity Fidelity.
-_Avoid_: Default style, automatic restyle
+An explicitly requested increase in visual stylization beyond the source-responsive treatment selected for the current image. It remains subject to Identity Fidelity and is distinct from the generative technique used by the default workflow.
+_Avoid_: Synonym for all generation, automatic maximum stylization
 
 **Directed Revision**:
-A natural-language request to change one aspect of a Finished Image while preserving unrelated narrative and visual decisions.
+A natural-language request to change specified aspects of a Finished Image based on a selected Accepted Version, while retaining unrelated narrative and visual decisions. The revised result is checked again; a failed revision does not replace an accepted result.
 _Avoid_: Restart, regenerate everything
+
+**Accepted Version**:
+A generated or revised image that has passed the required checks and is retained as an available result. A newer accepted image does not overwrite an earlier one; a failed attempt is not an Accepted Version. Acceptance here does not imply the user's final aesthetic approval.
+_Avoid_: Latest attempt, unchecked candidate
+
+**Delivery Verification**:
+The checks applied to each generated or revised candidate before it becomes an Accepted Version, including fidelity to the Source Photo, exact intended text, attribution, visual coherence, and valid private delivery. An unresolved or unverifiable candidate cannot pass.
+_Avoid_: Generation succeeded, user aesthetic approval
+
+**Release Evaluation**:
+The assessment of a candidate product version against a fixed set of photographs, revisions, and failure scenarios, including human review of complete images for visual quality. It retains failed attempts in the evidence and is distinct from each image's Delivery Verification.
+_Avoid_: Best-example showcase, automatic quality score, per-user approval step
+
+**Revision Base**:
+The Accepted Version selected as the starting point for a Directed Revision, together with the Source Photo needed to verify fidelity. It defaults to the latest accepted result unless the user chooses another retained version.
+_Avoid_: Failed draft, source substitute
 
 **Group Narration**:
 A shared narrator or collective Voice Element used when individual attribution would overcrowd a photograph containing many people.

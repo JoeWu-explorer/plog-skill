@@ -1,0 +1,50 @@
+{
+  "tests/fixtures/source-photos/01-solo-tea.png": {
+    "sha256": "2f2a71be4090455bea72bf02df678baa36468d826c0d05f0c6eee34e6ce115b6",
+    "license": "CC0-1.0",
+    "source": "OpenAI built-in image generation; original fictional people",
+    "provenance": "tests/fixtures/source-photos/MANIFEST.md"
+  },
+  "tests/fixtures/source-photos/03-three-generation-play.png": {
+    "sha256": "ff7e199f6e0332d9c464e8028c8ba4819912cad1afbff017da0843f761c82d0d",
+    "license": "CC0-1.0",
+    "source": "OpenAI built-in image generation; original fictional people",
+    "provenance": "tests/fixtures/source-photos/MANIFEST.md"
+  },
+  "tests/fixtures/source-photos/02-spouses-cooking.png": {
+    "sha256": "658fa4b463f40c5fcf48070cc86bf15567e75e25e4df1f86afab30d569145208",
+    "license": "CC0-1.0",
+    "source": "OpenAI built-in image generation; original fictional people",
+    "provenance": "tests/fixtures/source-photos/MANIFEST.md"
+  },
+  "tests/fixtures/source-photos/05-five-coworkers.png": {
+    "sha256": "0ba428a52fa15e70f004b20493fa6d2a45911a2ffd0c76d6909858f8dd045660",
+    "license": "CC0-1.0",
+    "source": "OpenAI built-in image generation; original fictional people",
+    "provenance": "tests/fixtures/source-photos/MANIFEST.md"
+  },
+  "tests/fixtures/source-photos/06-six-person-lunch.png": {
+    "sha256": "ceb7df6538e680509ce079502a5e47a7b206d323f8129ce6a85bb63c5bc6072a",
+    "license": "CC0-1.0",
+    "source": "OpenAI built-in image generation; original fictional people",
+    "provenance": "tests/fixtures/source-photos/MANIFEST.md"
+  },
+  "tests/fixtures/source-photos/04-four-person-picnic.png": {
+    "sha256": "c687dadce1dc2f1223967bda4f0b019c96826a1dc9d15c9ab5588f8035a24f2e",
+    "license": "CC0-1.0",
+    "source": "OpenAI built-in image generation; original fictional people",
+    "provenance": "tests/fixtures/source-photos/MANIFEST.md"
+  },
+  "prototypes/look-system/generated/strong-warm-film-v2.png": {
+    "sha256": "9057f40115ed4bb396c9d0042baf9bc48bf6c9c8440d0bf8090cb9e037b2a6c9",
+    "license": "UNRESOLVED",
+    "source": "OpenAI built-in image generation; original fictional people",
+    "provenance": "prototypes/look-system/generated/PROVENANCE.md"
+  },
+  "prototypes/look-system/generated/strong-warm-editorial-v1.png": {
+    "sha256": "79b212863bc213129dac14b23404235904066eb28a669821ac051fa53646dc2b",
+    "license": "UNRESOLVED",
+    "source": "OpenAI built-in image generation; original fictional people",
+    "provenance": "prototypes/look-system/generated/PROVENANCE.md"
+  }
+}

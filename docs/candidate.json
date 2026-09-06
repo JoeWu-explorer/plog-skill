@@ -1,0 +1,188 @@
+{
+  "candidate_commit": "2a6156c5369a30c8ad28ec1e79533c4aa286671c",
+  "package": "photo-dialogue-2a6156c.zip",
+  "package_sha256": "719007587cc894b324ea3f7c2407c0e9a95a7cd2b39db29c3fe4f7eeed2ca9bd",
+  "installed_manifest_sha256": "b244f26af78e2add685e97fbe6c1874a0897bdeca491a1fa9dfea3770322a0ec",
+  "deterministic_tests": {
+    "count": 34,
+    "current_macOS_CPython_3_13_13": "pass",
+    "cross_platform_baseline_commit": "b35dde276c834a97e6ce81d112861e006e2fa9ee",
+    "baseline_platforms": [
+      "macOS arm64",
+      "Linux arm64"
+    ],
+    "baseline_cpython": [
+      "3.11.15",
+      "3.12.13",
+      "3.13.13"
+    ],
+    "baseline_status": "pass",
+    "python_implementation_unchanged_since_baseline": true
+  },
+  "typecheck": "pass",
+  "repository_check": "pass",
+  "fixed_archive_rebuild_install_selfcheck_uninstall": "pass",
+  "codex_cli": "0.153.3",
+  "user_scope_discovery": "pass",
+  "link_regressions": {
+    "passed": 2,
+    "total": 2,
+    "native_image_calls": 0,
+    "existing_files_unchanged": true
+  },
+  "visual_evidence": {
+    "candidate_commit": "2a6156c5369a30c8ad28ec1e79533c4aa286671c",
+    "package": "photo-dialogue-2a6156c.zip",
+    "package_sha256": "719007587cc894b324ea3f7c2407c0e9a95a7cd2b39db29c3fe4f7eeed2ca9bd",
+    "scope": "Fresh full 18 first-attempt matrix for this exact retained package; no transfer from earlier batches."
+  },
+  "release_evaluation": {
+    "total_first_attempts": 18,
+    "execution": "completed",
+    "native_image_calls": 18,
+    "delivery_pass_awaiting_human": 11,
+    "failed": 7,
+    "untested": 0,
+    "observed_person_misdeliveries": 0,
+    "relative_link_faults_in_visual_batch": 0,
+    "human_review": "pending",
+    "status": "not_passed",
+    "release_gate_met": false,
+    "candidate_commit": "2a6156c5369a30c8ad28ec1e79533c4aa286671c"
+  },
+  "behavior_checks": {
+    "passed": 14,
+    "total": 15,
+    "executed": 15,
+    "candidate_commit": "2a6156c5369a30c8ad28ec1e79533c4aa286671c",
+    "controlled_service_calls": 17,
+    "zero_generation_boundary_sessions": 7,
+    "supplemental_native_image_calls": 3,
+    "status": "one_first_delivery_link_failure_retained",
+    "failure": "Long confirmed quote produced a valid PNG but a relative delivery link."
+  },
+  "revision_paths": {
+    "demonstrated": 3,
+    "total": 3,
+    "first_attempts_passed": 3,
+    "first_attempts_total": 3,
+    "native_image_calls": 3,
+    "candidate_commit": "2a6156c5369a30c8ad28ec1e79533c4aa286671c",
+    "scope": "Natural-language edits from accepted historical v001 bases; original PNG hashes unchanged. Strict 80px editing not retested or guaranteed."
+  },
+  "known_open_limits": [
+    "all_three_real_inputs_rejected_both_rounds",
+    "synthetic_06_round_2_rejected_for_geometry",
+    "small_text_and_unsupported_face_reconstruction",
+    "relative_delivery_link_recurred_in_supplemental_behavior_case",
+    "exact_pixel_position_and_spacing_not_guaranteed",
+    "human_visual_scores_pending",
+    "historical_look_image_and_output_publication_permissions_pending"
+  ],
+  "review_fixes": {
+    "reported_code_bugs": 3,
+    "fixed_code_bugs": 3,
+    "standards_remaining": 0,
+    "spec_remaining": 0
+  },
+  "identity_diagnostic": {
+    "negative_cases_rejected": 3,
+    "positive_controls_accepted": 2,
+    "native_image_calls": 0,
+    "candidate_commit": "ad0104ee977ca4873d8946d77b934a385b30e6c0",
+    "scope": "Historical ad0104e only; not rerun or counted as current package diagnostics."
+  },
+  "previous_visual_candidate": {
+    "candidate_commit": "4a5972e2c08ab9e16265cf7864efad64f0b09b23",
+    "package": "photo-dialogue-4a5972e.zip",
+    "package_sha256": "df1c5710fefb63bd614a2aefd618c019266c8e32d84b6ec04f0e8c9e9aaa3abd",
+    "release_evaluation": {
+      "total_first_attempts": 18,
+      "execution": "completed",
+      "human_review": "deferred_until_implementation_complete",
+      "status": "not_passed",
+      "native_image_calls": 18,
+      "delivery_pass_awaiting_human": 15,
+      "failed": 3,
+      "misdelivered": 1,
+      "untested": 0,
+      "release_gate_met": false
+    }
+  },
+  "intermediate_visual_candidate": {
+    "candidate_commit": "f2d23cac82d9f98f87bb4bed15d18fd35290dc43",
+    "total_first_attempts": 18,
+    "delivery_pass_awaiting_human": 12,
+    "failed": 6,
+    "observed_person_misdeliveries": 0
+  },
+  "public_release": "stable_public_release_not_executed",
+  "current_package_full_visual_matrix": "completed: 18 native calls; 11 independently checked deliveries awaiting human scores, 7 refused; release gate not met",
+  "historical_ad0104e_evidence": {
+    "visual_evidence": {
+      "candidate_commit": "ad0104ee977ca4873d8946d77b934a385b30e6c0",
+      "package": "photo-dialogue-ad0104e.zip",
+      "package_sha256": "67340672f4377f759e053d22e65bf05bd844810f64580953eaa23fba524130c4",
+      "difference_to_installed_candidate": "One local Markdown absolute-path delivery instruction; image-generation and verification instructions unchanged."
+    },
+    "release_evaluation": {
+      "total_first_attempts": 18,
+      "execution": "completed",
+      "native_image_calls": 18,
+      "delivery_pass_awaiting_human": 15,
+      "failed": 3,
+      "untested": 0,
+      "observed_person_misdeliveries": 0,
+      "relative_link_faults_in_visual_batch": 2,
+      "human_review": "pending",
+      "status": "not_passed",
+      "release_gate_met": false,
+      "candidate_commit": "ad0104ee977ca4873d8946d77b934a385b30e6c0"
+    },
+    "behavior_checks": {
+      "passed": 15,
+      "total": 15,
+      "candidate_commit": "ad0104ee977ca4873d8946d77b934a385b30e6c0",
+      "controlled_service_calls": 17,
+      "status": "pass_observed_cases"
+    },
+    "revision_paths": {
+      "demonstrated": 3,
+      "total": 3,
+      "first_attempts_passed": 2,
+      "first_attempts_total": 3,
+      "supplemental_natural_language_move": "pass",
+      "native_image_calls": 4,
+      "strict_80px_move": "failed_retained",
+      "candidate_commit": "ad0104ee977ca4873d8946d77b934a385b30e6c0"
+    },
+    "identity_diagnostic": {
+      "negative_cases_rejected": 3,
+      "positive_controls_accepted": 2,
+      "native_image_calls": 0,
+      "candidate_commit": "ad0104ee977ca4873d8946d77b934a385b30e6c0"
+    }
+  },
+  "withdrawn_candidate": {
+    "candidate_commit": "142b30efa37659a6f5d033225918168dea5be2ac",
+    "first_attempts": 18,
+    "accepted": 9,
+    "refused": 9,
+    "revision_paths_passed": 3,
+    "reason": "Stricter font and low-light prompting did not resolve generation constraints; runtime restored byte-for-byte to 2a6156c. Partial fault run not counted as full behavior validation."
+  },
+  "link_recovery": {
+    "case": "supplemental_long_quote",
+    "status": "pass_existing_absolute_preview_download",
+    "native_image_calls": 0,
+    "existing_files_unchanged": true,
+    "initial_delivery_failure_retained": true
+  },
+  "prerelease": {
+    "tag": "v0.1.0-alpha.1",
+    "visibility": "existing_private_repository",
+    "owner_authorized": true,
+    "release_gate_waived": false,
+    "runtime_candidate_unchanged": true
+  }
+}
