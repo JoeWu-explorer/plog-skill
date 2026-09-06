@@ -193,10 +193,10 @@ def append(work: Path, *, source: Path, source_sha256: str, candidate: Path, ver
         version_id = f"v{len(record['versions']) + 1:03d}"
         entry = {'id': version_id, 'output': version_id + '.png', 'parent_id': parent, **version}
         output = work / entry['output']
-        saved = False
+        saved: os.stat_result | None = None
         try:
             export_png(candidate, output, source=source)
-            saved = True
+            saved = output.lstat()
             _check_source(record, source)
             record['versions'].append(entry)
             record['current_version'] = version_id
@@ -204,7 +204,7 @@ def append(work: Path, *, source: Path, source_sha256: str, candidate: Path, ver
             _structure(record, work)
             _commit(work, record)
         except BaseException:
-            if saved:
+            if saved is not None:
                 # The OS may publish the record before an interrupt is raised.
                 # Remove only a candidate known not to be referenced on disk.
                 try:
@@ -213,7 +213,12 @@ def append(work: Path, *, source: Path, source_sha256: str, candidate: Path, ver
                 except (OSError, ValueError, KeyError, TypeError, AttributeError):
                     registered = True  # uncertain state: preserve the image for recovery
                 if not registered:
-                    output.unlink(missing_ok=True)
+                    try:
+                        current = output.lstat()
+                        if (current.st_dev, current.st_ino) == (saved.st_dev, saved.st_ino):
+                            output.unlink()
+                    except OSError:
+                        pass  # Missing or uncertain ownership: preserve state and original error.
             raise
         return entry
 

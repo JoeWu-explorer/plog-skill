@@ -63,6 +63,30 @@ class RevisionTests(unittest.TestCase):
             self.assertNotEqual(missing_file.returncode, 0)
             self.assertEqual(missing_file.stdout, '')
 
+    def test_failed_record_commit_preserves_externally_replaced_candidate(self):
+        import os
+        from unittest.mock import patch
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            source = root / 'source.png'
+            Image.new('RGB', (8, 8)).save(source)
+            work = root / 'work'
+            append(work, source=source, source_sha256=sha256(source), candidate=source, version=details())
+            before = (work / 'revision.json').read_bytes()
+            replacement = root / 'external.png'
+            Image.new('RGB', (8, 8), 'red').save(replacement)
+            expected = replacement.read_bytes()
+            replace = os.replace
+            def interrupted_commit(src, dst):
+                replace(replacement, work / 'v002.png')
+                raise OSError('record publication failed after another writer replaced PNG')
+            with patch('os.replace', side_effect=interrupted_commit):
+                with self.assertRaises(OSError):
+                    append(work, source=source, source_sha256=sha256(source), candidate=source, version=details('新句'))
+            self.assertEqual((work / 'v002.png').read_bytes(), expected)
+            self.assertEqual((work / 'revision.json').read_bytes(), before)
+            self.assertEqual(select(work)['id'], 'v001')
+
     def test_first_delivery_then_old_base_revision_preserves_each_versions_words(self):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
