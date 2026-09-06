@@ -1,0 +1,33 @@
+{
+  "candidate_commit": "c5259c4e8634fe8b0026ce6ab3bea9aa13225296",
+  "package": "photo-dialogue-c5259c4.zip",
+  "package_sha256": "f53647e5989193248a5185fcc4ff50d755a104dfb3495858a3550e773e6a76a3",
+  "published_release_unchanged": "v0.1.0-alpha.1",
+  "deterministic_tests": {
+    "count": 38,
+    "macOS_CPython": [
+      "3.11.15",
+      "3.12.13",
+      "3.13.13"
+    ],
+    "status": "pass",
+    "typecheck": "pass"
+  },
+  "isolated_package_checks": "pass",
+  "host_delivery_regressions": {
+    "commit": "d2085e720863567ea4e697621271e200248b1629",
+    "passed": 3,
+    "native_image_calls": 0,
+    "files_unchanged": true
+  },
+  "full_visual_matrix": "not_rerun; previous 2a6156c 11/18 is historical, not acceptance of this package",
+  "generation_quality_fixed": false,
+  "standards_review_remaining": 0,
+  "spec_review_remaining": 0,
+  "final_candidate_host_smoke": {
+    "passed": 1,
+    "native_image_calls": 0,
+    "existing_files_unchanged": true,
+    "case": "existing_long_quote_delivery"
+  }
+}

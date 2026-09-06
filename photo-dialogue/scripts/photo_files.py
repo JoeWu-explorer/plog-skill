@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+from dataclasses import dataclass
 from contextlib import contextmanager
 import hashlib
 import io
@@ -87,7 +88,25 @@ def verify_png(path: Path) -> dict[str, Any]:
         raise PhotoError('Delivery PNG is damaged or unreadable.') from exc
 
 
+@dataclass(frozen=True)
+class PublishedPNG:
+    path: Path
+    device: int
+    inode: int
+
+    def is_current(self) -> bool:
+        try:
+            current = self.path.lstat()
+            return (current.st_dev, current.st_ino) == (self.device, self.inode)
+        except FileNotFoundError:
+            return False
+
+
 def export_png(candidate: Path, destination: Path, *, source: Path) -> Path:
+    return publish_png(candidate, destination, source=source).path
+
+
+def publish_png(candidate: Path, destination: Path, *, source: Path) -> PublishedPNG:
     """Publish a clean PNG without replacing any existing file or the source."""
     candidate, destination, source = Path(candidate), Path(destination), Path(source)
     if destination.resolve() == source.resolve():
@@ -104,8 +123,9 @@ def export_png(candidate: Path, destination: Path, *, source: Path) -> Path:
         verify_png(staged)
         if sha256(source) != before:
             raise PhotoError('Source Photo changed during export.')
+        owned = staged.stat()
         os.link(staged, destination)  # exclusive publication, also rejects dangling symlinks
-        return destination
+        return PublishedPNG(destination, owned.st_dev, owned.st_ino)
     except BaseException:
         # link() can publish before Python receives a catchable interrupt.
         # Remove only our own hard link, never an existing/replaced user file.

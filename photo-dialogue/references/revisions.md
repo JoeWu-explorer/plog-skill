@@ -19,10 +19,13 @@
 下面命令使用已选解释器与本技能绝对目录（`PD_PYTHON`、`PD_SKILL`），变量内容来自实际环境。所有命令的 `--help` 提供参数细节。
 
 ```sh
+"$PD_PYTHON" "$PD_SKILL/scripts/revision_record.py" delivery "$PD_WORK" --version v001
 "$PD_PYTHON" "$PD_SKILL/scripts/revision_record.py" select "$PD_WORK" --version v001
 "$PD_PYTHON" "$PD_SKILL/scripts/revision_record.py" recover "$PD_WORK" --source "$PD_SOURCE" --version v001
 "$PD_PYTHON" "$PD_SKILL/scripts/revision_record.py" append "$PD_WORK" --source "$PD_SOURCE" --source-sha256 "$PD_SOURCE_SHA256" --candidate "$PD_CANDIDATE" --details "$PD_DETAILS" --version v001
 ```
+
+只读重显使用 delivery：校验记录及 PNG 后返回 version_id、完整 image 路径与可直接交付的 markdown，预览和下载指向同版；不需要原图或外发授权，不生成、不写记录。路径中的空格、括号及特殊字符由工具处理，直接保留返回的 Markdown。append 的命令行返回额外包含 delivery，但记录 schema 与 Python append 返回的版本结构不变。若文件已保存而链接展示中断，核对记录后用 delivery 重显，不为补链接追加版本。
 
 PD_SOURCE_SHA256 必须是本次生成前 inspect 返回的原图校验，不能在生成后重新取值绕过变化检测。首次 append 省略 --version；修改省略则基于当前最新接受版本。append 仅供已完成视觉核验的候选使用，脚本本身不判定人物或文字正确。PD_DETAILS 是本次私密临时区的 JSON，成功/失败后清理，只含：
 

@@ -14,6 +14,102 @@ def details(text='茶先喝一口', target='首次生成'):
 
 
 class RevisionTests(unittest.TestCase):
+    def test_delivery_links_select_old_version_without_original_or_writes(self):
+        import re
+        from urllib.parse import unquote
+        from revision_record import delivery
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            source = root / 'source.png'
+            Image.new('RGB', (8, 8)).save(source)
+            work = root / '中文 空格 (旧版) #100% <图>'
+            append(work, source=source, source_sha256=sha256(source), candidate=source, version=details())
+            append(work, source=source, source_sha256=sha256(source), candidate=source, version=details('新版'))
+            before = {p.name: p.read_bytes() for p in work.iterdir()}
+            source.unlink()
+            result = delivery(work, 'v001')
+            self.assertEqual(result['version_id'], 'v001')
+            self.assertEqual(result['image'], str((work / 'v001.png').resolve()))
+            targets = re.findall(r'\]\(<([^>]+)>\)', result['markdown'])
+            self.assertEqual(len(targets), 2)
+            for target in targets:
+                self.assertEqual(Path(unquote(target)), (work / 'v001.png').resolve())
+                self.assertTrue(Path(unquote(target)).is_file())
+            self.assertEqual({p.name: p.read_bytes() for p in work.iterdir()}, before)
+
+    def test_cli_saved_delivery_and_read_only_reshow_reject_missing_version(self):
+        import json
+        import subprocess
+        script = Path(__file__).resolve().parents[1] / 'photo-dialogue/scripts/revision_record.py'
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            source = root / 'source.png'
+            Image.new('RGB', (8, 8)).save(source)
+            (root / 'details.json').write_text(json.dumps(details()))
+            command = [sys.executable, str(script)]
+            saved = subprocess.run(command + ['append', 'work', '--source', str(source),
+                '--source-sha256', sha256(source), '--candidate', str(source),
+                '--details', str(root / 'details.json')], cwd=root, capture_output=True, text=True, check=True)
+            response = json.loads(saved.stdout)
+            self.assertEqual(response['delivery']['image'], str((root / 'work/v001.png').resolve()))
+            self.assertNotIn('delivery', validate(root / 'work')['versions'][0])
+            shown = subprocess.run(command + ['delivery', 'work'], cwd=root, capture_output=True, text=True, check=True)
+            self.assertEqual(json.loads(shown.stdout), response['delivery'])
+            missing = subprocess.run(command + ['delivery', 'work', '--version', 'v999'], cwd=root, capture_output=True, text=True)
+            self.assertNotEqual(missing.returncode, 0)
+            self.assertEqual(missing.stdout, '')
+            (root / 'work/v001.png').unlink()
+            missing_file = subprocess.run(command + ['delivery', 'work'], cwd=root, capture_output=True, text=True)
+            self.assertNotEqual(missing_file.returncode, 0)
+            self.assertEqual(missing_file.stdout, '')
+
+    def test_failed_record_commit_preserves_externally_replaced_candidate(self):
+        import os
+        from unittest.mock import patch
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            source = root / 'source.png'
+            Image.new('RGB', (8, 8)).save(source)
+            work = root / 'work'
+            append(work, source=source, source_sha256=sha256(source), candidate=source, version=details())
+            before = (work / 'revision.json').read_bytes()
+            replacement = root / 'external.png'
+            Image.new('RGB', (8, 8), 'red').save(replacement)
+            expected = replacement.read_bytes()
+            replace = os.replace
+            def interrupted_commit(src, dst):
+                replace(replacement, work / 'v002.png')
+                raise OSError('record publication failed after another writer replaced PNG')
+            with patch('os.replace', side_effect=interrupted_commit):
+                with self.assertRaises(OSError):
+                    append(work, source=source, source_sha256=sha256(source), candidate=source, version=details('新句'))
+            self.assertEqual((work / 'v002.png').read_bytes(), expected)
+            self.assertEqual((work / 'revision.json').read_bytes(), before)
+            self.assertEqual(select(work)['id'], 'v001')
+
+    def test_replacement_immediately_after_png_publication_is_not_accepted_or_removed(self):
+        import os
+        from unittest.mock import patch
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            source = root / 'source.png'
+            Image.new('RGB', (8, 8)).save(source)
+            work = root / 'work'
+            append(work, source=source, source_sha256=sha256(source), candidate=source, version=details())
+            before = (work / 'revision.json').read_bytes()
+            replacement = root / 'external.png'
+            Image.new('RGB', (8, 8), 'red').save(replacement)
+            expected = replacement.read_bytes()
+            link = os.link
+            def replace_after_link(src, dst):
+                link(src, dst)
+                os.replace(replacement, dst)
+            with patch('os.link', side_effect=replace_after_link):
+                with self.assertRaises(RecordError):
+                    append(work, source=source, source_sha256=sha256(source), candidate=source, version=details('新句'))
+            self.assertEqual((work / 'v002.png').read_bytes(), expected)
+            self.assertEqual((work / 'revision.json').read_bytes(), before)
+
     def test_first_delivery_then_old_base_revision_preserves_each_versions_words(self):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)

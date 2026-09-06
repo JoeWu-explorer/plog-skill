@@ -12,8 +12,9 @@ import re
 import tempfile
 from typing import Any, Iterator
 import uuid
+from urllib.parse import quote
 
-from photo_files import export_png, sha256, verify_png, PhotoError
+from photo_files import publish_png, PublishedPNG, sha256, verify_png, PhotoError
 
 
 class RecordError(ValueError):
@@ -112,6 +113,16 @@ def select(work: Path, version_id: str | None = None) -> dict[str, Any]:
     raise RecordError('Requested version does not exist; no substitute selected.')
 
 
+def delivery(work: Path, version_id: str | None = None) -> dict[str, str]:
+    """Re-show a validated accepted PNG without reading the original or changing records."""
+    version = select(work, version_id)
+    image = str((Path(work) / version['output']).resolve())
+    target = quote(image, safe='/: ')
+    chosen = version['id']
+    return {'version_id': chosen, 'image': image,
+            'markdown': f'![{chosen} 预览](<{target}>)\n\n[下载 {chosen} PNG](<{target}>)'}
+
+
 @contextmanager
 def _locked(work: Path) -> Iterator[None]:
     if work.is_symlink():
@@ -182,18 +193,21 @@ def append(work: Path, *, source: Path, source_sha256: str, candidate: Path, ver
         version_id = f"v{len(record['versions']) + 1:03d}"
         entry = {'id': version_id, 'output': version_id + '.png', 'parent_id': parent, **version}
         output = work / entry['output']
-        saved = False
+        saved: PublishedPNG | None = None
         try:
-            export_png(candidate, output, source=source)
-            saved = True
+            saved = publish_png(candidate, output, source=source)
+            if not saved.is_current():
+                raise RecordError('Published PNG was replaced; no version accepted.')
             _check_source(record, source)
             record['versions'].append(entry)
             record['current_version'] = version_id
             record['source']['path'] = str(source)
             _structure(record, work)
+            if not saved.is_current():
+                raise RecordError('Published PNG was replaced; no version accepted.')
             _commit(work, record)
         except BaseException:
-            if saved:
+            if saved is not None:
                 # The OS may publish the record before an interrupt is raised.
                 # Remove only a candidate known not to be referenced on disk.
                 try:
@@ -202,7 +216,11 @@ def append(work: Path, *, source: Path, source_sha256: str, candidate: Path, ver
                 except (OSError, ValueError, KeyError, TypeError, AttributeError):
                     registered = True  # uncertain state: preserve the image for recovery
                 if not registered:
-                    output.unlink(missing_ok=True)
+                    try:
+                        if saved.is_current():
+                            output.unlink()
+                    except OSError:
+                        pass  # Missing or uncertain ownership: preserve state and original error.
             raise
         return entry
 
@@ -216,7 +234,7 @@ def export_text(work: Path, destination: Path, version_id: str | None = None) ->
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('operation', choices=['validate', 'select', 'recover', 'append', 'export-text'])
+    parser.add_argument('operation', choices=['validate', 'select', 'recover', 'append', 'export-text', 'delivery'])
     parser.add_argument('work', type=Path)
     parser.add_argument('--source', type=Path)
     parser.add_argument('--candidate', type=Path)
@@ -231,6 +249,8 @@ def main() -> None:
             result = validate(args.work)
         elif args.operation == 'select':
             result = select(args.work, args.version)
+        elif args.operation == 'delivery':
+            result = delivery(args.work, args.version)
         elif args.operation == 'recover':
             if args.source is None:
                 parser.error('recover requires --source explicitly supplied by the user')
@@ -244,6 +264,7 @@ def main() -> None:
             if args.source is None or args.candidate is None or args.details is None or args.source_sha256 is None:
                 parser.error('append requires --source, --source-sha256, --candidate and --details; use only after visual verification')
             result = append(args.work, source=args.source, source_sha256=args.source_sha256, candidate=args.candidate, version=json.loads(args.details.read_text()), parent_id=args.version)
+            result = {**result, 'delivery': delivery(args.work, result['id'])}
         print(json.dumps(result, ensure_ascii=False))
     except (RecordError, PhotoError, OSError, ValueError) as exc:
         parser.exit(1, f'{exc}\n')
