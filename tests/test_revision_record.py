@@ -87,6 +87,29 @@ class RevisionTests(unittest.TestCase):
             self.assertEqual((work / 'revision.json').read_bytes(), before)
             self.assertEqual(select(work)['id'], 'v001')
 
+    def test_replacement_immediately_after_png_publication_is_not_accepted_or_removed(self):
+        import os
+        from unittest.mock import patch
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            source = root / 'source.png'
+            Image.new('RGB', (8, 8)).save(source)
+            work = root / 'work'
+            append(work, source=source, source_sha256=sha256(source), candidate=source, version=details())
+            before = (work / 'revision.json').read_bytes()
+            replacement = root / 'external.png'
+            Image.new('RGB', (8, 8), 'red').save(replacement)
+            expected = replacement.read_bytes()
+            link = os.link
+            def replace_after_link(src, dst):
+                link(src, dst)
+                os.replace(replacement, dst)
+            with patch('os.link', side_effect=replace_after_link):
+                with self.assertRaises(RecordError):
+                    append(work, source=source, source_sha256=sha256(source), candidate=source, version=details('新句'))
+            self.assertEqual((work / 'v002.png').read_bytes(), expected)
+            self.assertEqual((work / 'revision.json').read_bytes(), before)
+
     def test_first_delivery_then_old_base_revision_preserves_each_versions_words(self):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)

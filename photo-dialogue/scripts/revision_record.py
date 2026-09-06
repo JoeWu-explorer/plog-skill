@@ -14,7 +14,7 @@ from typing import Any, Iterator
 import uuid
 from urllib.parse import quote
 
-from photo_files import export_png, sha256, verify_png, PhotoError
+from photo_files import publish_png, PublishedPNG, sha256, verify_png, PhotoError
 
 
 class RecordError(ValueError):
@@ -193,15 +193,18 @@ def append(work: Path, *, source: Path, source_sha256: str, candidate: Path, ver
         version_id = f"v{len(record['versions']) + 1:03d}"
         entry = {'id': version_id, 'output': version_id + '.png', 'parent_id': parent, **version}
         output = work / entry['output']
-        saved: os.stat_result | None = None
+        saved: PublishedPNG | None = None
         try:
-            export_png(candidate, output, source=source)
-            saved = output.lstat()
+            saved = publish_png(candidate, output, source=source)
+            if not saved.is_current():
+                raise RecordError('Published PNG was replaced; no version accepted.')
             _check_source(record, source)
             record['versions'].append(entry)
             record['current_version'] = version_id
             record['source']['path'] = str(source)
             _structure(record, work)
+            if not saved.is_current():
+                raise RecordError('Published PNG was replaced; no version accepted.')
             _commit(work, record)
         except BaseException:
             if saved is not None:
@@ -214,8 +217,7 @@ def append(work: Path, *, source: Path, source_sha256: str, candidate: Path, ver
                     registered = True  # uncertain state: preserve the image for recovery
                 if not registered:
                     try:
-                        current = output.lstat()
-                        if (current.st_dev, current.st_ino) == (saved.st_dev, saved.st_ino):
+                        if saved.is_current():
                             output.unlink()
                     except OSError:
                         pass  # Missing or uncertain ownership: preserve state and original error.
