@@ -14,6 +14,55 @@ def details(text='茶先喝一口', target='首次生成'):
 
 
 class RevisionTests(unittest.TestCase):
+    def test_delivery_links_select_old_version_without_original_or_writes(self):
+        import re
+        from urllib.parse import unquote
+        from revision_record import delivery
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            source = root / 'source.png'
+            Image.new('RGB', (8, 8)).save(source)
+            work = root / '中文 空格 (旧版) #100% <图>'
+            append(work, source=source, source_sha256=sha256(source), candidate=source, version=details())
+            append(work, source=source, source_sha256=sha256(source), candidate=source, version=details('新版'))
+            before = {p.name: p.read_bytes() for p in work.iterdir()}
+            source.unlink()
+            result = delivery(work, 'v001')
+            self.assertEqual(result['version_id'], 'v001')
+            self.assertEqual(result['image'], str((work / 'v001.png').resolve()))
+            targets = re.findall(r'\]\(<([^>]+)>\)', result['markdown'])
+            self.assertEqual(len(targets), 2)
+            for target in targets:
+                self.assertEqual(Path(unquote(target)), (work / 'v001.png').resolve())
+                self.assertTrue(Path(unquote(target)).is_file())
+            self.assertEqual({p.name: p.read_bytes() for p in work.iterdir()}, before)
+
+    def test_cli_saved_delivery_and_read_only_reshow_reject_missing_version(self):
+        import json
+        import subprocess
+        script = Path(__file__).resolve().parents[1] / 'photo-dialogue/scripts/revision_record.py'
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            source = root / 'source.png'
+            Image.new('RGB', (8, 8)).save(source)
+            (root / 'details.json').write_text(json.dumps(details()))
+            command = [sys.executable, str(script)]
+            saved = subprocess.run(command + ['append', 'work', '--source', str(source),
+                '--source-sha256', sha256(source), '--candidate', str(source),
+                '--details', str(root / 'details.json')], cwd=root, capture_output=True, text=True, check=True)
+            response = json.loads(saved.stdout)
+            self.assertEqual(response['delivery']['image'], str((root / 'work/v001.png').resolve()))
+            self.assertNotIn('delivery', validate(root / 'work')['versions'][0])
+            shown = subprocess.run(command + ['delivery', 'work'], cwd=root, capture_output=True, text=True, check=True)
+            self.assertEqual(json.loads(shown.stdout), response['delivery'])
+            missing = subprocess.run(command + ['delivery', 'work', '--version', 'v999'], cwd=root, capture_output=True, text=True)
+            self.assertNotEqual(missing.returncode, 0)
+            self.assertEqual(missing.stdout, '')
+            (root / 'work/v001.png').unlink()
+            missing_file = subprocess.run(command + ['delivery', 'work'], cwd=root, capture_output=True, text=True)
+            self.assertNotEqual(missing_file.returncode, 0)
+            self.assertEqual(missing_file.stdout, '')
+
     def test_first_delivery_then_old_base_revision_preserves_each_versions_words(self):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
