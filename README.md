@@ -15,7 +15,7 @@
 
 ## 候选安装与维护
 
-当前固定候选为 `2a6156c5369a30c8ad28ec1e79533c4aa286671c`，仅在本地提交，尚未推送或公开发布。制品为 `dist/photo-dialogue-2a6156c.zip`，校验信息见 [候选清单](docs/candidate.json)。该包已独立完成全部 18 次影像矩阵；更严格的提示词试验 `142b30e` 因效果未达标撤回，当前运行内容与此固定包逐字节一致。下面命令可从本地候选 checkout 构建并安装。使用已安装的合格 CPython 3.11–3.13，将 `python3.13` 替换为你选择的同一个解释器。
+当前固定候选为 `2a6156c5369a30c8ad28ec1e79533c4aa286671c`，作为 `v0.1.0-alpha.1` 预发布交付，仓库保持私有；这不是通过完整发布验收的稳定版。制品为 `dist/photo-dialogue-2a6156c.zip`，校验信息见 [候选清单](docs/candidate.json)。该包已独立完成全部 18 次影像矩阵；更严格的提示词试验 `142b30e` 因效果未达标撤回，当前运行内容与此固定包逐字节一致。可从 [预发布页面](https://github.com/JoeWu-explorer/photo-dialogue/releases/tag/v0.1.0-alpha.1) 下载固定 ZIP 与 SHA256SUMS（需要仓库访问权限）。下面命令可从该版本源码构建并安装。使用已安装的合格 CPython 3.11–3.13，将 `python3.13` 替换为你选择的同一个解释器。
 
 ```sh
 python3.13 scripts/distribution.py build dist/photo-dialogue-candidate.zip

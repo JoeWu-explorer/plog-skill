@@ -116,7 +116,7 @@
     "failed": 6,
     "observed_person_misdeliveries": 0
   },
-  "public_release": "not_authorized_not_executed",
+  "public_release": "stable_public_release_not_executed",
   "current_package_full_visual_matrix": "completed: 18 native calls; 11 independently checked deliveries awaiting human scores, 7 refused; release gate not met",
   "historical_ad0104e_evidence": {
     "visual_evidence": {
@@ -177,5 +177,12 @@
     "native_image_calls": 0,
     "existing_files_unchanged": true,
     "initial_delivery_failure_retained": true
+  },
+  "prerelease": {
+    "tag": "v0.1.0-alpha.1",
+    "visibility": "existing_private_repository",
+    "owner_authorized": true,
+    "release_gate_waived": false,
+    "runtime_candidate_unchanged": true
   }
 }
