@@ -9,3 +9,6 @@
 - [候选说明草稿](release-draft.md)
 
 归档不改变任何首次失败、许可范围或验收标准，也不删除历史证据。
+
+- [alpha.1 固定包与历史统计](../candidate.json)
+- [早期交付修复候选](../development-candidate.json)

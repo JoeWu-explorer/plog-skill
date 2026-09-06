@@ -1,0 +1,42 @@
+{
+  "version": "v0.1.0-alpha.2",
+  "prerelease": true,
+  "repository_visibility": "private",
+  "runtime_commit": "124ef208ac43cf4e05f16e1bf5d86465875928e5",
+  "package": "photo-dialogue-v0.1.0-alpha.2.zip",
+  "package_sha256": "59a6eb32831f455f6bae415680508a9d7930d76f80c45c8d4132195103a53d7c",
+  "deterministic_tests": 38,
+  "visual_evaluation": "not_run_for_this_candidate",
+  "generation_quality_improvement": "unverified",
+  "prior_visual_evidence": {
+    "version": "v0.1.0-alpha.1",
+    "runtime_commit": "2a6156c",
+    "first_attempts": 18,
+    "delivery_pass_awaiting_human": 11,
+    "failed": 7,
+    "human_review": "pending",
+    "counts_not_transferred_to_current_version": true
+  },
+  "scoped_host_checks": {
+    "links": {
+      "candidate": "d2085e7",
+      "cases": 3
+    },
+    "final_save_fix_smoke": {
+      "candidate": "c5259c4",
+      "cases": 1
+    },
+    "onboarding": {
+      "candidate": "a3c981a",
+      "cases": 4
+    },
+    "all_native_image_calls": 0,
+    "note": "Scoped prior commits, not a full host or visual evaluation of 124ef20."
+  },
+  "known_limits": [
+    "low_light_identity_fidelity",
+    "dense_composition_and_small_text",
+    "human_visual_review_pending",
+    "historical_image_publication_licenses_pending"
+  ]
+}
