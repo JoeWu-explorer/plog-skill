@@ -250,5 +250,53 @@
     "license": "PROJECT-DISPLAY",
     "source": "Lossless WebP encoding of examples/readme/craft/after-v2.png; decoded RGB pixels verified identical",
     "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/together/after-v3.png": {
+    "sha256": "19efadf71839d392fdd06879ce391341e2c24e785e188ccf95a4a9cfc74eaf31",
+    "license": "PROJECT-DISPLAY",
+    "source": "Original OpenAI image_gen artwork; user-approved local terminal-period removal; see provenance for method",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/together/after-v3.webp": {
+    "sha256": "6efc0c1af2b0d872b9170de61adf6cdb37512a6c2a87dd6d90bdcb761153e30e",
+    "license": "PROJECT-DISPLAY",
+    "source": "Lossless WebP preview of examples/readme/together/after-v3.png; decoded RGB pixels verified identical",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/cat/after-v2.png": {
+    "sha256": "6d85aea7bc537a0a054bb282217da06a71deecd6198d1e0a811ca7843f817bca",
+    "license": "PROJECT-DISPLAY",
+    "source": "Original OpenAI image_gen artwork; user-approved local terminal-period removal; see provenance for method",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/cat/after-v2.webp": {
+    "sha256": "e189e7cf4b9401c0c2c29f2f0939508215d9bbbc6ac23af6717206dd1a9bd23e",
+    "license": "PROJECT-DISPLAY",
+    "source": "Lossless WebP preview of examples/readme/cat/after-v2.png; decoded RGB pixels verified identical",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/sea-plog-v2.png": {
+    "sha256": "73e6c2d8ce2cb4e7663c15d0922942dfbc32e9ebf8df402d7f5dab0b7519be64",
+    "license": "PROJECT-DISPLAY",
+    "source": "Original OpenAI image_gen artwork; user-approved local terminal-period removal; see provenance for method",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/street-plog-v2.png": {
+    "sha256": "a7892821891e208bd0151b7357bae2ed68e69da61a099594d46c44e6d2013ad1",
+    "license": "PROJECT-DISPLAY",
+    "source": "Original OpenAI image_gen artwork; user-approved local terminal-period removal; see provenance for method",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/breakfast-plog-v2.png": {
+    "sha256": "a814eae19c2c12caf7c7532b5f8321614d16c490045b58ea87d7f2a72bd61b9e",
+    "license": "PROJECT-DISPLAY",
+    "source": "Original OpenAI image_gen artwork; user-approved local terminal-period removal; see provenance for method",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/hero-v2.png": {
+    "sha256": "7755d6b83e58a20a535ca48f981b017c5ab68c475b0e631b857b1db4a197fe02",
+    "license": "PROJECT-DISPLAY",
+    "source": "Original OpenAI image_gen artwork; user-approved local terminal-period removal; see provenance for method",
+    "provenance": "examples/readme/MANIFEST.md"
   }
 }

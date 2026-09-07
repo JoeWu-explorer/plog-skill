@@ -9,12 +9,12 @@
 
 ## 版本与验收
 
-**当前预发布：v0.1.0-alpha.4。** 中文 Plog 覆盖人物、山海、街景、食物、静物和宠物，组图逐张处理并保留版本；提供多 Agent 安装与图像能力接入路径。首页使用一条 npx 安装命令、使用示例和代装口令。
+**当前预发布：v0.1.0-alpha.5。** 将更鲜明的字形、层级与图文构图，以及画内配文默认不以句号收尾的规则，写入通用 Plog Skill。README 展示六类照片的自动创作前后对照。
 
-- [下载](https://github.com/JoeWu-explorer/photo-dialogue/releases/tag/v0.1.0-alpha.4) · [固定包与验证范围](release.json) · [更新记录](../CHANGELOG.md)
-- [本次发布说明](prerelease-alpha-4.md) · [适配与证据状态](agent-compatibility.md) · [Plog 开发检查](plog-development.md)
+- [下载](https://github.com/JoeWu-explorer/photo-dialogue/releases/tag/v0.1.0-alpha.5) · [固定包与验证范围](release.json) · [更新记录](../CHANGELOG.md)
+- [本次发布说明](prerelease-alpha-5.md) · [适配与证据状态](agent-compatibility.md) · [Plog 开发检查](plog-development.md)
 - [验收标准](acceptance.md) · [发布检查](release-checklist.md)
-- [alpha.3 发布说明](prerelease-alpha-3.md) · [alpha.1 历史视觉验证](person-fidelity-fixes.md) · [历史固定包记录](candidate.json)
+- [alpha.4 发布说明](prerelease-alpha-4.md) · [alpha.3 发布说明](prerelease-alpha-3.md) · [alpha.1 历史视觉验证](person-fidelity-fixes.md) · [历史固定包记录](candidate.json)
 
 运行目标为 macOS/Linux 与 CPython 3.11–3.13，基础格式 JPEG/PNG/WebP，HEIF 可选。56 项确定性测试及安装升级检查通过；真实 Agent／图像服务全链路和 Plog 场景视觉矩阵仍待执行。旧版成绩不转移到本版本。
 

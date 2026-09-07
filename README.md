@@ -7,7 +7,7 @@
 [快速开始](#快速开始) · [看前后变化](#从一张照片到一页-plog) · [Agent 适配](#在你常用的-agent-里使用)
 
 <p align="center">
-  <a href="#人物相聚"><img src="examples/readme/together/after-v2.webp" width="58%" alt="人物 Plog：茶还没凉，话还没聊完。大字与相聚瞬间呼应。"></a>
+  <a href="#人物相聚"><img src="examples/readme/together/after-v3.webp" width="58%" alt="人物 Plog：茶还没凉，话还没聊完；大字与相聚瞬间呼应。"></a>
   <a href="#山海旅行"><img src="examples/readme/coast/after-v2.webp" width="38%" alt="山海 Plog：山海很大，今天很慢。舒展笔势落在天空留白。"></a>
 </p>
 
@@ -57,11 +57,11 @@ npx skills add https://github.com/JoeWu-explorer/photo-dialogue --skill photo-di
   <tr><th width="50%">拍下的瞬间</th><th width="50%">自动生成的 Plog</th></tr>
   <tr>
     <td width="50%"><a href="examples/readme/together/before.png"><img src="examples/readme/together/before.webp" width="100%" alt="人物相聚原图"></a></td>
-    <td width="50%"><a href="examples/readme/together/after-v2.png"><img src="examples/readme/together/after-v2.webp" width="100%" alt="人物相聚成图"></a></td>
+    <td width="50%"><a href="examples/readme/together/after-v3.png"><img src="examples/readme/together/after-v3.webp" width="100%" alt="人物相聚成图"></a></td>
   </tr>
 </table>
 
-**茶还没凉， 话还没聊完。**<br><sub>温润院落光 · 细字起句，浓墨大字落句 · 留住人物的目光与动作</sub>
+**茶还没凉， 话还没聊完**<br><sub>温润院落光 · 细字起句，浓墨大字落句 · 留住人物的目光与动作</sub>
 
 <details>
 <summary>查看这张的创作指令</summary>
@@ -149,11 +149,11 @@ npx skills add https://github.com/JoeWu-explorer/photo-dialogue --skill photo-di
   <tr><th width="50%">拍下的瞬间</th><th width="50%">自动生成的 Plog</th></tr>
   <tr>
     <td width="50%"><a href="examples/readme/cat/before.png"><img src="examples/readme/cat/before.webp" width="100%" alt="宠物陪伴原图"></a></td>
-    <td width="50%"><a href="examples/readme/cat/after.png"><img src="examples/readme/cat/after.webp" width="100%" alt="宠物陪伴成图"></a></td>
+    <td width="50%"><a href="examples/readme/cat/after-v2.png"><img src="examples/readme/cat/after-v2.webp" width="100%" alt="宠物陪伴成图"></a></td>
   </tr>
 </table>
 
-**今天的安排： 晒太阳。**<br><sub>奶油暖光 · 轻快手写字 · 把留白留给这份悠闲</sub>
+**今天的安排： 晒太阳**<br><sub>奶油暖光 · 轻快手写字 · 把留白留给这份悠闲</sub>
 
 <details>
 <summary>查看这张的创作指令</summary>
@@ -236,7 +236,7 @@ npx skills add https://github.com/JoeWu-explorer/photo-dialogue --skill photo-di
 
 ## 使用前了解这几件事
 
-- **版本：** 当前预发布为 [v0.1.0-alpha.4](https://github.com/JoeWu-explorer/photo-dialogue/releases/tag/v0.1.0-alpha.4)；上面的 npx 命令安装 main 分支源码。
+- **版本：** 当前预发布为 [v0.1.0-alpha.5](https://github.com/JoeWu-explorer/photo-dialogue/releases/tag/v0.1.0-alpha.5)；上面的 npx 命令安装 main 分支源码。
 - **照片与环境：** 静态 JPEG、PNG、WebP；HEIC/HEIF 可选。文件工具需要 macOS、Linux 或 WSL 中的 CPython 3.11–3.13。
 - **图片服务：** 使用你配置的读图与编辑服务，模型与费用取决于该服务。需要外发照片时会说明接收服务和用途，承接已有授权。
 - **生成效果：** 生成式编辑不保证像素完全不变；检查无法通过时会说明问题，不自动重复生成或消耗第二次额度。

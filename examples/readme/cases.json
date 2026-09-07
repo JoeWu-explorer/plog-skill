@@ -103,16 +103,16 @@
       "key": "together",
       "category": "人物相聚",
       "example_request": "这是朋友聚在一起喝茶，帮我做成温暖自然的 Plog。",
-      "automatic_text": "茶还没凉，\n话还没聊完。",
+      "automatic_text": "茶还没凉，\n话还没聊完",
       "automatic_look": "温润院落光；细字起句、宽幅浓墨展示字落句，让文字与三人的相聚形成重心呼应。",
       "before": "together/before.png",
-      "after": "together/after-v2.png",
+      "after": "together/after-v3.png",
       "source_generation_id": "exec-96aac780-4f51-4b38-b528-1e3ba62b2049.png",
-      "edit_generation_id": "exec-4b99ca31-f37d-414e-a688-6a254d21f09f.png",
+      "edit_generation_id": null,
       "source_sha256": "e6477a90017ad705ee7071052051cc744fb705873f8be911e525eca6321d93e4",
-      "after_sha256": "50e5dd191293364fd60798e93c6111e854ce368dff00906dfabd0e8fc0588956",
-      "native_edit_calls": 2,
-      "saved_version": "v002",
+      "after_sha256": "19efadf71839d392fdd06879ce391341e2c24e785e188ccf95a4a9cfc74eaf31",
+      "native_edit_calls": 3,
+      "saved_version": "v003",
       "agent_visual_check": "reviewed_in_side_by_side_view_at_390_css_px",
       "human_review": "not_scored",
       "previous_version": {
@@ -130,22 +130,37 @@
         "intended_look": "温润院落光；细字起句、宽幅浓墨展示字落句，让文字与三人的相聚形成重心呼应。",
         "status": "accepted",
         "saved_version": "v002"
+      },
+      "before_punctuation_revision": {
+        "after": "together/after-v2.png",
+        "after_sha256": "50e5dd191293364fd60798e93c6111e854ce368dff00906dfabd0e8fc0588956",
+        "automatic_text": "茶还没凉，\n话还没聊完。",
+        "saved_version": "v002",
+        "edit_generation_id": "exec-4b99ca31-f37d-414e-a688-6a254d21f09f.png"
+      },
+      "punctuation_revision": {
+        "parent": "v002",
+        "saved_version": "v003",
+        "method": "user-approved local background clone with Poisson blending",
+        "unmasked_rgb_pixels_identical": true,
+        "visual_review": "source, accepted base and result compared at 390 px; local detail inspection",
+        "native_candidate_not_used": "exec-d8a669f4-f9ba-4b93-8ba8-42b6cbd10fab.png"
       }
     },
     {
       "key": "cat",
       "category": "宠物陪伴",
       "example_request": "把猫咪晒太阳这张做成 Plog，俏皮一点。",
-      "automatic_text": "今天的安排：\n晒太阳。",
+      "automatic_text": "今天的安排：\n晒太阳",
       "automatic_look": "奶油暖光、保留橘白毛色；轻快文字避开猫咪。",
       "before": "cat/before.png",
-      "after": "cat/after.png",
+      "after": "cat/after-v2.png",
       "source_generation_id": "exec-8a9d58c1-613c-4ae0-8342-f565fe6856cd.png",
-      "edit_generation_id": "exec-1ea90f7e-d41a-4185-b130-ea45f2af7235.png",
+      "edit_generation_id": null,
       "source_sha256": "4a3246e1505d6415f7f688bb93a11a6ef1dae51549fb6eb41df8f19d5f426ed9",
-      "after_sha256": "0b8a32bf26f9ac30572c3e69f04cd045898698f2f2ea7a6d1c9895f3054ad8da",
-      "native_edit_calls": 2,
-      "saved_version": "v001",
+      "after_sha256": "6d85aea7bc537a0a054bb282217da06a71deecd6198d1e0a811ca7843f817bca",
+      "native_edit_calls": 3,
+      "saved_version": "v002",
       "agent_visual_check": "reviewed_in_side_by_side_view_at_390_css_px",
       "human_review": "not_scored",
       "typography_revision": {
@@ -158,6 +173,21 @@
         "reason": "椅背左侧轮廓相对所选旧版向右移动，超出仅排版的修改范围。",
         "candidate": "cat/candidate-v2-not-approved.png",
         "candidate_sha256": "b679281a478f734bfd4f29b3f85bee3278e685341a4a84dd15f2f1b9c30fcdd6"
+      },
+      "before_punctuation_revision": {
+        "after": "cat/after.png",
+        "after_sha256": "0b8a32bf26f9ac30572c3e69f04cd045898698f2f2ea7a6d1c9895f3054ad8da",
+        "automatic_text": "今天的安排：\n晒太阳。",
+        "saved_version": "v001",
+        "edit_generation_id": "exec-1ea90f7e-d41a-4185-b130-ea45f2af7235.png"
+      },
+      "punctuation_revision": {
+        "parent": "v001",
+        "saved_version": "v002",
+        "method": "user-approved local background clone with Poisson blending",
+        "unmasked_rgb_pixels_identical": true,
+        "visual_review": "source, accepted base and result compared at 390 px; local detail inspection",
+        "native_candidate_not_used": "exec-55eb94a9-91fb-4dd6-8840-689cae954dd5.png"
       }
     },
     {
