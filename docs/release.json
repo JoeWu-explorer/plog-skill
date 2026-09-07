@@ -1,11 +1,23 @@
 {
-  "version": "v0.1.0-alpha.2",
+  "version": "v0.1.0-alpha.3",
   "prerelease": true,
   "repository_visibility": "private",
-  "runtime_commit": "124ef208ac43cf4e05f16e1bf5d86465875928e5",
-  "package": "photo-dialogue-v0.1.0-alpha.2.zip",
-  "package_sha256": "59a6eb32831f455f6bae415680508a9d7930d76f80c45c8d4132195103a53d7c",
-  "deterministic_tests": 38,
+  "runtime_commit": "b62ece2ef04405f4edd34f125417926e7f01235a",
+  "package": "photo-dialogue-v0.1.0-alpha.3.zip",
+  "package_sha256": "803a070d84cbfd32367fab58162e6a934a823a97db9eae89ec5a982465920fe2",
+  "deterministic_tests": 42,
+  "local_validation": {
+    "platform": "macOS arm64",
+    "python": "3.11.15",
+    "typecheck": "pass",
+    "repository_and_skill_checks": "pass",
+    "reproducible_build": "pass",
+    "fresh_install_selfcheck_uninstall": "pass",
+    "published_alpha_2_upgrade_selfcheck_uninstall": "pass",
+    "prototype_scenarios": 11,
+    "prototype_desktop_mobile": "pass",
+    "native_image_calls": 0
+  },
   "visual_evaluation": "not_run_for_this_candidate",
   "generation_quality_improvement": "unverified",
   "prior_visual_evidence": {
@@ -17,7 +29,7 @@
     "human_review": "pending",
     "counts_not_transferred_to_current_version": true
   },
-  "scoped_host_checks": {
+  "historical_scoped_host_checks": {
     "links": {
       "candidate": "d2085e7",
       "cases": 3
@@ -31,7 +43,7 @@
       "cases": 4
     },
     "all_native_image_calls": 0,
-    "note": "Scoped prior commits, not a full host or visual evaluation of 124ef20."
+    "note": "Scoped prior commits recorded with alpha.2; not host or visual evaluation of alpha.3."
   },
   "known_limits": [
     "low_light_identity_fidelity",

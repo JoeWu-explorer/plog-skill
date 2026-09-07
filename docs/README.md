@@ -9,9 +9,10 @@
 
 ## 版本与验收
 
-**当前预发布：v0.1.0-alpha.2。** 使用步骤、文档导航、交付链接、保存保护与逐图文字设计已更新；完整视觉验收仍未通过，新版没有重跑完整视觉矩阵。
+**当前预发布：v0.1.0-alpha.3。** 首次确认与后续修改、失败、恢复等对话已统一为简短日常表达，保留已有交付、保存和逐图设计能力；完整视觉验收仍未通过，新版没有重跑完整视觉矩阵。
 
-- [下载](https://github.com/JoeWu-explorer/photo-dialogue/releases/tag/v0.1.0-alpha.2) · [当前固定包与验证范围](release.json) · [更新记录](../CHANGELOG.md)
+- [下载](https://github.com/JoeWu-explorer/photo-dialogue/releases/tag/v0.1.0-alpha.3) · [当前固定包与验证范围](release.json) · [更新记录](../CHANGELOG.md)
+- [本次发布说明](prerelease-alpha-3.md) · [对话表达](../photo-dialogue/references/conversation.md)
 - [文字设计方向](typography-direction.md) · [引导与文档整理](onboarding-update.md) · [交付与保存修复](delivery-and-save-fixes.md)
 - [验收标准](acceptance.md) · [公开前清单](release-checklist.md)
 - [alpha.1 历史视觉验证](person-fidelity-fixes.md) · [历史固定包记录](candidate.json) · [生成限制诊断](generation-limit-diagnosis.md)

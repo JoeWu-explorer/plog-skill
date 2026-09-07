@@ -2,7 +2,7 @@
 
 在 Codex 中发一张人物照片，生成带中文对白或旁白的图片，再用自然语言修改。字体、字号、光色和位置按照片与内容决定，也支持不加文字。
 
-**当前版本：[v0.1.0-alpha.2](https://github.com/JoeWu-explorer/photo-dialogue/releases/tag/v0.1.0-alpha.2)** · [安装](docs/install.md) · [使用指南](docs/guide.md) · [更新记录](CHANGELOG.md)
+**当前版本：[v0.1.0-alpha.3](https://github.com/JoeWu-explorer/photo-dialogue/releases/tag/v0.1.0-alpha.3)** · [安装](docs/install.md) · [使用指南](docs/guide.md) · [更新记录](CHANGELOG.md)
 
 ## 怎么用
 
