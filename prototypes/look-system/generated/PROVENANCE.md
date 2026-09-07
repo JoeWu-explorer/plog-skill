@@ -16,3 +16,7 @@ Both outputs visibly contain the intended Chinese text, exactly two adults, the 
 The film edit deepens shadows and changes texture. It remains quite warm/orange and did not fully deliver the requested cool-shadow separation or reduced yellow wash. It must be shown as an experiment awaiting feedback, not a passed atmosphere standard.
 
 This prototype deliberately tests model-integrated Chinese lettering and a narrative poster composition. It is not the previously specified text-free generated base followed by local text rendering, nor a verified implementation of the three deterministic Recipes. No production contract is silently replaced: typography pipeline, default Look scope and layout decisions must be reconciled if the user endorses this direction.
+
+## Publication scope
+
+On 2026-09-07, the repository owner authorized making this project public. These two original generated experiments are included for project display under PROJECT-DISPLAY, as defined in ../../../docs/image-rights.md. They remain experimental outputs; publication does not certify visual quality or grant a general MIT/CC0 image license.

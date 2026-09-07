@@ -37,13 +37,13 @@
   },
   "prototypes/look-system/generated/strong-warm-film-v2.png": {
     "sha256": "9057f40115ed4bb396c9d0042baf9bc48bf6c9c8440d0bf8090cb9e037b2a6c9",
-    "license": "UNRESOLVED",
+    "license": "PROJECT-DISPLAY",
     "source": "OpenAI built-in image generation; original fictional people",
     "provenance": "prototypes/look-system/generated/PROVENANCE.md"
   },
   "prototypes/look-system/generated/strong-warm-editorial-v1.png": {
     "sha256": "79b212863bc213129dac14b23404235904066eb28a669821ac051fa53646dc2b",
-    "license": "UNRESOLVED",
+    "license": "PROJECT-DISPLAY",
     "source": "OpenAI built-in image generation; original fictional people",
     "provenance": "prototypes/look-system/generated/PROVENANCE.md"
   },
