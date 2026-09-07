@@ -1,6 +1,6 @@
 # 更新记录
 
-## 未发布 · Plog / 多 Agent
+## v0.1.0-alpha.4 · Plog / 多 Agent
 
 - 主定位改为中文 Plog，覆盖人物、山海、街景、食物、静物与宠物；多张照片逐张创作和保存，取消人数硬门槛。
 - 通用 Skill 按实际能力选择原生工具或兼容 API；支持 OpenClaw、Hermes、Claude Code、DeepSeek Harness、Codex 与自定义安装目录。
@@ -8,6 +8,10 @@
 - 交付适配本地链接与当前聊天附件；旧版本记录不变，安装器兼容 alpha.1–3 更新。
 - 重写 README 与安装指南，加入 Plog 组图示例、Agent 安装口令和 Skills CLI 安装路径。
 - 新增 Plog 场景与宿主验收矩阵，保留历史人物矩阵。实际各 Agent／图像服务全链路和新场景视觉验收待执行。
+
+- 56 项确定性测试、类型／仓库检查、可复现构建、全新安装和真实 alpha.3 发布包升级验证通过。
+
+[下载](https://github.com/JoeWu-explorer/photo-dialogue/releases/tag/v0.1.0-alpha.4) · [固定包与验证范围](docs/release.json)
 
 ## v0.1.0-alpha.3
 

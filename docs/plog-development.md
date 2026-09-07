@@ -1,6 +1,6 @@
 # Plog 多 Agent 开发检查 · 2026-09-07
 
-本次工作在 `codex/plog-multi-agent` 上开发，基于 alpha.3 后的源码修改；合并源码不代表发布了新 Release。旧版固定发布清单 `release.json` 保持原记录。
+本次工作在 `codex/plog-multi-agent` 上开发，基于 alpha.3 后的源码修改；本轮运行内容随后用于 v0.1.0-alpha.4，发布清单见 [release.json](release.json)。alpha.3 的固定清单保留在其发布标签中。
 
 ## 本地构建
 

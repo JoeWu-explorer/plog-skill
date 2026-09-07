@@ -2,39 +2,40 @@
 
 [返回首页](../README.md) · [Agent 适配](agent-compatibility.md) · [使用指南](guide.md)
 
-**当前安装对象是 main 分支的 Plog 开发源码。** 通用版尚未打包为新 Release。已发布的 [alpha.3](https://github.com/JoeWu-explorer/photo-dialogue/releases/tag/v0.1.0-alpha.3) 仍是人物照片／Codex 版。选择下面一种方式，在目标 Agent 的执行环境中安装。
+**当前预发布：[v0.1.0-alpha.4](https://github.com/JoeWu-explorer/photo-dialogue/releases/tag/v0.1.0-alpha.4)。** npx 安装 main 分支源码；需要固定版本可下载该 Release 的 ZIP 与 `SHA256SUMS`。仓库当前为私有，需要仓库访问权限和可供 Git 使用的认证。
 
-## 推荐：让 Agent 完成安装
+## 推荐：npx 安装
 
-把下面这段发给能访问 GitHub、执行脚本的 Agent：
+需要 Node.js/npm。在你希望使用技能的项目目录执行，按 CLI 提示选择 Agent：
 
-```text
-从 https://github.com/JoeWu-explorer/photo-dialogue 的 main 分支
-安装「照片有话说」photo-dialogue。
-读取 docs/install.md，按我正在使用的 Agent 安装，准备独立 Python 环境并自检。
-这次允许下载源码和必要依赖，保留已有安装的本地修改。
-检查读图、图片编辑和文件交付是否可用，告诉我是否可以开始，或还缺什么配置。
+```sh
+npx skills add https://github.com/JoeWu-explorer/photo-dialogue --skill photo-dialogue
 ```
 
-Agent 将源码下载到普通工作目录，读取其中的安装指南，默认按下方“手动安装完整包”构建并安装；如果已有安装，由原安装方式更新，先保留本地修改。使用的是当前源码，不以下载旧 release 替代。只安装当前选定的宿主；自检阶段不发送照片或发起图片生成。
+也可以把这段话交给 Agent：
 
-安装完成后的回复应给出：技能位置、专用 Python 路径、已通过的自检，以及实际可用或缺失的图像能力。准备好后，按宿主要求刷新技能或新开会话，上传照片，说“用 photo-dialogue 做一张 Plog”。
+```text
+请运行 npx skills add https://github.com/JoeWu-explorer/photo-dialogue --skill photo-dialogue 安装「照片有话说」。
+安装后读取 SKILL.md，在独立环境准备必要依赖并自检，检查读图与图片编辑工具是否可用。
+```
+
+CLI 安装技能文件；Python 依赖与图像服务由 Agent 按 `SKILL.md` 及其引用文档检查。已有本地修改先保留，已有安装沿用原管理器更新。准备好后，按宿主要求刷新技能或新开会话，上传照片即可开始。
 
 ## 使用 Skills CLI
 
-如果已经在用 `npx skills` 管理技能，可以继续使用它。需要 Node.js/npm；在你希望使用技能的项目目录执行。以下以 Claude Code 为例，从 GitHub 默认分支安装到项目范围：
+上面的命令采用 CLI 默认的安装范围和方式。需要明确指定时，例如安装独立副本到当前项目的 Claude Code 目录：
 
 ```sh
 npx skills add https://github.com/JoeWu-explorer/photo-dialogue --skill photo-dialogue --agent claude-code --copy
 ```
 
-- 想装到用户范围可加 `--global`；其他宿主先用 `npx skills add --help` 核对当前 CLI 支持的 Agent 名称，不要把本项目安装器的选项直接套用过去。
+- 想装到用户范围可加 `--global`；其他宿主先用 `npx skills add --help` 核对 CLI 支持的 Agent 名称。尚未列出的宿主可用下方完整包安装器。
 - `--copy` 安装独立副本。已有同名技能时先保留本地修改，再决定更新方式。
-- 此命令只安装技能文件。接着完成下方 [准备 Python 环境](#准备-python-环境) 和 [检查图像能力](#检查图像能力)。
+- 手动准备运行环境时，接着看 [准备 Python 环境](#准备-python-环境) 和 [检查图像能力](#检查图像能力)。
 
-这条路径使用 [Skills CLI 官方支持的仓库与本地目录安装](https://github.com/vercel-labs/skills#supported-sources)。已在临时项目中验证技能发现、Claude Code 目录复制安装、19 个技能文件内容一致，以及安装后本地自检；这不等于启动了 Claude Code 或完成了真实图片创作验证。
+仓库 URL 与本地目录均为 [Skills CLI 支持的来源](https://github.com/vercel-labs/skills#supported-sources)。已验证远端技能发现，以及临时项目中的 Claude Code 目录复制安装、19 个技能文件内容一致和本地自检；这不等于完成了真实 Agent 图片创作验证。
 
-如果要试用自己的未发布改动，在本地源码根目录将命令中的仓库 URL 换成 `./photo-dialogue`。GitHub 安装只包含已推送的内容。
+试用自己的本地改动时，在源码根目录将命令中的仓库 URL 换成 `./photo-dialogue`。GitHub 安装只包含已推送的内容。
 
 ## 手动安装完整包
 
@@ -43,11 +44,17 @@ npx skills add https://github.com/JoeWu-explorer/photo-dialogue --skill photo-di
 先取得源码（已有检出目录时使用它）：
 
 ```sh
-git clone --branch main https://github.com/JoeWu-explorer/photo-dialogue.git
+git clone --branch v0.1.0-alpha.4 https://github.com/JoeWu-explorer/photo-dialogue.git
 cd photo-dialogue
 ```
 
-在源码根目录运行；每次使用新的临时构建目录，避免同名 ZIP 已存在导致构建失败：
+使用 Release 附件时，先在下载目录运行 `shasum -a 256 -c SHA256SUMS`（Linux 可用 `sha256sum -c SHA256SUMS`），再用该版本源码的安装器安装：
+
+```sh
+python3.13 scripts/distribution.py install '/下载目录/photo-dialogue-v0.1.0-alpha.4.zip' --agent hermes
+```
+
+也可自行构建。在源码根目录运行；每次使用新的临时构建目录，避免同名 ZIP 已存在导致构建失败：
 
 ```sh
 PD_BUILD_DIR="$(mktemp -d)"
