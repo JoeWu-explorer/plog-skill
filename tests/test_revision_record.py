@@ -4,7 +4,7 @@ import unittest
 from pathlib import Path
 from PIL import Image
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'photo-dialogue' / 'scripts'))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'plog' / 'scripts'))
 from revision_record import append, recover, select, validate, RecordError
 from photo_files import sha256
 
@@ -40,7 +40,7 @@ class RevisionTests(unittest.TestCase):
     def test_cli_saved_delivery_and_read_only_reshow_reject_missing_version(self):
         import json
         import subprocess
-        script = Path(__file__).resolve().parents[1] / 'photo-dialogue/scripts/revision_record.py'
+        script = Path(__file__).resolve().parents[1] / 'plog/scripts/revision_record.py'
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
             source = root / 'source.png'
@@ -221,7 +221,7 @@ class RevisionTests(unittest.TestCase):
             Image.new('RGB', (8, 8)).save(source)
             work = root / 'work'
             append(work, source=source, source_sha256=sha256(source), candidate=source, version=details())
-            schema = json.loads((Path(__file__).resolve().parents[1] / 'photo-dialogue/schemas/revision-record.schema.json').read_text())
+            schema = json.loads((Path(__file__).resolve().parents[1] / 'plog/schemas/revision-record.schema.json').read_text())
             jsonschema.Draft202012Validator(schema).validate(validate(work))
 
     def test_interrupt_after_record_publication_keeps_all_registered_pngs(self):

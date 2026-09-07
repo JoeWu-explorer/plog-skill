@@ -18,7 +18,7 @@ from unittest.mock import patch
 from PIL import Image, PngImagePlugin
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / 'photo-dialogue/scripts'))
+sys.path.insert(0, str(ROOT / 'plog/scripts'))
 from image_backend import BackendError, analyze, doctor, edit, endpoint, post
 from photo_files import PhotoError, sha256, verify_png
 from revision_record import append, delivery
@@ -97,7 +97,7 @@ class ImageBackendTests(unittest.TestCase):
             output = root / 'candidate.png'
             state['response'] = {'data':[{'b64_json':base64.b64encode(png_bytes(metadata=True)).decode()}]}
             env = dict(os.environ, PD_IMAGE_BASE_URL=url, PD_IMAGE_MODEL='fixture-editor', PD_IMAGE_API_KEY='fixture-key')
-            result = subprocess.run([sys.executable, str(ROOT/'photo-dialogue/scripts/image_backend.py'), 'edit', '--image', str(source), '--prompt-file', str(prompt), '--output', str(output), '--send'], env=env, capture_output=True, text=True)
+            result = subprocess.run([sys.executable, str(ROOT/'plog/scripts/image_backend.py'), 'edit', '--image', str(source), '--prompt-file', str(prompt), '--output', str(output), '--send'], env=env, capture_output=True, text=True)
             self.assertEqual(result.returncode, 0, result.stderr)
             self.assertEqual(json.loads(result.stdout)['status'], 'candidate_needs_visual_review')
             self.assertEqual(sha256(source), original)

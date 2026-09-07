@@ -26,6 +26,7 @@ PACKAGE_FILES = (*RUNTIME_FILES, 'LICENSE', 'THIRD_PARTY_NOTICES.md')
 ALPHA3_PACKAGE_FILES = frozenset(PACKAGE_FILES) - {'references/agents.md', 'scripts/image_backend.py'}
 LEGACY_PACKAGE_FILES = ALPHA3_PACKAGE_FILES - {'references/conversation.md'}
 MANIFEST = 'INSTALL-MANIFEST.json'
+SKILL_NAMES = ('plog', 'photo-dialogue')
 AGENTS = ('generic', 'codex', 'claude-code', 'openclaw', 'hermes', 'deepseek-harness')
 
 
@@ -42,7 +43,7 @@ def agent_target(agent: str) -> Path:
     }
     if agent not in roots:
         raise DistributionError('Unknown agent; use --target for a custom discovery directory.')
-    return roots[agent].expanduser().absolute() / 'photo-dialogue'
+    return roots[agent].expanduser().absolute() / 'plog'
 
 
 class DistributionError(ValueError):
@@ -56,18 +57,18 @@ def _digest(data: bytes) -> str:
 def build(repository: Path, destination: Path) -> Path:
     data: dict[str, bytes] = {}
     for name in PACKAGE_FILES:
-        source = repository / name if name in ('LICENSE', 'THIRD_PARTY_NOTICES.md') else repository / 'photo-dialogue' / name
+        source = repository / name if name in ('LICENSE', 'THIRD_PARTY_NOTICES.md') else repository / 'plog' / name
         if source.is_symlink() or not source.is_file():
             raise DistributionError(f'Missing or symbolic package input: {name}')
         data[name] = source.read_bytes()
         if b'/Users/' in data[name] or b'/home/' in data[name]:
             raise DistributionError(f'Developer absolute path in package input: {name}')
-    manifest = {'schema_version': 1, 'name': 'photo-dialogue', 'files': {name: _digest(value) for name, value in data.items()}}
+    manifest = {'schema_version': 1, 'name': 'plog', 'files': {name: _digest(value) for name, value in data.items()}}
     data[MANIFEST] = (json.dumps(manifest, sort_keys=True, indent=2) + '\n').encode()
     destination.parent.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(destination, 'x', compression=zipfile.ZIP_DEFLATED) as archive:
         for name, value in sorted(data.items()):
-            info = zipfile.ZipInfo('photo-dialogue/' + name, date_time=(2026, 1, 1, 0, 0, 0))
+            info = zipfile.ZipInfo('plog/' + name, date_time=(2026, 1, 1, 0, 0, 0))
             info.compress_type = zipfile.ZIP_DEFLATED
             info.external_attr = 0o100644 << 16
             archive.writestr(info, value)
@@ -77,21 +78,24 @@ def build(repository: Path, destination: Path) -> Path:
 def _payload(package: Path) -> dict[str, bytes]:
     with zipfile.ZipFile(package) as archive:
         names = archive.namelist()
-        expected = {'photo-dialogue/' + name for name in (*PACKAGE_FILES, MANIFEST)}
+        prefix = names[0].split('/')[0] if names else ''
+        if prefix not in SKILL_NAMES:
+            raise DistributionError('Unknown skill package root.')
+        expected = {prefix + '/' + name for name in (*PACKAGE_FILES, MANIFEST)}
         if len(names) != len(expected) or set(names) != expected:
             raise DistributionError('Package violates the exact allowlist.')
         if any(info.file_size > 2_000_000 or (info.external_attr >> 16) & 0o170000 == 0o120000 for info in archive.infolist()):
             raise DistributionError('Package contains oversized or symbolic entries.')
-        data = {name.removeprefix('photo-dialogue/'): archive.read(name) for name in names}
+        data = {name.removeprefix(prefix + '/'): archive.read(name) for name in names}
     manifest = json.loads(data[MANIFEST])
-    if not isinstance(manifest, dict) or manifest.get('schema_version') != 1 or manifest.get('name') != 'photo-dialogue' or manifest.get('files') != {name: _digest(data[name]) for name in PACKAGE_FILES}:
+    if not isinstance(manifest, dict) or manifest.get('schema_version') != 1 or manifest.get('name') != prefix or manifest.get('files') != {name: _digest(data[name]) for name in PACKAGE_FILES}:
         raise DistributionError('Package integrity manifest does not match.')
     return data
 
 
 def _unchanged(target: Path) -> None:
-    if target.name != 'photo-dialogue' or target.is_symlink() or not target.is_dir():
-        raise DistributionError('Select the exact photo-dialogue installation directory.')
+    if target.name not in SKILL_NAMES or target.is_symlink() or not target.is_dir():
+        raise DistributionError('Select the exact plog (or legacy photo-dialogue) installation directory.')
     try:
         if any(path.is_symlink() for path in target.rglob('*')):
             raise DistributionError('Installation contains symbolic links; preserve it and resolve manually.')
@@ -99,7 +103,7 @@ def _unchanged(target: Path) -> None:
         if not isinstance(manifest, dict) or not isinstance(manifest.get('files'), dict):
             raise DistributionError('Invalid installation manifest.')
         expected = manifest['files']
-        if manifest.get('name') != 'photo-dialogue' or manifest.get('schema_version') != 1 or set(expected) not in (set(PACKAGE_FILES), ALPHA3_PACKAGE_FILES, LEGACY_PACKAGE_FILES):
+        if manifest.get('name') not in SKILL_NAMES or manifest.get('schema_version') != 1 or set(expected) not in (set(PACKAGE_FILES), ALPHA3_PACKAGE_FILES, LEGACY_PACKAGE_FILES):
             raise DistributionError('Unknown installation manifest.')
         actual = {}
         for path in target.rglob('*'):
@@ -116,9 +120,11 @@ def _unchanged(target: Path) -> None:
 
 
 def install(package: Path, target: Path, *, update: bool = False) -> None:
-    if target.name != 'photo-dialogue' or target.is_symlink():
-        raise DistributionError('Target must be the exact photo-dialogue skill directory, not a symlink.')
-    default = Path.home() / '.agents' / 'skills' / 'photo-dialogue'
+    if target.name not in SKILL_NAMES or target.is_symlink():
+        raise DistributionError('Target must be the exact plog (or legacy photo-dialogue) skill directory, not a symlink.')
+    default = Path.home() / '.agents' / 'skills' / 'plog'
+    if target.name == 'plog' and (target.parent / 'photo-dialogue').exists():
+        raise DistributionError('Legacy sibling installation exists; migrate it before installing plog.')
     legacy = Path(os.environ.get('CODEX_HOME', str(Path.home() / '.codex'))) / 'skills' / 'photo-dialogue'
     if target == default and legacy.exists() and legacy.resolve() != target.resolve():
         raise DistributionError('Legacy installation exists; select one discovery location before installing.')
@@ -142,8 +148,8 @@ def install(package: Path, target: Path, *, update: bool = False) -> None:
         backup: Path | None = None
         if existed:
             _unchanged(target)  # staging may have taken time; protect intervening edits
-            backup_root = Path(tempfile.mkdtemp(prefix='.photo-dialogue-backup-', dir=target.parent))
-            backup = backup_root / 'photo-dialogue'
+            backup_root = Path(tempfile.mkdtemp(prefix=f'.{target.name}-backup-', dir=target.parent))
+            backup = backup_root / target.name
             target.rename(backup)
         try:
             if backup is not None:

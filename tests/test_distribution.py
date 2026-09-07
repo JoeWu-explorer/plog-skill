@@ -13,6 +13,53 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class DistributionTests(unittest.TestCase):
+    def test_legacy_package_upgrades_and_moves_without_touching_works(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            package = build(ROOT, root / 'new.zip')
+            legacy = root / 'old.zip'
+            with zipfile.ZipFile(package) as source, zipfile.ZipFile(legacy, 'w') as dest:
+                for name in source.namelist():
+                    value = source.read(name)
+                    if name.endswith(MANIFEST):
+                        manifest = json.loads(value)
+                        manifest['name'] = 'photo-dialogue'
+                        value = json.dumps(manifest).encode()
+                    dest.writestr(name.replace('plog/', 'photo-dialogue/', 1), value)
+            old = root / 'skills' / 'photo-dialogue'
+            new = old.with_name('plog')
+            work = root / 'work.png'
+            work.write_bytes(b'preserve my work')
+            install(legacy, old)
+            with self.assertRaises(DistributionError):
+                install(package, new)
+            install(package, old, update=True)
+            old.rename(new)
+            self.assertEqual(json.loads((new / MANIFEST).read_text())['name'], 'plog')
+            uninstall(new)
+            self.assertEqual(work.read_bytes(), b'preserve my work')
+
+    def test_package_name_mismatch_and_mixed_roots_are_rejected(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            package = build(ROOT, root / 'new.zip')
+            for mode in ('manifest', 'root'):
+                bad = root / (mode + '.zip')
+                with zipfile.ZipFile(package) as source, zipfile.ZipFile(bad, 'w') as dest:
+                    for name in source.namelist():
+                        value = source.read(name)
+                        if name.endswith(MANIFEST):
+                            if mode == 'manifest':
+                                manifest = json.loads(value)
+                                manifest['name'] = 'photo-dialogue'
+                                value = json.dumps(manifest).encode()
+                            else:
+                                name = name.replace('plog/', 'photo-dialogue/', 1)
+                        dest.writestr(name, value)
+                with self.assertRaises(DistributionError):
+                    install(bad, root / 'plog')
+                self.assertFalse((root / 'plog').exists())
+
     def test_packaged_markdown_references_resolve_inside_archive(self):
         with tempfile.TemporaryDirectory() as folder:
             package = build(ROOT, Path(folder) / 'candidate.zip')
@@ -29,7 +76,7 @@ class DistributionTests(unittest.TestCase):
 
     def _legacy_install(self, root):
         package = build(ROOT, root / 'candidate.zip')
-        target = root / 'skills' / 'photo-dialogue'
+        target = root / 'skills' / 'plog'
         install(package, target)
         manifest_path = target / MANIFEST
         manifest = json.loads(manifest_path.read_text())
@@ -43,7 +90,7 @@ class DistributionTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             package, target = self._legacy_install(Path(folder))
             install(package, target, update=True)
-            self.assertEqual((target / 'references/conversation.md').read_bytes(), (ROOT / 'photo-dialogue/references/conversation.md').read_bytes())
+            self.assertEqual((target / 'references/conversation.md').read_bytes(), (ROOT / 'plog/references/conversation.md').read_bytes())
             uninstall(target)
             self.assertFalse(target.exists())
 
@@ -76,7 +123,7 @@ class DistributionTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
             package = build(ROOT, root / 'candidate.zip')
-            target = root / 'skills' / 'photo-dialogue'
+            target = root / 'skills' / 'plog'
             install(package, target)
             self.assertTrue((target / 'SKILL.md').is_file())
             self.assertFalse((target / 'assets').exists())
@@ -93,7 +140,7 @@ class DistributionTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
             package = build(ROOT, root / 'candidate.zip')
-            target = root / 'skills' / 'photo-dialogue'
+            target = root / 'skills' / 'plog'
             install(package, target)
             work = root / 'Pictures' / 'v001.png'
             work.parent.mkdir()
@@ -114,7 +161,7 @@ class DistributionTests(unittest.TestCase):
             package = root / 'bad.zip'
             with zipfile.ZipFile(package, 'w') as archive:
                 archive.writestr('../outside', 'bad')
-            target = root / 'photo-dialogue'
+            target = root / 'plog'
             with self.assertRaises(DistributionError):
                 install(package, target)
             self.assertFalse(target.exists())
@@ -124,7 +171,7 @@ class DistributionTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
             package = build(ROOT, root / 'candidate.zip')
-            target = root / 'photo-dialogue'
+            target = root / 'plog'
             install(package, target)
             for relative in ('scripts/__pycache__/private.txt', 'notes/INSTALL-MANIFEST.json'):
                 path = target / relative
@@ -141,7 +188,7 @@ class DistributionTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
             package = build(ROOT, root / 'candidate.zip')
-            target = root / 'photo-dialogue'
+            target = root / 'plog'
             install(package, target)
             original = (target / 'SKILL.md').read_bytes()
             real_rename = os.rename
@@ -155,9 +202,9 @@ class DistributionTests(unittest.TestCase):
             with patch('os.rename', side_effect=failing_rename):
                 with self.assertRaises((OSError, DistributionError)):
                     install(package, target, update=True)
-            backups = list(root.glob('.photo-dialogue-backup-*'))
+            backups = list(root.glob('.plog-backup-*'))
             self.assertEqual(len(backups), 1)
-            self.assertEqual((backups[0] / 'photo-dialogue' / 'SKILL.md').read_bytes(), original)
+            self.assertEqual((backups[0] / 'plog' / 'SKILL.md').read_bytes(), original)
 
     def test_all_agent_profiles_install_same_complete_skill(self):
         import os
@@ -174,7 +221,7 @@ class DistributionTests(unittest.TestCase):
                     report=json.loads(result.stdout)
                     target=Path(report['installed'])
                     expected={'generic':'.agents','codex':'.agents','claude-code':'.claude','openclaw':'.openclaw','hermes':'.hermes','deepseek-harness':'.dsh'}[agent]
-                    self.assertEqual(target,home/expected/'skills/photo-dialogue')
+                    self.assertEqual(target,home/expected/'skills/plog')
                     self.assertTrue((target/'references/agents.md').is_file())
                     self.assertTrue((target/'scripts/image_backend.py').is_file())
                     self.assertEqual(report['host_discovery'],'unverified')
@@ -182,7 +229,7 @@ class DistributionTests(unittest.TestCase):
 
     def test_alpha3_installation_upgrades_with_backend(self):
         with tempfile.TemporaryDirectory() as folder:
-            root=Path(folder); package=build(ROOT,root/'candidate.zip'); target=root/'photo-dialogue'
+            root=Path(folder); package=build(ROOT,root/'candidate.zip'); target=root/'plog'
             install(package,target)
             manifest=json.loads((target/MANIFEST).read_text())
             for name in ('references/agents.md','scripts/image_backend.py'):

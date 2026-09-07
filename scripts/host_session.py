@@ -26,7 +26,7 @@ def run_case(codex: Path, case: dict[str, Any], destination: Path, *, timeout: i
     for item in case.get('sources', []):
         if hashlib.sha256(Path(item['path']).read_bytes()).hexdigest() != item['sha256']:
             raise ValueError('Source changed since the test plan was fixed.')
-    skill = Path(case.get('skill_path', str(Path.home() / '.agents/skills/photo-dialogue')))
+    skill = Path(case.get('skill_path', str(Path.home() / '.agents/skills/plog')))
     manifest_bytes = (skill / 'INSTALL-MANIFEST.json').read_bytes()
     manifest = json.loads(manifest_bytes)
     for name, digest in manifest['files'].items():
@@ -89,7 +89,7 @@ def run_case(codex: Path, case: dict[str, Any], destination: Path, *, timeout: i
                 pending.append(message)
 
         try:
-            send({'id': 1, 'method': 'initialize', 'params': {'clientInfo': {'name': 'photo-dialogue-product-test', 'version': '1.0'}, 'capabilities': {'experimentalApi': True}}})
+            send({'id': 1, 'method': 'initialize', 'params': {'clientInfo': {'name': 'plog-product-test', 'version': '1.0'}, 'capabilities': {'experimentalApi': True}}})
             result['host'] = response(1)
             send({'method': 'initialized', 'params': {}})
             params: dict[str, Any] = {'cwd': str(destination), 'ephemeral': True, 'sandbox': 'workspace-write', 'approvalPolicy': 'never'}

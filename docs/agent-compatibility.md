@@ -1,6 +1,6 @@
 # Agent 适配与验证状态
 
-本页对应 Plog v0.1.0-alpha.4，不代表旧版 alpha.3 的能力。保留 `photo-dialogue` 技能 ID 与版本记录格式，旧作品仍可查看和恢复。
+本页对应 Plog v0.1.0-alpha.4，不代表旧版 alpha.3 的能力。保留 `plog` 技能 ID 与版本记录格式，旧作品仍可查看和恢复。
 
 ## 安装与运行
 
@@ -8,16 +8,16 @@
 
 | Agent | 安装选项 | 默认目录 | 图像执行路径 |
 | --- | --- | --- | --- |
-| OpenClaw | `--agent openclaw` | `~/.openclaw/skills/photo-dialogue` | 当前视觉工具 + 支持编辑的 `image_generate`；也可用兼容 API。 |
-| Hermes | `--agent hermes` | `~/.hermes/skills/photo-dialogue` | `vision_analyze` + 支持编辑的 `image_generate`；也可用兼容 API。 |
-| Claude Code | `--agent claude-code` | `~/.claude/skills/photo-dialogue` | 当前模型看图 + 已配置的图片 MCP／CLI／兼容 API。 |
-| DeepSeek Harness | `--agent deepseek-harness` | `~/.dsh/skills/photo-dialogue` | 视觉／编辑插件或兼容 API；文本模型需独立视觉分析。 |
-| Codex | `--agent codex` | `~/.agents/skills/photo-dialogue` | 可用的原生图片工具或兼容 API。 |
-| 其他 Agent | `--agent generic` 或 `--target` | `~/.agents/skills/photo-dialogue` | 同一能力契约；检查该宿主实际扫描目录。 |
+| OpenClaw | `--agent openclaw` | `~/.openclaw/skills/plog` | 当前视觉工具 + 支持编辑的 `image_generate`；也可用兼容 API。 |
+| Hermes | `--agent hermes` | `~/.hermes/skills/plog` | `vision_analyze` + 支持编辑的 `image_generate`；也可用兼容 API。 |
+| Claude Code | `--agent claude-code` | `~/.claude/skills/plog` | 当前模型看图 + 已配置的图片 MCP／CLI／兼容 API。 |
+| DeepSeek Harness | `--agent deepseek-harness` | `~/.dsh/skills/plog` | 视觉／编辑插件或兼容 API；文本模型需独立视觉分析。 |
+| Codex | `--agent codex` | `~/.agents/skills/plog` | 可用的原生图片工具或兼容 API。 |
+| 其他 Agent | `--agent generic` 或 `--target` | `~/.agents/skills/plog` | 同一能力契约；检查该宿主实际扫描目录。 |
 
 安装器读取 `OPENCLAW_STATE_DIR`、`HERMES_HOME`、`CLAUDE_CONFIG_DIR`、`DSH_HOME` 的显式配置。它只安装用户指定的一处，不擅自安装 Agent、插件或修改认证。宿主在另一台机器／沙箱运行时，在那个环境安装并准备 Python；Windows 可在 WSL 中运行本地文件工具，原生 Windows 未适配。
 
-运行前读 [接入契约](../photo-dialogue/references/agents.md)。原生工具可满足全部能力时不需要兼容 API。兼容 API 是可执行的协议适配器，需要用户选定支持相应端点的服务和模型；不会将 DeepSeek 聊天模型当作图像编辑模型。
+运行前读 [接入契约](../plog/references/agents.md)。原生工具可满足全部能力时不需要兼容 API。兼容 API 是可执行的协议适配器，需要用户选定支持相应端点的服务和模型；不会将 DeepSeek 聊天模型当作图像编辑模型。
 
 ## 证据分层
 

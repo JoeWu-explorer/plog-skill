@@ -17,14 +17,14 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python }}
-      - run: python -m pip install --require-hashes -r photo-dialogue/requirements.lock -r tests/requirements-dev.lock
-      - run: python photo-dialogue/scripts/self_check.py --workspace "${{ runner.temp }}"
+      - run: python -m pip install --require-hashes -r plog/requirements.lock -r tests/requirements-dev.lock
+      - run: python plog/scripts/self_check.py --workspace "${{ runner.temp }}"
       - run: python -m unittest discover -s tests
-      - run: python -m mypy --ignore-missing-imports photo-dialogue/scripts scripts
+      - run: python -m mypy --ignore-missing-imports plog/scripts scripts
       - run: python scripts/check_repository.py
-      - run: python scripts/distribution.py build "${{ runner.temp }}/photo-dialogue.zip"
-      - run: python scripts/distribution.py install "${{ runner.temp }}/photo-dialogue.zip" --target "${{ runner.temp }}/skills/photo-dialogue"
-      - run: python "${{ runner.temp }}/skills/photo-dialogue/scripts/self_check.py" --workspace "${{ runner.temp }}"
-      - run: python -m pip install --require-hashes -r photo-dialogue/requirements-heif.lock
-      - run: python photo-dialogue/scripts/self_check.py --workspace "${{ runner.temp }}"
-      - run: python scripts/distribution.py uninstall --target "${{ runner.temp }}/skills/photo-dialogue"
+      - run: python scripts/distribution.py build "${{ runner.temp }}/plog.zip"
+      - run: python scripts/distribution.py install "${{ runner.temp }}/plog.zip" --target "${{ runner.temp }}/skills/plog"
+      - run: python "${{ runner.temp }}/skills/plog/scripts/self_check.py" --workspace "${{ runner.temp }}"
+      - run: python -m pip install --require-hashes -r plog/requirements-heif.lock
+      - run: python plog/scripts/self_check.py --workspace "${{ runner.temp }}"
+      - run: python scripts/distribution.py uninstall --target "${{ runner.temp }}/skills/plog"
