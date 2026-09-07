@@ -222,6 +222,53 @@
         "status": "accepted",
         "saved_version": "v002"
       }
+    },
+    {
+      "key": "baby",
+      "category": "婴儿日常",
+      "example_request": "把宝宝玩积木的照片做成温暖的成长 Plog",
+      "automatic_text": "小小的手\n忙着认识世界",
+      "automatic_look": "柔亮奶油光与栗棕字色；小字引入、圆润大字舒展在上方留白",
+      "before": "baby/before.png",
+      "after": "baby/after.png",
+      "source_generation_id": "exec-8037d68e-10c8-455d-b1af-ac653d1ff520.png",
+      "edit_generation_id": "exec-ec2f74cd-d929-4594-928b-39d36d328a19.png",
+      "source_sha256": "44e7bde51c8fdcd83723786e5f8bd3db7454933590cda0066678ddbe04b47bfd",
+      "after_sha256": "f6c6d20564f90c19eea64e9c30a76edee03323ddccecd1b3e4535d3c743fb6c6",
+      "native_edit_calls": 1,
+      "saved_version": "v001",
+      "agent_visual_check": "side-by-side at 390 px per image, plus enlarged face/hands/action detail crops; no terminal full stops",
+      "human_review": "not_scored",
+      "workflow_mode": "manual README demonstration; not a formal runtime acceptance test",
+      "runtime_commit": "9db3c16d6d6b2c8108b43e290245bab71cb76bf0"
+    },
+    {
+      "key": "child",
+      "category": "童年探索",
+      "example_request": "把雨后踩水的照片做成活泼一点的童年 Plog",
+      "automatic_text": "雨停了\n再踩一下！",
+      "automatic_look": "保留雨后自然光色；砖红笔字呼应雨靴，大小错落表现踩水的轻快",
+      "before": "child/before.png",
+      "after": "child/after.png",
+      "source_generation_id": "exec-1965a366-f272-4ce4-8f37-7c14111fb18b.png",
+      "edit_generation_id": "exec-d344f4cd-2d06-4258-b5a3-0f7d67207123.png",
+      "source_sha256": "15f3fbac4f98f4b211bf471761b1d7de8c7e955020ed372cd527588fdd24b26c",
+      "after_sha256": "1c562acb0deedef0739511d6fd1a91fc107b539b4a0ebcd0c2e9d0a39496967b",
+      "native_edit_calls": 2,
+      "saved_version": "v001",
+      "agent_visual_check": "side-by-side at 390 px per image, plus enlarged face/hands/action detail crops; no terminal full stops",
+      "human_review": "not_scored",
+      "workflow_mode": "manual README demonstration; not a formal runtime acceptance test",
+      "runtime_commit": "9db3c16d6d6b2c8108b43e290245bab71cb76bf0",
+      "rejected_attempts": [
+        {
+          "generation_id": "exec-00bccc63-98db-4c07-8653-f68829679587.png",
+          "candidate": "child/candidate-not-approved.png",
+          "candidate_sha256": "91cc3c5943cbba75d450573037f3260de22b8360184f31b9ddfb715df8f5da7b",
+          "reason": "人物头部比例与位置发生非目标变化；未展示、未保存为接受版本"
+        }
+      ],
+      "manual_targeted_revisions": 1
     }
   ],
   "runtime_commit_v001": "46b8bb0bebee53a0254d64b44b31d87826511d46",
