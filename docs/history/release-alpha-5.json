@@ -1,13 +1,13 @@
 {
-  "version": "v0.1.0-alpha.6",
+  "version": "v0.1.0-alpha.5",
   "prerelease": true,
   "repository_visibility": "private",
-  "runtime_commit": "fa4ed604b1c22bccf1946b084031f1e4a7213839",
-  "package": "plog-v0.1.0-alpha.6.zip",
-  "package_sha256": "9f5e9e45666a9da3798987f73e246e982ad3002d03a8f94d11ca3569bb920e0c",
-  "package_bytes": 74150,
+  "runtime_commit": "9db3c16d6d6b2c8108b43e290245bab71cb76bf0",
+  "package": "photo-dialogue-v0.1.0-alpha.5.zip",
+  "package_sha256": "5b01222381817c25a3734034caf481333d10db9b387ae8e17796bd35ede27771",
+  "package_bytes": 74418,
   "package_files": 22,
-  "deterministic_tests": 58,
+  "deterministic_tests": 56,
   "local_validation": {
     "platform": "macOS arm64",
     "python": "3.13.13",
@@ -15,13 +15,23 @@
     "repository_checks": "pass",
     "reproducible_build": "pass",
     "fresh_install_selfcheck_uninstall": "pass",
-    "skill_frontmatter_validation": "pass",
-    "published_alpha_5_upgrade_rename_selfcheck_uninstall": "pass",
-    "skills_cli_local_claude_code_copy": "pass"
+    "published_alpha_4_upgrade_selfcheck_uninstall": "pass",
+    "skill_frontmatter_validation": "pass"
   },
   "runtime_ci": {
-    "result": "pending",
-    "note": "Local macOS checks passed; hosted CI will be checked on this release PR. Earlier runs were blocked by the account billing/spending limit."
+    "commit": "9db3c16d6d6b2c8108b43e290245bab71cb76bf0",
+    "source_pr": "https://github.com/JoeWu-explorer/photo-dialogue/pull/34",
+    "os": [
+      "ubuntu-latest",
+      "macos-latest"
+    ],
+    "python": [
+      "3.11",
+      "3.12",
+      "3.13"
+    ],
+    "result": "pass_before_merge",
+    "note": "PR runtime commit passed the full OS/Python matrix; subsequent README, assets and release metadata changes do not alter runtime content."
   },
   "visual_evaluation": "formal_matrix_not_run; README synthetic demonstrations recorded separately in examples/readme/MANIFEST.md",
   "multi_agent_end_to_end": "not_run_for_this_candidate",
