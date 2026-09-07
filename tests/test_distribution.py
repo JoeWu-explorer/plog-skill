@@ -7,7 +7,7 @@ import unittest
 import zipfile
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
-from distribution import build, install, uninstall, DistributionError, MANIFEST
+from distribution import build, install, uninstall, agent_target, AGENTS, DistributionError, MANIFEST
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -33,8 +33,9 @@ class DistributionTests(unittest.TestCase):
         install(package, target)
         manifest_path = target / MANIFEST
         manifest = json.loads(manifest_path.read_text())
-        del manifest['files']['references/conversation.md']
-        (target / 'references/conversation.md').unlink()
+        for name in ('references/conversation.md', 'references/agents.md', 'scripts/image_backend.py'):
+            del manifest['files'][name]
+            (target / name).unlink()
         manifest_path.write_text(json.dumps(manifest))
         return package, target
 
@@ -157,3 +158,37 @@ class DistributionTests(unittest.TestCase):
             backups = list(root.glob('.photo-dialogue-backup-*'))
             self.assertEqual(len(backups), 1)
             self.assertEqual((backups[0] / 'photo-dialogue' / 'SKILL.md').read_bytes(), original)
+
+    def test_all_agent_profiles_install_same_complete_skill(self):
+        import os
+        import subprocess
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder)
+            package=build(ROOT,root/'candidate.zip')
+            for agent in AGENTS:
+                with self.subTest(agent=agent):
+                    home=root/agent
+                    env=dict(os.environ, HOME=str(home), OPENCLAW_STATE_DIR=str(home/'.openclaw'), HERMES_HOME=str(home/'.hermes'), CLAUDE_CONFIG_DIR=str(home/'.claude'), DSH_HOME=str(home/'.dsh'))
+                    result=subprocess.run([sys.executable,str(ROOT/'scripts/distribution.py'),'install',str(package),'--agent',agent],env=env,capture_output=True,text=True)
+                    self.assertEqual(result.returncode,0,result.stderr)
+                    report=json.loads(result.stdout)
+                    target=Path(report['installed'])
+                    expected={'generic':'.agents','codex':'.agents','claude-code':'.claude','openclaw':'.openclaw','hermes':'.hermes','deepseek-harness':'.dsh'}[agent]
+                    self.assertEqual(target,home/expected/'skills/photo-dialogue')
+                    self.assertTrue((target/'references/agents.md').is_file())
+                    self.assertTrue((target/'scripts/image_backend.py').is_file())
+                    self.assertEqual(report['host_discovery'],'unverified')
+                    uninstall(target)
+
+    def test_alpha3_installation_upgrades_with_backend(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder); package=build(ROOT,root/'candidate.zip'); target=root/'photo-dialogue'
+            install(package,target)
+            manifest=json.loads((target/MANIFEST).read_text())
+            for name in ('references/agents.md','scripts/image_backend.py'):
+                del manifest['files'][name]
+                (target/name).unlink()
+            (target/MANIFEST).write_text(json.dumps(manifest))
+            install(package,target,update=True)
+            self.assertTrue((target/'scripts/image_backend.py').is_file())
+            uninstall(target)

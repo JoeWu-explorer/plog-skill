@@ -15,16 +15,34 @@ import zipfile
 RUNTIME_FILES = (
     'SKILL.md', 'agents/openai.yaml',
     'references/art-direction.md', 'references/people-and-privacy.md',
-    'references/revisions.md', 'references/runtime.md', 'references/conversation.md',
+    'references/revisions.md', 'references/runtime.md', 'references/conversation.md', 'references/agents.md',
     'schemas/revision-record.schema.json',
-    'scripts/photo_files.py', 'scripts/revision_record.py', 'scripts/self_check.py',
+    'scripts/photo_files.py', 'scripts/revision_record.py', 'scripts/self_check.py', 'scripts/image_backend.py',
     'requirements.txt', 'requirements.lock', 'requirements-heif.txt', 'requirements-heif.lock',
     'notices/Pillow.txt', 'notices/pillow-heif.txt',
 )
 PACKAGE_FILES = (*RUNTIME_FILES, 'LICENSE', 'THIRD_PARTY_NOTICES.md')
-# alpha.1 and alpha.2 installations predate the conversation reference.
-LEGACY_PACKAGE_FILES = frozenset(PACKAGE_FILES) - {'references/conversation.md'}
+# Preserve exact historical layouts for safe upgrades, never arbitrary subsets.
+ALPHA3_PACKAGE_FILES = frozenset(PACKAGE_FILES) - {'references/agents.md', 'scripts/image_backend.py'}
+LEGACY_PACKAGE_FILES = ALPHA3_PACKAGE_FILES - {'references/conversation.md'}
 MANIFEST = 'INSTALL-MANIFEST.json'
+AGENTS = ('generic', 'codex', 'claude-code', 'openclaw', 'hermes', 'deepseek-harness')
+
+
+def agent_target(agent: str) -> Path:
+    """Resolve one explicit host profile; never install into other agents implicitly."""
+    home = Path.home()
+    roots = {
+        'generic': home / '.agents' / 'skills',
+        'codex': home / '.agents' / 'skills',
+        'claude-code': Path(os.environ.get('CLAUDE_CONFIG_DIR', str(home / '.claude'))) / 'skills',
+        'openclaw': Path(os.environ.get('OPENCLAW_STATE_DIR', str(home / '.openclaw'))) / 'skills',
+        'hermes': Path(os.environ.get('HERMES_HOME', str(home / '.hermes'))) / 'skills',
+        'deepseek-harness': Path(os.environ.get('DSH_HOME', str(home / '.dsh'))) / 'skills',
+    }
+    if agent not in roots:
+        raise DistributionError('Unknown agent; use --target for a custom discovery directory.')
+    return roots[agent].expanduser().absolute() / 'photo-dialogue'
 
 
 class DistributionError(ValueError):
@@ -81,14 +99,14 @@ def _unchanged(target: Path) -> None:
         if not isinstance(manifest, dict) or not isinstance(manifest.get('files'), dict):
             raise DistributionError('Invalid installation manifest.')
         expected = manifest['files']
-        if manifest.get('name') != 'photo-dialogue' or manifest.get('schema_version') != 1 or set(expected) not in (set(PACKAGE_FILES), LEGACY_PACKAGE_FILES):
+        if manifest.get('name') != 'photo-dialogue' or manifest.get('schema_version') != 1 or set(expected) not in (set(PACKAGE_FILES), ALPHA3_PACKAGE_FILES, LEGACY_PACKAGE_FILES):
             raise DistributionError('Unknown installation manifest.')
         actual = {}
         for path in target.rglob('*'):
             if not path.is_file():
                 continue
             relative = path.relative_to(target).as_posix()
-            cache = re.fullmatch(r'scripts/__pycache__/(photo_files|revision_record|self_check)\.cpython-3(11|12|13)(\.opt-[12])?\.pyc', relative)
+            cache = re.fullmatch(r'scripts/__pycache__/(photo_files|revision_record|self_check|image_backend)\.cpython-3(11|12|13)(\.opt-[12])?\.pyc', relative)
             if relative != MANIFEST and cache is None:
                 actual[relative] = _digest(path.read_bytes())
         if actual != expected:
@@ -158,7 +176,9 @@ def main() -> None:
     for name in ('install', 'update'):
         sub = commands.add_parser(name)
         sub.add_argument('package', type=Path)
-        sub.add_argument('--target', type=Path, default=Path.home() / '.agents' / 'skills' / 'photo-dialogue')
+        destination = sub.add_mutually_exclusive_group()
+        destination.add_argument('--target', type=Path, help='Exact skill directory for custom profiles or sandboxes')
+        destination.add_argument('--agent', choices=AGENTS, default='generic', help='Resolve the selected agent discovery directory')
     remove = commands.add_parser('uninstall')
     remove.add_argument('--target', type=Path, required=True)
     args = parser.parse_args()
@@ -170,8 +190,9 @@ def main() -> None:
             uninstall(args.target)
             print('Specified skill removed; independent works retained.')
         else:
-            install(args.package, args.target, update=args.operation == 'update')
-            print('Installed photo-dialogue. Run local self-check; host discovery and image permissions require separate verification.')
+            target = args.target.expanduser().absolute() if args.target is not None else agent_target(args.agent)
+            install(args.package, target, update=args.operation == 'update')
+            print(json.dumps({'installed': str(target), 'host_discovery': 'unverified', 'image_service': 'unverified'}, ensure_ascii=False))
     except (DistributionError, OSError, ValueError, zipfile.BadZipFile) as exc:
         parser.exit(1, f'{exc}\n')
 
