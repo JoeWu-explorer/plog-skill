@@ -8,7 +8,9 @@
 
 安装后，在 Codex 对话中上传照片并发送：
 
-> 使用 $photo-dialogue，把这张照片做成中文叙事图。这次允许使用 Codex 内置图像服务处理这张照片。
+> 使用 $photo-dialogue，把这张照片做成中文叙事图。
+
+首次需要确认时，会说明照片交给 Codex 图像服务处理、用途和同意范围。回复“可以”“好”或“ok”即可继续；已有明确同意、同一范围内继续修改时不重复确认。
 
 1. **发照片**：一张含 1–6 人的静态照片，可补充背景或指定原话。
 2. **生成作品**：技能决定文字与设计，检查通过并保存后给出预览和 PNG 下载链接。
@@ -32,6 +34,6 @@
 
 ## 项目资料
 
-[版本与验证](docs/README.md) · [开发与仓库地图](CONTRIBUTING.md) · [历史记录](docs/history/README.md)
+[对话表达](photo-dialogue/references/conversation.md) · [对话体验原型](prototypes/first-run/index.html) · [版本与验证](docs/README.md) · [开发与仓库地图](CONTRIBUTING.md) · [历史记录](docs/history/README.md)
 
 代码与文档采用 [MIT](LICENSE)。图片按各自清单授权，见 [第三方通知](THIRD_PARTY_NOTICES.md)。
