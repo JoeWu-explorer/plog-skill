@@ -99,3 +99,27 @@ class EvaluationTests(unittest.TestCase):
             with self.subTest(invalid_score=invalid):
                 evidence['attempts'][1]['scores']['atmosphere'] = invalid
                 self.assertEqual(summarize(evidence)['status'], 'not_passed')
+
+    def test_plog_has_all_scene_types_and_requires_agent_and_vision_evidence(self):
+        from evaluation import DIMENSIONS, PLOG_SAMPLES
+        evidence=new_evaluation('a'*40,'b'*64,suite='plog')
+        self.assertEqual(summarize(evidence)['first_generation_total'],14)
+        self.assertEqual({row['sample'] for row in evidence['attempts']},set(PLOG_SAMPLES))
+        for row in evidence['attempts']:
+            row.update(status='pass',delivery='pass',real_service=True,clean_session=True,human_reviewer='fixture',scores=dict.fromkeys(DIMENSIONS,4))
+        for key in ('behaviors','revisions'):
+            evidence[key]=dict.fromkeys(evidence[key],'pass')
+        evidence['environment']=dict.fromkeys(('codex','platform','python','image_service','service_version_or_unavailable'),'fixture')
+        self.assertEqual(summarize(evidence)['status'],'not_passed')
+        evidence['environment'].update(agent='hermes',agent_version='fixture',vision_service='fixture')
+        self.assertEqual(summarize(evidence)['status'],'pass')
+        evidence['attempts'][0]['status']='untested'
+        self.assertEqual(summarize(evidence)['status'],'not_passed')
+
+    def test_old_evidence_without_suite_remains_people_matrix(self):
+        evidence=new_evaluation('a'*40,'b'*64)
+        del evidence['suite']
+        self.assertEqual(summarize(evidence)['first_generation_total'],18)
+        evidence['suite']='unknown'
+        with self.assertRaises(ValueError):
+            summarize(evidence)

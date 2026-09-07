@@ -1,15 +1,25 @@
 # Photo Dialogue
 
-Photo Dialogue is a Codex-first skill for turning a real photograph containing people into a static, share-ready narrative image while preserving the people as they appeared in the source.
+Photo Dialogue is an agent-neutral Plog skill for turning real photographs of people, landscapes, streets, food, objects and pets into static, share-ready photo journals while preserving the source scene. Agent capabilities and configured image services determine execution, not an agent brand. Multiple photos are processed independently as a coordinated series, with one source and revision record per photo.
 
 ## Language
 
+**Plog**:
+A photo journal grounded in real photographs, combining a scene-specific short caption or diary voice with typography and photographic treatment. A series coordinates independent Finished Images without merging source identities or revision histories.
+
+**Scene Fidelity**:
+The preservation of terrain, coastlines, architecture, streets, objects, pets and visible people from the Source Photo. Color and typography may change; material structural drift or invented landmarks prevent acceptance. Identity Fidelity adds person-specific checks when people are present.
+
+**Agent Capability Contract**:
+The required ability to observe images, edit an actual photo, compare the result, execute local file operations and deliver the saved PNG in the current session. Native tools, configured plugins or compatible APIs may satisfy it; agent names and installation success do not prove runtime readiness.
+
+
 **Source Photo**:
-A real user-provided photograph containing one or more people and serving as the visual truth for the finished image.
+A real user-provided photograph serving as the visual truth for a finished image; people are optional.
 _Avoid_: Input image, raw material
 
 **Scene Description**:
-The user's short account of what is happening and how the people are related; it is authoritative for context that cannot be safely observed from the photograph.
+The user's short account of the place, occasion, experience and any relevant relationships; it is authoritative for context that cannot be safely observed from the photograph.
 _Avoid_: Prompt, caption
 
 **Narrative Treatment**:
@@ -29,7 +39,7 @@ An imagined Voice Element generated for Narrative Treatment that must not be rep
 _Avoid_: Real quote, testimony
 
 **Scene Evidence**:
-A concrete action, object, expression, spatial relationship, or user-confirmed event that makes a Voice Element specific to its Source Photo.
+A concrete landscape feature, light pattern, action, object, expression, spatial relationship, or user-confirmed event that makes a Voice Element specific to its Source Photo.
 _Avoid_: Generic sentiment, interchangeable caption
 
 **Primary Voice Mode**:
@@ -69,7 +79,7 @@ The default creation approach in which the photograph and its intended Chinese V
 _Avoid_: Fixed style transfer, unverified one-shot output
 
 **Per-run Processing Authorization**:
-The user's informed authorization to send the identified Source Photo to the stated image service for the current treatment. Clear authorization already given for that operation is carried forward without a repeated confirmation or password-like phrase; it does not authorize unrelated photographs, services or public sharing.
+The user's informed authorization to send the identified photos to the stated vision and image-edit services for the current treatment. Clear authorization already given for that operation is carried forward without a repeated confirmation or password-like phrase; it does not authorize unrelated photographs, services or public sharing.
 _Avoid_: Silent upload, permanent blanket consent, repeated consent ritual
 
 **Privacy Exposure**:
@@ -81,7 +91,7 @@ The rule that the original Source Photo is never overwritten. Temporary derivati
 _Avoid_: In-place edit, metadata copy
 
 **Core Rendering Capability**:
-The ability to create the requested integrated image, inspect its people and Chinese text against the source, and deliver a valid private output. An unavailable creation service or an unmet verification requirement prevents completion; a simpler local result is not an automatic equivalent.
+The ability to create the requested integrated image, inspect its scene, visible people and Chinese text against the source, and deliver a valid private output. An unavailable creation service or an unmet verification requirement prevents completion; a simpler local result is not an automatic equivalent.
 _Avoid_: Full feature set, degraded image quality
 
 **Enhanced Placement**:
@@ -137,7 +147,7 @@ A non-graphic care, recovery, hospital-visit, injury, or emotionally weighty fam
 _Avoid_: Visual diagnosis, trauma spectacle
 
 **Warm Wit**:
-The default narrative register: affectionate, observant, and lightly surprising without ridicule, adultification, or jokes about a person's body or ability.
+An optional narrative register for light interactions: affectionate, observant, and lightly surprising without ridicule, adultification, or jokes about a person's body or ability.
 _Avoid_: Roast, meme voice
 
 **Childlike Contrast**:
@@ -149,7 +159,7 @@ A register for couples and spouses that expresses familiarity or affection witho
 _Avoid_: Manufactured drama, sentimental cliché
 
 **Quiet Documentary**:
-A restrained observational register for emotionally weighty family moments where narration should support the photograph rather than turn it into a joke.
+A restrained observational register for quiet landscapes, everyday scenes and emotionally weighty moments where narration supports the photograph.
 _Avoid_: Inspirational quote, melodrama
 
 **Primary Register**:
@@ -161,7 +171,7 @@ A Voice Element that does not assert an unconfirmed relationship, identity, or p
 _Avoid_: Relationship guess, inferred identity
 
 **Strong Look**:
-An explicitly requested increase in visual stylization beyond the source-responsive treatment selected for the current image. It remains subject to Identity Fidelity and is distinct from the generative technique used by the default workflow.
+An explicitly requested increase in visual stylization beyond the source-responsive treatment selected for the current image. It remains subject to Scene Fidelity and, when people are present, Identity Fidelity and is distinct from the generative technique used by the default workflow.
 _Avoid_: Synonym for all generation, automatic maximum stylization
 
 **Directed Revision**:
