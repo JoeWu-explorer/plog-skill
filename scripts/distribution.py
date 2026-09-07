@@ -15,13 +15,15 @@ import zipfile
 RUNTIME_FILES = (
     'SKILL.md', 'agents/openai.yaml',
     'references/art-direction.md', 'references/people-and-privacy.md',
-    'references/revisions.md', 'references/runtime.md',
+    'references/revisions.md', 'references/runtime.md', 'references/conversation.md',
     'schemas/revision-record.schema.json',
     'scripts/photo_files.py', 'scripts/revision_record.py', 'scripts/self_check.py',
     'requirements.txt', 'requirements.lock', 'requirements-heif.txt', 'requirements-heif.lock',
     'notices/Pillow.txt', 'notices/pillow-heif.txt',
 )
 PACKAGE_FILES = (*RUNTIME_FILES, 'LICENSE', 'THIRD_PARTY_NOTICES.md')
+# alpha.1 and alpha.2 installations predate the conversation reference.
+LEGACY_PACKAGE_FILES = frozenset(PACKAGE_FILES) - {'references/conversation.md'}
 MANIFEST = 'INSTALL-MANIFEST.json'
 
 
@@ -79,7 +81,7 @@ def _unchanged(target: Path) -> None:
         if not isinstance(manifest, dict) or not isinstance(manifest.get('files'), dict):
             raise DistributionError('Invalid installation manifest.')
         expected = manifest['files']
-        if manifest.get('name') != 'photo-dialogue' or manifest.get('schema_version') != 1 or set(expected) != set(PACKAGE_FILES):
+        if manifest.get('name') != 'photo-dialogue' or manifest.get('schema_version') != 1 or set(expected) not in (set(PACKAGE_FILES), LEGACY_PACKAGE_FILES):
             raise DistributionError('Unknown installation manifest.')
         actual = {}
         for path in target.rglob('*'):

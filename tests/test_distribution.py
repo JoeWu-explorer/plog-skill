@@ -1,14 +1,76 @@
+import json
+import posixpath
+import re
 import sys
 import tempfile
 import unittest
+import zipfile
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
-from distribution import build, install, uninstall, DistributionError
+from distribution import build, install, uninstall, DistributionError, MANIFEST
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
 class DistributionTests(unittest.TestCase):
+    def test_packaged_markdown_references_resolve_inside_archive(self):
+        with tempfile.TemporaryDirectory() as folder:
+            package = build(ROOT, Path(folder) / 'candidate.zip')
+            with zipfile.ZipFile(package) as archive:
+                names = set(archive.namelist())
+                for name in names:
+                    if not name.endswith('.md'):
+                        continue
+                    for link in re.findall(r'\]\(([^)]+)\)', archive.read(name).decode()):
+                        if '://' in link or link.startswith('#'):
+                            continue
+                        target = posixpath.normpath(posixpath.join(posixpath.dirname(name), link.split('#')[0]))
+                        self.assertIn(target, names, f'{name}: {link}')
+
+    def _legacy_install(self, root):
+        package = build(ROOT, root / 'candidate.zip')
+        target = root / 'skills' / 'photo-dialogue'
+        install(package, target)
+        manifest_path = target / MANIFEST
+        manifest = json.loads(manifest_path.read_text())
+        del manifest['files']['references/conversation.md']
+        (target / 'references/conversation.md').unlink()
+        manifest_path.write_text(json.dumps(manifest))
+        return package, target
+
+    def test_legacy_installation_upgrades_with_conversation_reference(self):
+        with tempfile.TemporaryDirectory() as folder:
+            package, target = self._legacy_install(Path(folder))
+            install(package, target, update=True)
+            self.assertEqual((target / 'references/conversation.md').read_bytes(), (ROOT / 'photo-dialogue/references/conversation.md').read_bytes())
+            uninstall(target)
+            self.assertFalse(target.exists())
+
+    def test_legacy_installation_still_protects_local_edits(self):
+        with tempfile.TemporaryDirectory() as folder:
+            package, target = self._legacy_install(Path(folder))
+            source = target / 'SKILL.md'
+            source.write_text('my local changes')
+            with self.assertRaises(DistributionError):
+                install(package, target, update=True)
+            with self.assertRaises(DistributionError):
+                uninstall(target)
+            self.assertEqual(source.read_text(), 'my local changes')
+
+    def test_unknown_legacy_manifest_does_not_allow_update_or_uninstall(self):
+        with tempfile.TemporaryDirectory() as folder:
+            package, target = self._legacy_install(Path(folder))
+            manifest_path = target / MANIFEST
+            manifest = json.loads(manifest_path.read_text())
+            del manifest['files']['references/runtime.md']
+            (target / 'references/runtime.md').unlink()
+            manifest_path.write_text(json.dumps(manifest))
+            with self.assertRaises(DistributionError):
+                install(package, target, update=True)
+            with self.assertRaises(DistributionError):
+                uninstall(target)
+            self.assertTrue((target / 'SKILL.md').exists())
+
     def test_clean_package_install_and_modified_file_protection(self):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
