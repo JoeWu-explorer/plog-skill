@@ -1,12 +1,10 @@
+<p align="center">
+  <a href="examples/readme/collection-cover.png"><img src="examples/readme/collection-cover.webp" width="100%" alt="Plog 作品合集：人物相聚、人文手艺、多人互动、多宠互动、山海、街景、宠物、早餐、婴儿与儿童日常"></a>
+</p>
+
 # 照片有话说 · Plog
 
 ### 把拍下的日常，写成有画面的日记
-
-<p align="center">
-  <a href="examples/readme/together/after-v3.png"><img src="examples/readme/together/after-v3.webp" width="32%" alt="人物相聚 Plog，点击查看原尺寸成图"></a>
-  <a href="examples/readme/coast/after-v2.png"><img src="examples/readme/coast/after-v2.webp" width="32%" alt="山海旅行 Plog，点击查看原尺寸成图"></a>
-  <a href="examples/readme/city/after-v2.png"><img src="examples/readme/city/after-v2.webp" width="32%" alt="城市街景 Plog，点击查看原尺寸成图"></a>
-</p>
 
 **发照片，说一句想记录什么。文案、色调、氛围和排版，由 Agent 根据照片自动完成。**
 
@@ -14,7 +12,7 @@
 
 [快速开始](#快速开始) · [作品画廊](#每一种日常都有自己的语气) · [前后对照](#从一张照片到一页-plog) · [Agent 适配](#在你常用的-agent-里使用)
 
-<sub>展示原图为原创 AI 素材，含虚构人物；成图由对应原图实际编辑生成，标点另作局部修整。[素材与过程](examples/readme/MANIFEST.md)</sub>
+<sub>展示原图为原创 AI 素材，含虚构人物；单张成图由对应原图编辑生成，部分标点另作局部修整。封面为生成式合集预览，单张作品与原图对照见下方画廊。[素材与过程](examples/readme/MANIFEST.md)</sub>
 
 ## 快速开始
 

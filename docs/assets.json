@@ -406,5 +406,17 @@
     "license": "PROJECT-DISPLAY",
     "source": "OpenAI built-in image_gen; fictional scene; lossless preview of corresponding PNG",
     "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/collection-cover.png": {
+    "sha256": "a19f2fa9cabeb5e4186e9629412f41151956a0021e4fb5cef21a0963cf288c1a",
+    "license": "PROJECT-DISPLAY",
+    "source": "OpenAI built-in image_gen; generative collection preview of ten existing project artworks",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/collection-cover.webp": {
+    "sha256": "c5aace7c09050fa371c8e7561cc78e0f705936df423a8f1c8f5c9b756794845e",
+    "license": "PROJECT-DISPLAY",
+    "source": "OpenAI built-in image_gen; generative collection preview of ten existing project artworks; lossless preview of corresponding PNG",
+    "provenance": "examples/readme/MANIFEST.md"
   }
 }
