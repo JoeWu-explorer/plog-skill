@@ -1,6 +1,6 @@
 # Agent 适配与验证状态
 
-本页对应当前 Plog 开发源码，不代表已发布 alpha.3 的能力。保留 `photo-dialogue` 技能 ID 与版本记录格式，旧作品仍可查看和恢复。
+本页对应 Plog v0.1.0-alpha.4，不代表旧版 alpha.3 的能力。保留 `photo-dialogue` 技能 ID 与版本记录格式，旧作品仍可查看和恢复。
 
 ## 安装与运行
 

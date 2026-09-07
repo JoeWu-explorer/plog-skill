@@ -34,7 +34,7 @@ python3.13 -m venv .venv
 .venv/bin/python scripts/distribution.py build dist/photo-dialogue-local.zip
 ```
 
-目标文件必须尚不存在。安装器采用固定允许名单；添加运行资源时同步检查打包边界。用户安装与维护步骤统一放在 [安装指南](docs/install.md)，不在首页复制命令。
+目标文件必须尚不存在。安装器采用固定允许名单；添加运行资源时同步检查打包边界。首页保留一条 npx 安装命令与简短使用示例；详细安装、环境配置和维护步骤放在 [安装指南](docs/install.md)。
 
 运行内容变更后重新构建并核对固定版本；定向测试与完整视觉矩阵分开记录。更新本机开发安装不等于替换已发布附件。发布前检查 [清单](docs/release-checklist.md)；`check_repository.py --release` 会检查资产许可，目前历史图仍有未清项。
 

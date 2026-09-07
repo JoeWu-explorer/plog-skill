@@ -7,21 +7,16 @@
 - [使用指南](guide.md)：首次做图、修改、返回旧版、导出与排错。
 - [安装指南](install.md)：安装、HEIF 支持、更新和卸载。
 
-## 当前开发源码
-
-Plog 与多 Agent 适配正在当前源码中开发，支持无人场景、日常物件和组图逐张处理；新增原生图像工具路由、兼容 API 与各宿主安装选项。参见 [适配与证据状态](agent-compatibility.md) 和 [本轮开发检查](plog-development.md)。此变更尚未发布，不能把下方 alpha.3 包当作通用 Plog 包。
-
 ## 版本与验收
 
-**当前预发布：v0.1.0-alpha.3。** 首次确认与后续修改、失败、恢复等对话已统一为简短日常表达，保留已有交付、保存和逐图设计能力；完整视觉验收仍未通过，新版没有重跑完整视觉矩阵。
+**当前预发布：v0.1.0-alpha.4。** 中文 Plog 覆盖人物、山海、街景、食物、静物和宠物，组图逐张处理并保留版本；提供多 Agent 安装与图像能力接入路径。首页使用一条 npx 安装命令、使用示例和代装口令。
 
-- [下载](https://github.com/JoeWu-explorer/photo-dialogue/releases/tag/v0.1.0-alpha.3) · [当前固定包与验证范围](release.json) · [更新记录](../CHANGELOG.md)
-- [本次发布说明](prerelease-alpha-3.md) · [对话表达](../photo-dialogue/references/conversation.md)
-- [文字设计方向](typography-direction.md) · [引导与文档整理](onboarding-update.md) · [交付与保存修复](delivery-and-save-fixes.md)
-- [验收标准](acceptance.md) · [公开前清单](release-checklist.md)
-- [alpha.1 历史视觉验证](person-fidelity-fixes.md) · [历史固定包记录](candidate.json) · [生成限制诊断](generation-limit-diagnosis.md)
+- [下载](https://github.com/JoeWu-explorer/photo-dialogue/releases/tag/v0.1.0-alpha.4) · [固定包与验证范围](release.json) · [更新记录](../CHANGELOG.md)
+- [本次发布说明](prerelease-alpha-4.md) · [适配与证据状态](agent-compatibility.md) · [Plog 开发检查](plog-development.md)
+- [验收标准](acceptance.md) · [发布检查](release-checklist.md)
+- [alpha.3 发布说明](prerelease-alpha-3.md) · [alpha.1 历史视觉验证](person-fidelity-fixes.md) · [历史固定包记录](candidate.json)
 
-运行目标为 macOS/Linux 与 CPython 3.11–3.13，基础格式 JPEG/PNG/WebP，HEIF 可选。原包目标宿主实测 Codex 0.153.3；依赖版本与各批次证据以上述清单为准。Windows 和所有客户端兼容性未作承诺。新分支或本机开发安装不能沿用旧版视觉成绩宣称通过。
+运行目标为 macOS/Linux 与 CPython 3.11–3.13，基础格式 JPEG/PNG/WebP，HEIF 可选。56 项确定性测试及安装升级检查通过；真实 Agent／图像服务全链路和 Plog 场景视觉矩阵仍待执行。旧版成绩不转移到本版本。
 
 ## 开发与维护
 

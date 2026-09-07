@@ -2,53 +2,30 @@
 
 **把拍下的日常，写成有画面的日记。**
 
-海边吹过的风、下班路上的街景、一顿饭、一次见面，都可以成为一页 Plog。把照片交给 Agent，再说一句你想记住什么；照片有话说会一起设计中文旁白、光色、字体和排版，让文字长在这张照片的故事里。
+把人物、山海、街景和日常小事，做成有故事的中文 Plog。单张记录一个瞬间，组图串起一天；文字、氛围和排版都可以边聊边改，也能从旧版继续。
 
-一张照片可以独立成篇，几张照片可以串起一天。做完还可以继续聊：“这句太煽情了”“第二张少写一点”“还是从第一版改”。
+[快速开始](#快速开始) · [使用示例](#你可以这样记录) · [安装指南](docs/install.md) · [Agent 适配](docs/agent-compatibility.md)
 
-[开始使用](#开始你的第一张-plog) · [安装指南](docs/install.md) · [使用示例](#你可以这样记录) · [Agent 适配](docs/agent-compatibility.md)
+## 快速开始
 
-> 当前为 **Plog 多 Agent 开发版**，本页对应 main 分支源码，尚未打包为新 Release。GitHub 已发布的 [alpha.3](https://github.com/JoeWu-explorer/photo-dialogue/releases/tag/v0.1.0-alpha.3) 是旧版人物照片／Codex 版本；试用本页能力请使用当前开发源码。
-
-## 开始你的第一张 Plog
-
-### 1. 把安装交给 Agent
-
-将下面这段话发给能访问 GitHub 并执行脚本的 Agent：
-
-```text
-从 https://github.com/JoeWu-explorer/photo-dialogue 的 main 分支
-安装「照片有话说」photo-dialogue。
-读取 docs/install.md，按我正在使用的 Agent 安装，准备独立 Python 环境并自检。
-这次允许下载源码和必要依赖，保留已有安装的本地修改。
-检查读图、图片编辑和文件交付是否可用，告诉我是否可以开始，或还缺什么配置。
+```sh
+npx skills add https://github.com/JoeWu-explorer/photo-dialogue --skill photo-dialogue
 ```
 
-不需要自己挑安装目录。已经使用 Skills CLI 的用户也可以走 [npx 安装路径](docs/install.md#使用-skills-cli)，喜欢终端的用户可以看 [手动安装](docs/install.md#手动安装完整包)。技能安装完成后，还需要可用的读图与图片编辑服务。
-
-### 2. 发照片，说说想记录什么
-
-安装并按宿主要求刷新技能后，上传一张照片：
+安装后，在支持 Skills、读图与图片编辑的 Agent 中发照片，说：
 
 ```text
-用 photo-dialogue 把这张照片做成中文 Plog。
-这是周末去海边散步时拍的，想记住当时很放松的感觉。
-文字少一点，像我自己会说的话，做成 3:4 竖图。
+用 photo-dialogue 把这些照片做成一组中文 Plog，文字自然一点，像我的日记。
 ```
 
-背景和偏好都可以省略，也可以明确要求无字。照片里无需有人；地点、日期和经历以你提供的信息为准。Agent 会根据照片提出一个方向，完成生成、检查与保存后，把 PNG 交给你。
-
-### 3. 继续聊，改到喜欢
+也可以把安装交给 Agent：
 
 ```text
-把那句改成「今天就走到这里」，其他尽量保持。
+请运行 npx skills add https://github.com/JoeWu-explorer/photo-dialogue --skill photo-dialogue 安装「照片有话说」。
+安装后读取 SKILL.md，在独立环境准备必要依赖并自检，检查读图与图片编辑工具是否可用。
 ```
 
-```text
-回到第一版，把字移开海岸线。
-```
-
-每次成功修改会保留新版本，原图不覆盖。换一个会话继续时，提供原图和作品目录，就能指定旧版接着改。
+想调整时直接说：“第二张少写一点”“氛围淡一点”“从第一版继续”。首次环境配置见 [安装指南](docs/install.md)。
 
 ## 你可以这样记录
 
@@ -103,6 +80,7 @@
 
 ## 使用前了解这几件事
 
+- **版本：** 当前预发布为 [v0.1.0-alpha.4](https://github.com/JoeWu-explorer/photo-dialogue/releases/tag/v0.1.0-alpha.4)；上面的 npx 命令安装 main 分支源码。仓库当前为私有，安装需要访问权限。
 - **照片与环境：** 静态 JPEG、PNG、WebP；HEIC/HEIF 可选。文件工具需要 macOS、Linux 或 WSL 中的 CPython 3.11–3.13。
 - **图片服务：** 使用你配置的读图与编辑服务，模型与费用取决于该服务。需要外发照片时会说明接收服务和用途，承接已有授权。
 - **生成效果：** 生成式编辑不保证像素完全不变；检查无法通过时会说明问题，不自动重复生成或消耗第二次额度。
