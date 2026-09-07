@@ -1,0 +1,23 @@
+{
+  "created": "2026-09-07",
+  "mode": "OpenAI built-in image_gen",
+  "generation_id": "exec-7df46791-8332-4e4a-84d7-460473d2cb09.png",
+  "output": "collection-cover.png",
+  "sources": [
+    "together/after-v3.png",
+    "craft/after-v2.png",
+    "kitchen/after.png",
+    "playmates/after.png",
+    "coast/after-v2.png",
+    "city/after-v2.png",
+    "cat/after-v2.png",
+    "table/after.png",
+    "baby/after.png",
+    "child/after.png"
+  ],
+  "reference_preparation": "Ten source artworks copied without resizing into five temporary two-image reference sheets; neutral gaps added outside artworks. Sheets only served as model inputs, not final cover.",
+  "native_generation_calls": 1,
+  "validation_rejections_before_generation": 1,
+  "prompt": "The five attached files are REFERENCE CONTACT SHEETS, each containing two distinct finished vertical artworks separated by a narrow neutral gap. Split each sheet into its LEFT and RIGHT artwork conceptually. Thus there are TEN source artworks total, all required separately on the final cover. Sheet 1 tea / artisan; sheet 2 dumplings / dogs; sheet 3 coast / rainy street; sheet 4 cat / breakfast; sheet 5 baby / child. Do not put the entire paired sheets on the cover as five landscape prints; make ten individual vertical prints.\n\nUse case: compositing. Create ONE premium wide landscape collection cover for the top of a GitHub README, approximately 16:10 aspect ratio, as large and crisp as possible. Use ALL TEN supplied finished Chinese Plog artworks as photographic print inserts, exactly once each. This is a product portfolio cover made from existing works, not ten newly invented photos.\nInputs in order: 1 three adults having tea / 茶还没凉，话还没聊完; 2 bamboo artisan / 一挑一压 慢慢成形; 3 three adults making dumplings / 这算饺子吗？ 限量款！; 4 two dogs tugging rope / 松口！ 你先！; 5 turquoise coast / 山海很大 今天很慢; 6 rainy street / 雨落下来 街慢下来; 7 orange cat on chair / 今天的安排：晒太阳; 8 breakfast / 早餐还热 慢慢吃吧; 9 baby with blocks / 小小的手 忙着认识世界; 10 child in yellow raincoat / 雨停了 再踩一下！\nART DIRECTION: a highly art-directed independent photography journal cover, tactile uncoated warm limestone paper, narrow ivory print edges, subtle believable soft daylight contact shadows, elegant rich photographic color. A carefully choreographed flat-lay spread of all ten prints with slight rotations and controlled scale variation, a loose two-row editorial arrangement with staggered edges. Airy, intentional, premium, not a rigid thumbnail grid, not a chaotic pile. Photos dominate at least 80% of the canvas. Each print remains individually recognizable; include all ten subjects and their existing typography; don't put cards on top of faces or main text. Only minimal border overlap, never hide an entire picture, never replace one with a duplicate. Make people-at-tea and turquoise coast slightly larger anchors among the other equal-status works. All prints inside the canvas with a calm outer margin.\nSmall typographic masthead occupying a narrow band at top: oversized elegant ink-black italic serif 'Plog' at left, plus a restrained Chinese line '每一张，都有话说' at right. No other cover copy, icons, labels, artificial tape, stickers, faux torn edges, confetti, devices or watermarks. A single thin horizontal rule can quietly unify the masthead. Never add a terminal full stop or period; preserve existing question and exclamation marks.\nPreserve each supplied print's original image, people/animals, scene, proportions and Chinese wording as faithfully as possible, treating it as an existing printed artwork. Do not redesign its internal text, invent new captions or blend photos into a common scene. The result should feel like a compelling physical portfolio shot from directly above, ready to fill the entire README content width.",
+  "role": "generative portfolio overview; not pixel-identical montage or runtime acceptance evidence"
+}
