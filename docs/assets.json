@@ -46,5 +46,209 @@
     "license": "UNRESOLVED",
     "source": "OpenAI built-in image generation; original fictional people",
     "provenance": "prototypes/look-system/generated/PROVENANCE.md"
+  },
+  "examples/readme/sea-plog.png": {
+    "sha256": "7fb85e443eb59a5fde2bb8df5d48b92d0b170cf7e34897f646da5fad69972d63",
+    "license": "PROJECT-DISPLAY",
+    "source": "OpenAI built-in image generation; fictional Plog illustration commissioned for this README",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/street-plog.png": {
+    "sha256": "9ec0631076b8561261ed3fcd591a1d563d4fb3c1e8f869eb156190229d7e9d09",
+    "license": "PROJECT-DISPLAY",
+    "source": "OpenAI built-in image generation; fictional Plog illustration commissioned for this README",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/breakfast-plog.png": {
+    "sha256": "8b4fbc90eff475f17a5bc95f7f4a36b4e2e4876bfeb0364f6244cef05b782a76",
+    "license": "PROJECT-DISPLAY",
+    "source": "OpenAI built-in image generation; fictional Plog illustration commissioned for this README",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/hero.png": {
+    "sha256": "a5169b56ce0d302d6a1182ea1e93b1d637ee568b0d0b323333221a3cdda6daba",
+    "license": "PROJECT-DISPLAY",
+    "source": "OpenAI built-in image generation; fictional Plog illustration commissioned for this README",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/coast/before.png": {
+    "sha256": "0b8df73e75e8e50c850892a94f64b2c31e65802ad2dc6f0dcfd0dfbb08ed35e6",
+    "license": "PROJECT-DISPLAY",
+    "source": "OpenAI built-in image generation; original fictional source photograph",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/coast/after.png": {
+    "sha256": "ca5e5d48ac53b3a83ed317940d20b56ff332746339b039b664aa1f191cd8634c",
+    "license": "PROJECT-DISPLAY",
+    "source": "OpenAI built-in image generation; actual reference-image edit of coast/before.png; saved using photo-dialogue revision_record.py",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/city/before.png": {
+    "sha256": "a440442dd3ba764ca2dfc33dafe4fee993b6bf352801cdb9b01b1759e2051e4c",
+    "license": "PROJECT-DISPLAY",
+    "source": "OpenAI built-in image generation; original fictional source photograph",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/city/after.png": {
+    "sha256": "a94b971c7a667dbc742a79e0e300ce03693a8b921dd2b225245ed0a9e351a4ba",
+    "license": "PROJECT-DISPLAY",
+    "source": "OpenAI built-in image generation; actual reference-image edit of city/before.png; saved using photo-dialogue revision_record.py",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/table/before.png": {
+    "sha256": "14f62263fb0ea60c6d60d075aa3f398409f7dccc6d51e184109b702cbf9c7d5d",
+    "license": "PROJECT-DISPLAY",
+    "source": "OpenAI built-in image generation; original fictional source photograph",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/table/after.png": {
+    "sha256": "e30ce8340944cd7e9fefdec1a493b089692c16f8df9ab0a7388431ab745278be",
+    "license": "PROJECT-DISPLAY",
+    "source": "OpenAI built-in image generation; actual reference-image edit of table/before.png; saved using photo-dialogue revision_record.py",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/together/before.png": {
+    "sha256": "e6477a90017ad705ee7071052051cc744fb705873f8be911e525eca6321d93e4",
+    "license": "PROJECT-DISPLAY",
+    "source": "OpenAI built-in image generation; original fictional source photograph",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/together/after.png": {
+    "sha256": "1298d6fc2d49fb749abf3014afe7901006e18f30c036b4cdb202f189779f9047",
+    "license": "PROJECT-DISPLAY",
+    "source": "OpenAI built-in image generation; actual reference-image edit of together/before.png; saved using photo-dialogue revision_record.py",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/cat/before.png": {
+    "sha256": "4a3246e1505d6415f7f688bb93a11a6ef1dae51549fb6eb41df8f19d5f426ed9",
+    "license": "PROJECT-DISPLAY",
+    "source": "OpenAI built-in image generation; original fictional source photograph",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/cat/after.png": {
+    "sha256": "0b8a32bf26f9ac30572c3e69f04cd045898698f2f2ea7a6d1c9895f3054ad8da",
+    "license": "PROJECT-DISPLAY",
+    "source": "OpenAI built-in image generation; actual reference-image edit of cat/before.png; saved using photo-dialogue revision_record.py",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/craft/before.png": {
+    "sha256": "0470c0f30c5498b35cd82810c460a1fbfe0e93e2bbc11fa4eace84b8aed14a5e",
+    "license": "PROJECT-DISPLAY",
+    "source": "OpenAI built-in image generation; original fictional source photograph",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/craft/after.png": {
+    "sha256": "f4ac8c18553a2bb893de225415917283674372889bebd671a2c381ac6d17cfac",
+    "license": "PROJECT-DISPLAY",
+    "source": "OpenAI built-in image generation; actual reference-image edit of craft/before.png; saved using photo-dialogue revision_record.py",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/coast/after-v2.png": {
+    "sha256": "623fc0c1d0af4c3bb1bf073abb7e55a17e0d9a97cd18d86336e996ce838295f0",
+    "license": "PROJECT-DISPLAY",
+    "source": "OpenAI built-in image edit; accepted typography revision of v001",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/city/after-v2.png": {
+    "sha256": "4642784b7f55139f600f987d5ad5b00c7bcb6e96c13d001bf5f6d220edea1e36",
+    "license": "PROJECT-DISPLAY",
+    "source": "OpenAI built-in image edit; accepted typography revision of v001",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/table/candidate-v2-not-approved.png": {
+    "sha256": "49926ea41d69a6fdfd45b5e3f0a501853da1a8938e08299af21cb786cc6c681e",
+    "license": "PROJECT-DISPLAY",
+    "source": "OpenAI built-in image edit; unaccepted typography candidate; excluded from main README",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/together/after-v2.png": {
+    "sha256": "50e5dd191293364fd60798e93c6111e854ce368dff00906dfabd0e8fc0588956",
+    "license": "PROJECT-DISPLAY",
+    "source": "OpenAI built-in image edit; accepted typography revision of v001",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/cat/candidate-v2-not-approved.png": {
+    "sha256": "b679281a478f734bfd4f29b3f85bee3278e685341a4a84dd15f2f1b9c30fcdd6",
+    "license": "PROJECT-DISPLAY",
+    "source": "OpenAI built-in image edit; unaccepted typography candidate; excluded from main README",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/craft/after-v2.png": {
+    "sha256": "e6a9aa922ec48f1857033ae0efe6335cf74bb4492a11c317b87d3d99a87dc694",
+    "license": "PROJECT-DISPLAY",
+    "source": "OpenAI built-in image edit; accepted typography revision of v001",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/coast/before.webp": {
+    "sha256": "35a63715ff9c782216135a51efad2eca7fdcf93bb04bce695483bae894464364",
+    "license": "PROJECT-DISPLAY",
+    "source": "Lossless WebP encoding of examples/readme/coast/before.png; decoded RGB pixels verified identical",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/coast/after-v2.webp": {
+    "sha256": "05236c74fb03c82aa95045424d1ae0b5d1191e8118582ea4fe2102b249639408",
+    "license": "PROJECT-DISPLAY",
+    "source": "Lossless WebP encoding of examples/readme/coast/after-v2.png; decoded RGB pixels verified identical",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/city/before.webp": {
+    "sha256": "aed0bf50a45ff0bf2beb13ac2051e0f9121d45c469d97df672facdc17c628648",
+    "license": "PROJECT-DISPLAY",
+    "source": "Lossless WebP encoding of examples/readme/city/before.png; decoded RGB pixels verified identical",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/city/after-v2.webp": {
+    "sha256": "2d088c531daf50bed49dadebcade39f83babddb43972bf0373de6e0514b496ea",
+    "license": "PROJECT-DISPLAY",
+    "source": "Lossless WebP encoding of examples/readme/city/after-v2.png; decoded RGB pixels verified identical",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/table/before.webp": {
+    "sha256": "a9e0d943b853901a5312f526bbb31f61fdd965ad37ca0e131cdd787c7c2210fe",
+    "license": "PROJECT-DISPLAY",
+    "source": "Lossless WebP encoding of examples/readme/table/before.png; decoded RGB pixels verified identical",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/table/after.webp": {
+    "sha256": "0664c82ce5237ca5ac4bff0f17417fe4d350e7dce2482d6f46cf0049b026583d",
+    "license": "PROJECT-DISPLAY",
+    "source": "Lossless WebP encoding of examples/readme/table/after.png; decoded RGB pixels verified identical",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/together/before.webp": {
+    "sha256": "7b785fe448e3d5ad7a7d7d6713e113d03c9033e0e03d31831ea2c3f666a085f3",
+    "license": "PROJECT-DISPLAY",
+    "source": "Lossless WebP encoding of examples/readme/together/before.png; decoded RGB pixels verified identical",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/together/after-v2.webp": {
+    "sha256": "6268beaf3e69191d60e6bede511206e67a4c1029e87e8f239422483a7e3020ee",
+    "license": "PROJECT-DISPLAY",
+    "source": "Lossless WebP encoding of examples/readme/together/after-v2.png; decoded RGB pixels verified identical",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/cat/before.webp": {
+    "sha256": "face1c66484f48b271a92af7883fac8d71ed0bf6767a9ade928c53a58ec02747",
+    "license": "PROJECT-DISPLAY",
+    "source": "Lossless WebP encoding of examples/readme/cat/before.png; decoded RGB pixels verified identical",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/cat/after.webp": {
+    "sha256": "9d9a49bd58a78177a57ee063f141cb6ac15434b11685c5823fdb37c6fa18d607",
+    "license": "PROJECT-DISPLAY",
+    "source": "Lossless WebP encoding of examples/readme/cat/after.png; decoded RGB pixels verified identical",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/craft/before.webp": {
+    "sha256": "8cc5175e8a11782fbb125106c757bd824719e9bf4cbdeaa9630cceb47eba31af",
+    "license": "PROJECT-DISPLAY",
+    "source": "Lossless WebP encoding of examples/readme/craft/before.png; decoded RGB pixels verified identical",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/craft/after-v2.webp": {
+    "sha256": "e29de4723655f825dc0a376b7fd45c38ec684b0da1ed2dc2ba9718844cb93fb8",
+    "license": "PROJECT-DISPLAY",
+    "source": "Lossless WebP encoding of examples/readme/craft/after-v2.png; decoded RGB pixels verified identical",
+    "provenance": "examples/readme/MANIFEST.md"
   }
 }
