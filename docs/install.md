@@ -2,20 +2,20 @@
 
 [返回首页](../README.md) · [Agent 适配](agent-compatibility.md) · [使用指南](guide.md)
 
-**当前预发布：[v0.1.0-alpha.5](https://github.com/JoeWu-explorer/photo-dialogue/releases/tag/v0.1.0-alpha.5)。** npx 安装 main 分支源码；需要固定版本可下载该 Release 的 ZIP 与 `SHA256SUMS`。仓库当前为私有，需要仓库访问权限和可供 Git 使用的认证。
+**当前预发布：[v0.1.0-alpha.6](https://github.com/JoeWu-explorer/plog-skill/releases/tag/v0.1.0-alpha.6)。** npx 安装 main 分支源码；需要固定版本可下载该 Release 的 ZIP 与 `SHA256SUMS`。仓库当前为私有，需要仓库访问权限和可供 Git 使用的认证。
 
 ## 推荐：npx 安装
 
 需要 Node.js/npm。在你希望使用技能的项目目录执行，按 CLI 提示选择 Agent：
 
 ```sh
-npx skills add https://github.com/JoeWu-explorer/photo-dialogue --skill photo-dialogue
+npx skills add https://github.com/JoeWu-explorer/plog-skill --skill plog
 ```
 
 也可以把这段话交给 Agent：
 
 ```text
-请运行 npx skills add https://github.com/JoeWu-explorer/photo-dialogue --skill photo-dialogue 安装「照片有话说」。
+请运行 npx skills add https://github.com/JoeWu-explorer/plog-skill --skill plog 安装「照片有话说」。
 安装后读取 SKILL.md，在独立环境准备必要依赖并自检，检查读图与图片编辑工具是否可用。
 ```
 
@@ -26,7 +26,7 @@ CLI 安装技能文件；Python 依赖与图像服务由 Agent 按 `SKILL.md` �
 上面的命令采用 CLI 默认的安装范围和方式。需要明确指定时，例如安装独立副本到当前项目的 Claude Code 目录：
 
 ```sh
-npx skills add https://github.com/JoeWu-explorer/photo-dialogue --skill photo-dialogue --agent claude-code --copy
+npx skills add https://github.com/JoeWu-explorer/plog-skill --skill plog --agent claude-code --copy
 ```
 
 - 想装到用户范围可加 `--global`；其他宿主先用 `npx skills add --help` 核对 CLI 支持的 Agent 名称。尚未列出的宿主可用下方完整包安装器。
@@ -35,7 +35,7 @@ npx skills add https://github.com/JoeWu-explorer/photo-dialogue --skill photo-di
 
 仓库 URL 与本地目录均为 [Skills CLI 支持的来源](https://github.com/vercel-labs/skills#supported-sources)。已验证远端技能发现，以及临时项目中的 Claude Code 目录复制安装、19 个技能文件内容一致和本地自检；这不等于完成了真实 Agent 图片创作验证。
 
-试用自己的本地改动时，在源码根目录将命令中的仓库 URL 换成 `./photo-dialogue`。GitHub 安装只包含已推送的内容。
+试用自己的本地改动时，在源码根目录将命令中的仓库 URL 换成 `./plog`。GitHub 安装只包含已推送的内容。
 
 ## 手动安装完整包
 
@@ -44,22 +44,22 @@ npx skills add https://github.com/JoeWu-explorer/photo-dialogue --skill photo-di
 先取得源码（已有检出目录时使用它）：
 
 ```sh
-git clone --branch v0.1.0-alpha.5 https://github.com/JoeWu-explorer/photo-dialogue.git
-cd photo-dialogue
+git clone --branch v0.1.0-alpha.6 https://github.com/JoeWu-explorer/plog-skill.git
+cd plog-skill
 ```
 
 使用 Release 附件时，先在下载目录运行 `shasum -a 256 -c SHA256SUMS`（Linux 可用 `sha256sum -c SHA256SUMS`），再用该版本源码的安装器安装：
 
 ```sh
-python3.13 scripts/distribution.py install '/下载目录/photo-dialogue-v0.1.0-alpha.5.zip' --agent hermes
+python3.13 scripts/distribution.py install '/下载目录/plog-v0.1.0-alpha.6.zip' --agent hermes
 ```
 
 也可自行构建。在源码根目录运行；每次使用新的临时构建目录，避免同名 ZIP 已存在导致构建失败：
 
 ```sh
 PD_BUILD_DIR="$(mktemp -d)"
-python3.13 scripts/distribution.py build "$PD_BUILD_DIR/photo-dialogue-plog.zip"
-python3.13 scripts/distribution.py install "$PD_BUILD_DIR/photo-dialogue-plog.zip" --agent hermes
+python3.13 scripts/distribution.py build "$PD_BUILD_DIR/plog-local.zip"
+python3.13 scripts/distribution.py install "$PD_BUILD_DIR/plog-local.zip" --agent hermes
 ```
 
 将 `hermes` 换成你使用的宿主：
@@ -71,7 +71,7 @@ python3.13 scripts/distribution.py install "$PD_BUILD_DIR/photo-dialogue-plog.zi
 | Claude Code | `--agent claude-code` |
 | DeepSeek Harness | `--agent deepseek-harness` |
 | Codex | `--agent codex` |
-| 其他 Agent | `--target '/实际技能根目录/photo-dialogue'` |
+| 其他 Agent | `--target '/实际技能根目录/plog'` |
 
 `--target` 不能与 `--agent` 同时使用。默认目录、环境变量和通用目录选项见 [适配表](agent-compatibility.md)。已有安装用 [更新步骤](#更新与卸载)，不要直接覆盖。
 
@@ -80,9 +80,9 @@ python3.13 scripts/distribution.py install "$PD_BUILD_DIR/photo-dialogue-plog.zi
 无论选择哪种安装方式，只需为技能准备一次独立环境。将 `PD_SKILL` 替换成安装结果中**包含 SKILL.md 的绝对目录**：
 
 ```sh
-PD_SKILL='/实际安装目录/photo-dialogue'
-python3.13 -m venv ~/.local/share/photo-dialogue/venv
-PD_PYTHON="$HOME/.local/share/photo-dialogue/venv/bin/python"
+PD_SKILL='/实际安装目录/plog'
+python3.13 -m venv ~/.local/share/plog/venv
+PD_PYTHON="$HOME/.local/share/plog/venv/bin/python"
 "$PD_PYTHON" -m pip install --require-hashes -r "$PD_SKILL/requirements.lock"
 mkdir -p ~/Pictures/PhotoDialogue
 "$PD_PYTHON" "$PD_SKILL/scripts/self_check.py" --workspace ~/Pictures/PhotoDialogue
@@ -108,11 +108,11 @@ mkdir -p ~/Pictures/PhotoDialogue
 安装后可以把这句话发给 Agent：
 
 ```text
-检查 photo-dialogue 是否已就绪：能否读图、以我的照片为输入编辑图片，
+检查 plog 是否已就绪：能否读图、以我的照片为输入编辑图片，
 并把结果保存和交付给我？先检查现有工具与配置，不要发起图片生成。
 ```
 
-优先使用 Agent 已有的视觉与图片编辑工具。缺少其中一项时，可以接入已有 MCP／CLI 或随包兼容 API，见 [图像接入说明](../photo-dialogue/references/agents.md)。普通聊天 API 不代表支持看图或图片编辑。
+优先使用 Agent 已有的视觉与图片编辑工具。缺少其中一项时，可以接入已有 MCP／CLI 或随包兼容 API，见 [图像接入说明](../plog/references/agents.md)。普通聊天 API 不代表支持看图或图片编辑。
 
 使用随包 API 适配器时，可额外执行：
 
@@ -134,7 +134,7 @@ mkdir -p ~/Pictures/PhotoDialogue
 
 ```sh
 python3.13 scripts/distribution.py update '/实际新包.zip' --agent hermes
-python3.13 scripts/distribution.py uninstall --target '/实际技能目录/photo-dialogue'
+python3.13 scripts/distribution.py uninstall --target '/实际技能目录/plog'
 ```
 
 安装器能识别原 alpha.1／alpha.2／alpha.3 清单并更新。发现本地修改或未知文件时停止覆盖，保留后人工处理。更新后按新 lock 检查依赖并自检。
@@ -144,3 +144,11 @@ python3.13 scripts/distribution.py uninstall --target '/实际技能目录/photo
 通过原管理器更新／移除。当前 `--copy` 本地源码安装不会自动跟随源码变化：先保留本地修改，确认新源码，再用相同来源、Agent 与安装范围重新安装；刷新后重新自检。远端源安装的维护命令见 [Skills CLI 文档](https://github.com/vercel-labs/skills#available-commands)。
 
 没有本仓库安装器清单的目录不能用 `distribution.py update/uninstall` 接管，也不能伪造清单绕过保护。卸载技能时保留独立的作品目录、原图和专用 Python 环境。
+
+## 从 photo-dialogue 迁移
+
+从 alpha.6 起，仓库名为 `plog-skill`，Skill 名称和默认安装目录为 `plog`。旧 GitHub 地址保留平台重定向；历史发布包仍使用旧名称。作品继续保存在 `~/Pictures/PhotoDialogue/`，版本记录和 `PD_` 环境变量不变。
+
+使用 Skills CLI 安装的用户：先备份自行修改的技能文件，使用原安装管理器移除旧 `photo-dialogue` 技能，再运行上方 npx 命令安装 `plog`。不要删除作品目录。
+
+使用本仓库 ZIP 安装器的用户：新安装器仍识别旧包和旧目录。用新版 ZIP 对旧目录执行 `update --target <旧技能目录/photo-dialogue>`；只有文件与安装清单一致时才更新。更新成功后，在同一父目录确认 `plog` 不存在，将技能目录从 `photo-dialogue` 重命名为 `plog`，重新加载 Agent，再用 `plog` 调用。有本地改动会停止更新并保留原文件；请先备份并人工合并，勿覆盖。

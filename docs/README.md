@@ -9,10 +9,10 @@
 
 ## 版本与验收
 
-**当前预发布：v0.1.0-alpha.5。** 将更鲜明的字形、层级与图文构图，以及画内配文默认不以句号收尾的规则，写入通用 Plog Skill。README 展示六类照片的自动创作前后对照。
+**当前预发布：v0.1.0-alpha.6。** 将更鲜明的字形、层级与图文构图，以及画内配文默认不以句号收尾的规则，写入通用 Plog Skill。本版统一仓库名 `plog-skill` 和技能名 `plog`，补齐旧版迁移路径；README 展示十组作品及前后对照。
 
-- [下载](https://github.com/JoeWu-explorer/photo-dialogue/releases/tag/v0.1.0-alpha.5) · [固定包与验证范围](release.json) · [更新记录](../CHANGELOG.md)
-- [本次发布说明](prerelease-alpha-5.md) · [适配与证据状态](agent-compatibility.md) · [Plog 开发检查](plog-development.md)
+- [下载](https://github.com/JoeWu-explorer/plog-skill/releases/tag/v0.1.0-alpha.6) · [固定包与验证范围](release.json) · [更新记录](../CHANGELOG.md)
+- [本次发布说明](prerelease-alpha-6.md) · [适配与证据状态](agent-compatibility.md) · [Plog 开发检查](plog-development.md)
 - [验收标准](acceptance.md) · [发布检查](release-checklist.md)
 - [alpha.4 发布说明](prerelease-alpha-4.md) · [alpha.3 发布说明](prerelease-alpha-3.md) · [alpha.1 历史视觉验证](person-fidelity-fixes.md) · [历史固定包记录](candidate.json)
 

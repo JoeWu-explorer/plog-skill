@@ -6,7 +6,7 @@
 
 | 位置 | 职责 |
 | --- | --- |
-| `photo-dialogue/` | 可安装 Skill：入口、条件参考、文件处理、版本记录及依赖 |
+| `plog/` | 可安装 Skill：入口、条件参考、文件处理、版本记录及依赖 |
 | `scripts/` | 仓库检查、打包、验收统计与宿主验证工具 |
 | `tests/` | 公开操作回归、行为用例、合成夹具 |
 | `docs/` | 使用与安装指南、版本证据、验收标准 |
@@ -20,9 +20,9 @@
 
 ```sh
 python3.13 -m venv .venv
-.venv/bin/python -m pip install --require-hashes -r photo-dialogue/requirements.lock -r tests/requirements-dev.lock
+.venv/bin/python -m pip install --require-hashes -r plog/requirements.lock -r tests/requirements-dev.lock
 .venv/bin/python -m unittest discover -s tests
-.venv/bin/python -m mypy --ignore-missing-imports photo-dialogue/scripts scripts
+.venv/bin/python -m mypy --ignore-missing-imports plog/scripts scripts
 .venv/bin/python scripts/check_repository.py
 ```
 
@@ -31,7 +31,7 @@ python3.13 -m venv .venv
 ## 构建运行包
 
 ```sh
-.venv/bin/python scripts/distribution.py build dist/photo-dialogue-local.zip
+.venv/bin/python scripts/distribution.py build dist/plog-local.zip
 ```
 
 目标文件必须尚不存在。安装器采用固定允许名单；添加运行资源时同步检查打包边界。首页保留一条 npx 安装命令与简短使用示例；详细安装、环境配置和维护步骤放在 [安装指南](docs/install.md)。
@@ -40,7 +40,7 @@ python3.13 -m venv .venv
 
 ## 文档与素材
 
-使用说明写给普通用户：先说明发生了什么，再给必要的下一步；内部字段名留在开发文档。运行技能的说明按 [SKILL.md](photo-dialogue/SKILL.md) 与其条件参考维护。
+使用说明写给普通用户：先说明发生了什么，再给必要的下一步；内部字段名留在开发文档。运行技能的说明按 [SKILL.md](plog/SKILL.md) 与其条件参考维护。
 
 当前使用入口放在首页和 `docs/`，过时报告归档到 `docs/history/` 并修复引用。保留固定版本的历史结果，不跨批次选优，也不把缺失的人工评分写成通过。
 

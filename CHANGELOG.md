@@ -1,5 +1,14 @@
 # 更新记录
 
+## v0.1.0-alpha.6 · Plog 新入口
+
+- 仓库改名 `plog-skill`，Skill 与 npx 调用名统一为 `plog`；补齐旧安装迁移说明，作品与版本记录保留原路径
+- 丰富功能简介，README 展示十组作品合集、儿童与多人／多宠互动、原图与成图对照
+- 安装器兼容旧包和旧清单，继续保护本地改动，拒绝混合根目录或名称不匹配的包
+- 58 项测试、类型与仓库检查、可复现构建、实际 alpha.5 包升级和本地 Skills CLI 复制安装通过
+
+[下载](https://github.com/JoeWu-explorer/plog-skill/releases/tag/v0.1.0-alpha.6) · [验证范围](docs/release.json)
+
 ## v0.1.0-alpha.5 · 字体表现力与画内标点
 
 - 展示图与封面先确定主视觉词组，再逐图设计字形、尺度、断行与图文关系；增强文字不自动加重滤镜。
@@ -7,7 +16,7 @@
 - README 重排六类 Plog 前后对照，突出自动文案、色调、氛围与排版；保留简洁的 npx 快速开始。
 - 56 项确定性测试、类型与仓库检查、可复现构建、全新安装和真实 alpha.4 发布包升级检查通过。新增视觉行为用例待正式执行，不宣称所有 Agent 或照片均已通过。
 
-[下载](https://github.com/JoeWu-explorer/photo-dialogue/releases/tag/v0.1.0-alpha.5) · [固定包与验证范围](docs/release.json)
+[下载](https://github.com/JoeWu-explorer/photo-dialogue/releases/tag/v0.1.0-alpha.5) · [固定包与验证范围](docs/history/release-alpha-5.json)
 
 ## v0.1.0-alpha.4 · Plog / 多 Agent
 

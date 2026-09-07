@@ -2,7 +2,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'photo-dialogue' / 'scripts'))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'plog' / 'scripts'))
 from self_check import check
 
 

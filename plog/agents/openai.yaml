@@ -1,0 +1,6 @@
+interface:
+  display_name: "照片有话说 · Plog"
+  short_description: "把人物、山海与街头日常做成有故事的 Plog，文案和画面都能继续改"
+  default_prompt: "使用 $plog，把我提供的照片做成中文 Plog。按照片决定光色、字体和文字位置，保留主体与场景原貌，并检查文字。"
+policy:
+  allow_implicit_invocation: true

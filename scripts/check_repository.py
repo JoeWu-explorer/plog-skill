@@ -12,7 +12,7 @@ from distribution import build
 
 
 def check(root: Path, *, release: bool = False) -> dict[str, int]:
-    runtime = root / 'photo-dialogue'
+    runtime = root / 'plog'
     references_checked = 0
     for document in runtime.rglob('*.md'):
         for target in re.findall(r'\]\(([^)]+)\)', document.read_text()):

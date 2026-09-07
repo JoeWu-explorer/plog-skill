@@ -18,6 +18,6 @@ Plog 的文字参与构图。Agent 先根据照片找到值得被看见的语义
 
 ## 真正执行的规则与证据
 
-运行规则集中在 [艺术指导](../photo-dialogue/references/art-direction.md)，Skill 入口负责引导读取，避免维护互相矛盾的副本。相关 [行为回归](../tests/cases.md) 是待执行标准，不是通过报告。
+运行规则集中在 [艺术指导](../plog/references/art-direction.md)，Skill 入口负责引导读取，避免维护互相矛盾的副本。相关 [行为回归](../tests/cases.md) 是待执行标准，不是通过报告。
 
 README 的合成素材展示及定向修改记录见 [素材与过程](../examples/readme/MANIFEST.md)。它们用于展示本次结果，不代表所有照片、Agent 或图像服务都已通过正式验收。alpha.2 时期的规则与私密对照属于历史依据，不移作当前版本的测试成绩。

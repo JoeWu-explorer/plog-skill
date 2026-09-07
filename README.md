@@ -8,7 +8,9 @@
 
 **发照片，说一句想记录什么。文案、色调、氛围和排版，由 Agent 根据照片自动完成。**
 
-人物、童年日常、街头人文、山海、食物与宠物，都能成为一页 Plog。做好后，直接说“换句话”“字更有张力”“从第一版继续”。
+把照片里的日常，做成有故事、有氛围、有设计感的 Plog。无论人物相聚、儿童成长、山海旅行、城市街景，还是美食、静物与宠物，照片有话说都会从画面中的动作、神态与细节出发，自动创作贴合场景的中文文案，并搭配光色、字形和排版。
+
+可以是安静的日记旁白，也可以是多人之间的一问一答，或小动物之间的俏皮互动。多张照片可以串成一组日记；做好后，直接用自然语言修改文字、氛围与布局，保留每次版本，也能从旧版继续创作。面向不同 Agent 提供统一的 Skill 工作流，从“发照片、说想法”开始，把拍下的瞬间变成值得分享的一页。
 
 [快速开始](#快速开始) · [作品画廊](#每一种日常都有自己的语气) · [前后对照](#从一张照片到一页-plog) · [Agent 适配](#在你常用的-agent-里使用)
 
@@ -17,20 +19,20 @@
 ## 快速开始
 
 ```sh
-npx skills add https://github.com/JoeWu-explorer/photo-dialogue --skill photo-dialogue
+npx skills add https://github.com/JoeWu-explorer/plog-skill --skill plog
 ```
 
 安装后，在支持 Skills、读图与图片编辑的 Agent 中发照片，说：
 
 ```text
-用 photo-dialogue 把这些照片做成一组中文 Plog，文字自然一点，像我的日记。
+用 plog 把这些照片做成一组中文 Plog，文字自然一点，像我的日记。
 ```
 
 <details>
 <summary>也可以让 Agent 帮你安装</summary>
 
 ```text
-请运行 npx skills add https://github.com/JoeWu-explorer/photo-dialogue --skill photo-dialogue 安装「照片有话说」。
+请运行 npx skills add https://github.com/JoeWu-explorer/plog-skill --skill plog 安装「照片有话说」。
 安装后读取 SKILL.md，在独立环境准备必要依赖并自检，检查读图与图片编辑工具是否可用。
 ```
 
@@ -269,7 +271,7 @@ npx skills add https://github.com/JoeWu-explorer/photo-dialogue --skill photo-di
 例如，上传三张照片后说：
 
 ```text
-用 photo-dialogue 做一组「周末不赶路」Plog。
+用 plog 做一组「周末不赶路」Plog。
 顺序是山路、街边小店、晚餐，每张独立成图。
 文字有一点联系，但不要每张都写同一句标题。
 ```
@@ -285,7 +287,7 @@ npx skills add https://github.com/JoeWu-explorer/photo-dialogue --skill photo-di
 
 ## 在你常用的 Agent 里使用
 
-照片有话说使用标准 `SKILL.md`，技能名称统一为 `photo-dialogue`。不同宿主使用同一套创作与版本流程，图像工具按当前环境接入。
+照片有话说使用标准 `SKILL.md`，技能名称统一为 `plog`。不同宿主使用同一套创作与版本流程，图像工具按当前环境接入。
 
 **OpenClaw · Hermes · Claude Code · DeepSeek Harness · Codex · 其他符合能力要求的 Agent**
 
@@ -307,7 +309,7 @@ npx skills add https://github.com/JoeWu-explorer/photo-dialogue --skill photo-di
 
 ## 使用前了解这几件事
 
-- **版本：** 当前预发布为 [v0.1.0-alpha.5](https://github.com/JoeWu-explorer/photo-dialogue/releases/tag/v0.1.0-alpha.5)；上面的 npx 命令安装 main 分支源码。
+- **版本：** 当前预发布为 [v0.1.0-alpha.6](https://github.com/JoeWu-explorer/plog-skill/releases/tag/v0.1.0-alpha.6)；上面的 npx 命令安装 main 分支源码。
 - **照片与环境：** 静态 JPEG、PNG、WebP；HEIC/HEIF 可选。文件工具需要 macOS、Linux 或 WSL 中的 CPython 3.11–3.13。
 - **图片服务：** 使用你配置的读图与编辑服务，模型与费用取决于该服务。需要外发照片时会说明接收服务和用途，承接已有授权。
 - **生成效果：** 生成式编辑不保证像素完全不变；检查无法通过时会说明问题，不自动重复生成或消耗第二次额度。

@@ -87,7 +87,7 @@ pillow==12.3.0 \
     --hash=sha256:fe3cca2e4e8a592be0f269a1ca4835c25199d9f3ce815c8491048f785b0a0198 \
     --hash=sha256:ffd0c5368496f41b0944be820fcb7a838aa6e623d250b01acf2643939c3f99d7
     # via
-    #   -r photo-dialogue/requirements.txt
+    #   -r plog/requirements.txt
     #   pillow-heif
 pillow-heif==1.6.0 \
     --hash=sha256:005ebcbdf1dac09a9f03352bfa4a325db631e42e17b5affb7d44e73bbebf789a \
@@ -160,4 +160,4 @@ pillow-heif==1.6.0 \
     --hash=sha256:ed1e176cb73d245f58a2134129e8673023aefba89ff566fd65467048e4390ad5 \
     --hash=sha256:f9b71b16fbe0d3dab70091e76dd9e16606bbdf68be45f455e1a922c346fe56ff \
     --hash=sha256:fea53c682c99d21c252b03e5a8ff4ffb9f7a6c63a11addeecd0a0dc26c3b2fee
-    # via -r photo-dialogue/requirements-heif.txt
+    # via -r plog/requirements-heif.txt

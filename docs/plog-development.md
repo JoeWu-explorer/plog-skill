@@ -4,9 +4,9 @@
 
 ## 本地构建
 
-- 文件：`dist/photo-dialogue-plog-dev.zip`
+- 文件：`dist/plog-plog-dev.zip`
 - SHA-256：`52ce673156dc6b3dd7f24d9f6e223f17ec7b0487cc3fb8310caf2cfa43d9df90`
-- 大小：73,311 字节；22 个文件。根目录为 `photo-dialogue/`，包含完整 `SKILL.md`、引用资料、脚本、依赖和许可。
+- 大小：73,311 字节；22 个文件。根目录为 `plog/`，包含完整 `SKILL.md`、引用资料、脚本、依赖和许可。
 - 重复构建字节一致；独立目录安装、自检、更新、卸载通过。
 - 满足当前 Red Skill 上传页展示的单文件 10MB／总计 30MB 体积要求；未实际上传或平台审核。
 

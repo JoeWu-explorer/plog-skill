@@ -6,7 +6,7 @@ from pathlib import Path
 
 from PIL import Image
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'photo-dialogue' / 'scripts'))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'plog' / 'scripts'))
 from photo_files import inspect_photo, prepare, export_png, verify_png, PhotoError
 
 
