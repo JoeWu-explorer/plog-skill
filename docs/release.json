@@ -20,8 +20,11 @@
     "skills_cli_local_claude_code_copy": "pass"
   },
   "runtime_ci": {
-    "result": "pending",
-    "note": "Local macOS checks passed; hosted CI will be checked on this release PR. Earlier runs were blocked by the account billing/spending limit."
+    "result": "blocked_before_execution",
+    "source_pr": "https://github.com/JoeWu-explorer/plog-skill/pull/39",
+    "run_url": "https://github.com/JoeWu-explorer/plog-skill/actions/runs/34091327637",
+    "checked_commit": "465696aa2f6e2868e73a5616edc8abce673018d6",
+    "note": "GitHub reports jobs did not start due to account payments or spending limit. Local macOS validation passed; the hosted OS/Python matrix is not claimed as passing."
   },
   "visual_evaluation": "formal_matrix_not_run; README synthetic demonstrations recorded separately in examples/readme/MANIFEST.md",
   "multi_agent_end_to_end": "not_run_for_this_candidate",

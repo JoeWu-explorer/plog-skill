@@ -24,3 +24,5 @@ npx skills add https://github.com/JoeWu-explorer/plog-skill --skill plog
 58 项确定性测试、类型检查、仓库引用与 70 项资产清单检查通过；Skill 格式检查、可复现构建、全新安装／自检／卸载、真实 alpha.5 发布包升级及目录迁移通过。Skills CLI 已在临时目录验证 Claude Code 复制安装。
 
 本次未执行新的图像生成或多 Agent 端到端视觉验收；展示图片的来源与范围见仓库清单。托管 CI 状态和固定运行提交见 [版本清单](https://github.com/JoeWu-explorer/plog-skill/blob/v0.1.0-alpha.6/docs/release.json)。
+
+GitHub Actions 因账户账单／额度限制未启动，本版不宣称托管 CI 矩阵通过；本地验证结果如上。
