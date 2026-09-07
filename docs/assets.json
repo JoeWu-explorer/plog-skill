@@ -352,5 +352,59 @@
     "license": "PROJECT-DISPLAY",
     "source": "OpenAI built-in image_gen; fictional child; original source or edit; generation history in cases.json",
     "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/kitchen/after.png": {
+    "sha256": "8693b2d349f9c63d3909bf4bef9ed954656712bb44f84bdc3830630b7692635f",
+    "license": "PROJECT-DISPLAY",
+    "source": "OpenAI built-in image_gen; fictional scene; original source or edit; generation history in cases.json",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/kitchen/after.webp": {
+    "sha256": "928b5ce4e2b99b1b3063bb5989b4aada847fe8fdac0f3e73e1a612b184ebade4",
+    "license": "PROJECT-DISPLAY",
+    "source": "OpenAI built-in image_gen; fictional scene; lossless preview of corresponding PNG",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/kitchen/before.png": {
+    "sha256": "57f64a3bcca0d300599f414beff3ef9c487f464f34a79d6408a8c9d25df98c6b",
+    "license": "PROJECT-DISPLAY",
+    "source": "OpenAI built-in image_gen; fictional scene; original source or edit; generation history in cases.json",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/kitchen/before.webp": {
+    "sha256": "6982f2b192faf1994bf75ea19812887f5b05accaaf51fda5599178cb2a183da6",
+    "license": "PROJECT-DISPLAY",
+    "source": "OpenAI built-in image_gen; fictional scene; lossless preview of corresponding PNG",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/kitchen/candidate-not-approved.png": {
+    "sha256": "abb542ed2fe67c75fe6f3b78774a8dec04ffedb4644493208544483afa918b6d",
+    "license": "PROJECT-DISPLAY",
+    "source": "OpenAI built-in image_gen; fictional scene; original source or edit; generation history in cases.json",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/playmates/after.png": {
+    "sha256": "fc7b51c60f941d4a95c662e9e82dcf4492008f5c004f34d421f3a509a462a304",
+    "license": "PROJECT-DISPLAY",
+    "source": "OpenAI built-in image_gen; fictional scene; original source or edit; generation history in cases.json",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/playmates/after.webp": {
+    "sha256": "e7deadb1232908b5baa52f26eae88859431f43e065fe67b9aac492cb2f1fbd1f",
+    "license": "PROJECT-DISPLAY",
+    "source": "OpenAI built-in image_gen; fictional scene; lossless preview of corresponding PNG",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/playmates/before.png": {
+    "sha256": "7409e3581a23266acd56a961dd91c0e07487353ccbc48b07260d26f4aa0cb1b4",
+    "license": "PROJECT-DISPLAY",
+    "source": "OpenAI built-in image_gen; fictional scene; original source or edit; generation history in cases.json",
+    "provenance": "examples/readme/MANIFEST.md"
+  },
+  "examples/readme/playmates/before.webp": {
+    "sha256": "5ee4c641011afd0db4645abeaf33638a88909bfe4a78a6385946876d023164a9",
+    "license": "PROJECT-DISPLAY",
+    "source": "OpenAI built-in image_gen; fictional scene; lossless preview of corresponding PNG",
+    "provenance": "examples/readme/MANIFEST.md"
   }
 }

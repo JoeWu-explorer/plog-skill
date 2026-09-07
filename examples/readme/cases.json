@@ -269,6 +269,93 @@
         }
       ],
       "manual_targeted_revisions": 1
+    },
+    {
+      "key": "kitchen",
+      "category": "多人互动",
+      "example_request": "把三个人包饺子的照片做成有一问一答的 Plog",
+      "automatic_text": "这算饺子吗？\n限量款！",
+      "voice_elements": [
+        {
+          "text": "这算饺子吗？",
+          "kind": "creative_dialogue",
+          "attribution": "左侧托着饺子的人"
+        },
+        {
+          "text": "限量款！",
+          "kind": "creative_dialogue",
+          "attribution": "右侧浅色衣服的人"
+        }
+      ],
+      "automatic_look": "保留厨房自然光色；靛蓝问句与赭红粗笔答句分置两侧，字势呼应互相打趣的目光",
+      "before": "kitchen/before.png",
+      "after": "kitchen/after.png",
+      "source_generation_id": "exec-979d6623-7866-4280-a924-b6cd07313c1f.png",
+      "edit_generation_id": "exec-e967f16a-010b-49ca-a1fa-f760a11d60ff.png",
+      "source_sha256": "57f64a3bcca0d300599f414beff3ef9c487f464f34a79d6408a8c9d25df98c6b",
+      "after_sha256": "8693b2d349f9c63d3909bf4bef9ed954656712bb44f84bdc3830630b7692635f",
+      "native_edit_calls": 2,
+      "saved_version": "v001",
+      "agent_visual_check": "original and candidate side-by-side at 390 px per image, enlarged faces/hands or animals/rope; no terminal full stops",
+      "human_review": "not_scored",
+      "workflow_mode": "manual README demonstration; not formal runtime acceptance",
+      "runtime_commit": "9db3c16d6d6b2c8108b43e290245bab71cb76bf0",
+      "source_dimensions": [
+        1086,
+        1448
+      ],
+      "output_dimensions": [
+        1086,
+        1449
+      ],
+      "rejected_attempts": [
+        {
+          "generation_id": "exec-377e5a38-0d7c-4e78-a390-130816133d94.png",
+          "candidate": "kitchen/candidate-not-approved.png",
+          "candidate_sha256": "abb542ed2fe67c75fe6f3b78774a8dec04ffedb4644493208544483afa918b6d",
+          "reason": "文字扩张挤占摄影区域，三个人与桌面向下移动；未作为展示与接受版本"
+        }
+      ],
+      "manual_targeted_revisions": 1
+    },
+    {
+      "key": "playmates",
+      "category": "多宠互动",
+      "example_request": "把两只狗拔河的照片做成互相斗嘴的 Plog",
+      "automatic_text": "松口！\n你先！",
+      "voice_elements": [
+        {
+          "text": "松口！",
+          "kind": "creative_dialogue",
+          "attribution": "左侧浅色小狗，拟人创作"
+        },
+        {
+          "text": "你先！",
+          "kind": "creative_dialogue",
+          "attribution": "右侧棕白小狗，拟人创作"
+        }
+      ],
+      "automatic_look": "保留草地与毛色；森林绿和铁锈色的两块大字隔空应答，避开绳子与动物轮廓",
+      "before": "playmates/before.png",
+      "after": "playmates/after.png",
+      "source_generation_id": "exec-fe04d77c-21e5-4825-b7c7-1d0aeadc0a38.png",
+      "edit_generation_id": "exec-03ec38ef-a088-4b8a-a0ce-317431e80cb9.png",
+      "source_sha256": "7409e3581a23266acd56a961dd91c0e07487353ccbc48b07260d26f4aa0cb1b4",
+      "after_sha256": "fc7b51c60f941d4a95c662e9e82dcf4492008f5c004f34d421f3a509a462a304",
+      "native_edit_calls": 1,
+      "saved_version": "v001",
+      "agent_visual_check": "original and candidate side-by-side at 390 px per image, enlarged faces/hands or animals/rope; no terminal full stops",
+      "human_review": "not_scored",
+      "workflow_mode": "manual README demonstration; not formal runtime acceptance",
+      "runtime_commit": "9db3c16d6d6b2c8108b43e290245bab71cb76bf0",
+      "source_dimensions": [
+        1086,
+        1448
+      ],
+      "output_dimensions": [
+        1086,
+        1448
+      ]
     }
   ],
   "runtime_commit_v001": "46b8bb0bebee53a0254d64b44b31d87826511d46",
