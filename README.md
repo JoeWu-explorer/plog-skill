@@ -1,21 +1,20 @@
 # 照片有话说 · Plog
 
-### 把拍下的日常，写成有画面的日记。
-
-发照片，说一句想记录什么。**文案、色调、氛围和排版，由 Agent 根据照片自动完成。**
-
-[快速开始](#快速开始) · [看前后变化](#从一张照片到一页-plog) · [Agent 适配](#在你常用的-agent-里使用)
+### 把拍下的日常，写成有画面的日记
 
 <p align="center">
-  <a href="#人物相聚"><img src="examples/readme/together/after-v3.webp" width="58%" alt="人物 Plog：茶还没凉，话还没聊完；大字与相聚瞬间呼应。"></a>
-  <a href="#山海旅行"><img src="examples/readme/coast/after-v2.webp" width="38%" alt="山海 Plog：山海很大，今天很慢。舒展笔势落在天空留白。"></a>
+  <a href="examples/readme/together/after-v3.png"><img src="examples/readme/together/after-v3.webp" width="32%" alt="人物相聚 Plog，点击查看原尺寸成图"></a>
+  <a href="examples/readme/coast/after-v2.png"><img src="examples/readme/coast/after-v2.webp" width="32%" alt="山海旅行 Plog，点击查看原尺寸成图"></a>
+  <a href="examples/readme/city/after-v2.png"><img src="examples/readme/city/after-v2.webp" width="32%" alt="城市街景 Plog，点击查看原尺寸成图"></a>
 </p>
 
-<p align="center"><sub>有人相聚，也有山海独处。每一张照片，都有自己的语气。</sub></p>
+**发照片，说一句想记录什么。文案、色调、氛围和排版，由 Agent 根据照片自动完成。**
 
-人物、街头人文、山海、食物与宠物，都能成为一页 Plog。你不必先写配文、挑滤镜或选模板；做好后，直接说“换句话”“字更有张力”“从第一版继续”。
+人物、街头人文、山海、食物与宠物，都能成为一页 Plog。做好后，直接说“换句话”“字更有张力”“从第一版继续”。
 
-<sub>展示原图为原创 AI 素材，含虚构人物；成图由对应原图实际编辑生成。[素材与过程说明](examples/readme/MANIFEST.md)</sub>
+[快速开始](#快速开始) · [作品画廊](#每一种日常都有自己的语气) · [前后对照](#从一张照片到一页-plog) · [Agent 适配](#在你常用的-agent-里使用)
+
+<sub>展示原图为原创 AI 素材，含虚构人物；成图由对应原图实际编辑生成，标点另作局部修整。[素材与过程](examples/readme/MANIFEST.md)</sub>
 
 ## 快速开始
 
@@ -41,153 +40,145 @@ npx skills add https://github.com/JoeWu-explorer/photo-dialogue --skill photo-di
 
 <sub>仓库当前为私有，安装需要访问权限。首次环境配置见 [安装指南](docs/install.md)。</sub>
 
-## 从一张照片，到一页 Plog
+## 每一种日常，都有自己的语气
 
-**你给照片，Agent 找到要说的话，也安排它在画面里的位置。**
+先看成图。每张的文案、光色和字形，都从照片里的细节出发。点击图片查看原尺寸 PNG。
 
-配文来自照片里的细节；光色沿着场景的气氛；字形、大小和断行围绕一句话的重点展开。下面是同一张照片的处理前后，点击图片可查看 PNG 原文件。
+### 相聚的人，专注的手
 
-<sub>人物、手艺、山海和街景展示根据“字和排版更有张力”修改后的第二版；宠物与早餐展示第一版。此处为效果展示，尚未完成正式视觉验收。[版本记录](examples/readme/MANIFEST.md)</sub>
+<p align="center">
+  <a href="examples/readme/together/after-v3.png"><img src="examples/readme/together/after-v3.webp" width="49%" alt="人物相聚成图"></a>
+  <a href="examples/readme/craft/after-v2.png"><img src="examples/readme/craft/after-v2.webp" width="49%" alt="人文手艺成图"></a>
+</p>
 
-### 人与日常
+**左 · 人物相聚**　茶还没凉， 话还没聊完
 
-#### 人物相聚
-
-<table>
-  <tr><th width="50%">拍下的瞬间</th><th width="50%">自动生成的 Plog</th></tr>
-  <tr>
-    <td width="50%"><a href="examples/readme/together/before.png"><img src="examples/readme/together/before.webp" width="100%" alt="人物相聚原图"></a></td>
-    <td width="50%"><a href="examples/readme/together/after-v3.png"><img src="examples/readme/together/after-v3.webp" width="100%" alt="人物相聚成图"></a></td>
-  </tr>
-</table>
-
-**茶还没凉， 话还没聊完**<br><sub>温润院落光 · 细字起句，浓墨大字落句 · 留住人物的目光与动作</sub>
+**右 · 人文手艺**　一挑一压 慢慢成形
 
 <details>
-<summary>查看这张的创作指令</summary>
+<summary>查看这两张的原图与创作指令</summary>
+
+**人物相聚 · 左为原图，右为成图**
+
+<p align="center">
+  <a href="examples/readme/together/before.png"><img src="examples/readme/together/before.webp" width="49%" alt="人物相聚原图"></a>
+  <a href="examples/readme/together/after-v3.png"><img src="examples/readme/together/after-v3.webp" width="49%" alt="人物相聚成图"></a>
+</p>
 
 > 这是朋友聚在一起喝茶，帮我做成温暖自然的 Plog。
 
-随后统一提出：“字和排版更有张力。”具体配文与设计由 Agent 决定。
+温润院落光；细字起句、宽幅浓墨展示字落句，让文字与三人的相聚形成重心呼应。
 
-</details>
+**人文手艺 · 左为原图，右为成图**
 
-#### 人文手艺
-
-<table>
-  <tr><th width="50%">拍下的瞬间</th><th width="50%">自动生成的 Plog</th></tr>
-  <tr>
-    <td width="50%"><a href="examples/readme/craft/before.png"><img src="examples/readme/craft/before.webp" width="100%" alt="人文手艺原图"></a></td>
-    <td width="50%"><a href="examples/readme/craft/after-v2.png"><img src="examples/readme/craft/after-v2.webp" width="100%" alt="人文手艺成图"></a></td>
-  </tr>
-</table>
-
-**一挑一压 慢慢成形**<br><sub>靛蓝与竹色 · 侧置字阵，呼应编织节奏 · 让手艺成为画面中心</sub>
-
-<details>
-<summary>查看这张的创作指令</summary>
+<p align="center">
+  <a href="examples/readme/craft/before.png"><img src="examples/readme/craft/before.webp" width="49%" alt="人文手艺原图"></a>
+  <a href="examples/readme/craft/after-v2.png"><img src="examples/readme/craft/after-v2.webp" width="49%" alt="人文手艺成图"></a>
+</p>
 
 > 记录这位手艺人做竹编的瞬间，做成安静一点的人文 Plog。
 
-随后统一提出：“字和排版更有张力。”具体配文与设计由 Agent 决定。
+靛蓝与竹色保持安静；右侧窄幅纵向字阵、粗细对比，呼应竹编的纵横节奏。
 
 </details>
 
----
+### 走向山海，走进街巷
 
-### 旅行与街景
+<p align="center">
+  <a href="examples/readme/coast/after-v2.png"><img src="examples/readme/coast/after-v2.webp" width="49%" alt="山海旅行成图"></a>
+  <a href="examples/readme/city/after-v2.png"><img src="examples/readme/city/after-v2.webp" width="49%" alt="城市街景成图"></a>
+</p>
 
-#### 山海旅行
+**左 · 山海旅行**　山海很大 今天很慢
 
-<table>
-  <tr><th width="50%">拍下的瞬间</th><th width="50%">自动生成的 Plog</th></tr>
-  <tr>
-    <td width="50%"><a href="examples/readme/coast/before.png"><img src="examples/readme/coast/before.webp" width="100%" alt="山海旅行原图"></a></td>
-    <td width="50%"><a href="examples/readme/coast/after-v2.png"><img src="examples/readme/coast/after-v2.webp" width="100%" alt="山海旅行成图"></a></td>
-  </tr>
-</table>
-
-**山海很大 今天很慢**<br><sub>清透青绿 · 小字铺垫，笔势舒展 · 天空与海岸形成尺度对照</sub>
+**右 · 城市街景**　雨落下来 街慢下来
 
 <details>
-<summary>查看这张的创作指令</summary>
+<summary>查看这两张的原图与创作指令</summary>
+
+**山海旅行 · 左为原图，右为成图**
+
+<p align="center">
+  <a href="examples/readme/coast/before.png"><img src="examples/readme/coast/before.webp" width="49%" alt="山海旅行原图"></a>
+  <a href="examples/readme/coast/after-v2.png"><img src="examples/readme/coast/after-v2.webp" width="49%" alt="山海旅行成图"></a>
+</p>
 
 > 把这张海边照片做成 Plog，留住那种开阔感。
 
-随后统一提出：“字和排版更有张力。”具体配文与设计由 Agent 决定。
+清透青绿；小字铺垫、舒展的大字横跨天空，与弧形海岸形成尺度对照。
 
-</details>
+**城市街景 · 左为原图，右为成图**
 
-#### 城市街景
-
-<table>
-  <tr><th width="50%">拍下的瞬间</th><th width="50%">自动生成的 Plog</th></tr>
-  <tr>
-    <td width="50%"><a href="examples/readme/city/before.png"><img src="examples/readme/city/before.webp" width="100%" alt="城市街景原图"></a></td>
-    <td width="50%"><a href="examples/readme/city/after-v2.png"><img src="examples/readme/city/after-v2.webp" width="100%" alt="城市街景成图"></a></td>
-  </tr>
-</table>
-
-**雨落下来 街慢下来**<br><sub>冷蓝雨色与暖窗光 · 米白双列竖排 · 沿着街巷读下去</sub>
-
-<details>
-<summary>查看这张的创作指令</summary>
+<p align="center">
+  <a href="examples/readme/city/before.png"><img src="examples/readme/city/before.webp" width="49%" alt="城市街景原图"></a>
+  <a href="examples/readme/city/after-v2.png"><img src="examples/readme/city/after-v2.webp" width="49%" alt="城市街景成图"></a>
+</p>
 
 > 把这张雨天街景做成 Plog，文字像随手记下的一句话。
 
-随后统一提出：“字和排版更有张力。”具体配文与设计由 Agent 决定。
+冷蓝雨色与暖窗光；两列错位竖排米白字，沿屋檐和街巷建立阅读节奏。
 
 </details>
 
----
+### 一只猫，一顿早餐
 
-### 生活里的小事
+<p align="center">
+  <a href="examples/readme/cat/after-v2.png"><img src="examples/readme/cat/after-v2.webp" width="49%" alt="宠物陪伴成图"></a>
+  <a href="examples/readme/table/after.png"><img src="examples/readme/table/after.webp" width="49%" alt="食物日常成图"></a>
+</p>
 
-#### 宠物陪伴
+**左 · 宠物陪伴**　今天的安排： 晒太阳
 
-<table>
-  <tr><th width="50%">拍下的瞬间</th><th width="50%">自动生成的 Plog</th></tr>
-  <tr>
-    <td width="50%"><a href="examples/readme/cat/before.png"><img src="examples/readme/cat/before.webp" width="100%" alt="宠物陪伴原图"></a></td>
-    <td width="50%"><a href="examples/readme/cat/after-v2.png"><img src="examples/readme/cat/after-v2.webp" width="100%" alt="宠物陪伴成图"></a></td>
-  </tr>
-</table>
-
-**今天的安排： 晒太阳**<br><sub>奶油暖光 · 轻快手写字 · 把留白留给这份悠闲</sub>
+**右 · 食物日常**　早餐还热 慢慢吃吧
 
 <details>
-<summary>查看这张的创作指令</summary>
+<summary>查看这两张的原图与创作指令</summary>
+
+**宠物陪伴 · 左为原图，右为成图**
+
+<p align="center">
+  <a href="examples/readme/cat/before.png"><img src="examples/readme/cat/before.webp" width="49%" alt="宠物陪伴原图"></a>
+  <a href="examples/readme/cat/after-v2.png"><img src="examples/readme/cat/after-v2.webp" width="49%" alt="宠物陪伴成图"></a>
+</p>
 
 > 把猫咪晒太阳这张做成 Plog，俏皮一点。
 
-具体配文与设计由 Agent 决定。
+奶油暖光、保留橘白毛色；轻快文字避开猫咪。
 
-</details>
+**食物日常 · 左为原图，右为成图**
 
-#### 食物日常
-
-<table>
-  <tr><th width="50%">拍下的瞬间</th><th width="50%">自动生成的 Plog</th></tr>
-  <tr>
-    <td width="50%"><a href="examples/readme/table/before.png"><img src="examples/readme/table/before.webp" width="100%" alt="食物日常原图"></a></td>
-    <td width="50%"><a href="examples/readme/table/after.png"><img src="examples/readme/table/after.webp" width="100%" alt="食物日常成图"></a></td>
-  </tr>
-</table>
-
-**早餐还热 慢慢吃吧**<br><sub>暖木色与柔亮日光 · 咖啡色手写字 · 日常的一点热气</sub>
-
-<details>
-<summary>查看这张的创作指令</summary>
+<p align="center">
+  <a href="examples/readme/table/before.png"><img src="examples/readme/table/before.webp" width="49%" alt="食物日常原图"></a>
+  <a href="examples/readme/table/after.png"><img src="examples/readme/table/after.webp" width="49%" alt="食物日常成图"></a>
+</p>
 
 > 把这张早餐照片做成日常 Plog。
 
-具体配文与设计由 Agent 决定。
+暖木色与柔亮日光；咖啡色手写字放在空桌面。
 
 </details>
 
-[更多风格示意](examples/readme/README.md) · [查看素材与版本过程](examples/readme/MANIFEST.md)
+## 从一张照片，到一页 Plog
 
----
+**左：拍下的瞬间　→　右：Agent 完成的 Plog**
+
+<p align="center">
+  <a href="examples/readme/together/before.png"><img src="examples/readme/together/before.webp" width="49%" alt="左：人物相聚原图"></a>
+  <a href="examples/readme/together/after-v3.png"><img src="examples/readme/together/after-v3.webp" width="49%" alt="右：自动配文、调色与排版后的 Plog"></a>
+</p>
+
+你只说“朋友聚在一起喝茶，做成温暖自然的 Plog”。Agent 从相聚的细节里写出“茶还没凉，话还没聊完”，选择温润院落光；再根据“字和排版更有张力”的反馈，以细字铺垫、浓墨大字落句。
+
+**文案、色调、氛围与排版一起改变，原图与每次修改都保留。**
+
+<details>
+<summary>素材、版本与验证说明</summary>
+
+当前展示：人物相聚 v003；人文手艺、山海、街景与宠物 v002；早餐 v001。人物和宠物的最新一次修改仅处理句末句号。其余原图及创作指令可在各组作品下展开。
+
+这些是合成素材的实际编辑展示，尚未完成正式视觉验收。[完整版本与处理记录](examples/readme/MANIFEST.md) · [更多风格示意](examples/readme/README.md)
+
+</details>
 
 ## 一天，几张照片，一条线索
 
