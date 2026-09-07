@@ -10,7 +10,7 @@
 
 **发照片，说一句想记录什么。文案、色调、氛围和排版，由 Agent 根据照片自动完成。**
 
-人物、街头人文、山海、食物与宠物，都能成为一页 Plog。做好后，直接说“换句话”“字更有张力”“从第一版继续”。
+人物、童年日常、街头人文、山海、食物与宠物，都能成为一页 Plog。做好后，直接说“换句话”“字更有张力”“从第一版继续”。
 
 [快速开始](#快速开始) · [作品画廊](#每一种日常都有自己的语气) · [前后对照](#从一张照片到一页-plog) · [Agent 适配](#在你常用的-agent-里使用)
 
@@ -158,6 +158,46 @@ npx skills add https://github.com/JoeWu-explorer/photo-dialogue --skill photo-di
 
 </details>
 
+### 小小的手，雨里的脚步
+
+<p align="center">
+  <a href="examples/readme/baby/after.png"><img src="examples/readme/baby/after.webp" width="49%" alt="婴儿玩积木的成长 Plog，虚构人物"></a>
+  <a href="examples/readme/child/after.png"><img src="examples/readme/child/after.webp" width="49%" alt="儿童雨后踩水的童年 Plog，虚构人物"></a>
+</p>
+
+**左 · 婴儿日常**　小小的手 忙着认识世界
+
+**右 · 童年探索**　雨停了 再踩一下！
+
+<details>
+<summary>查看这两张的原图与创作指令</summary>
+
+**婴儿日常 · 左为原图，右为成图**
+
+<p align="center">
+  <a href="examples/readme/baby/before.png"><img src="examples/readme/baby/before.webp" width="49%" alt="婴儿玩积木原图，AI 生成的虚构人物"></a>
+  <a href="examples/readme/baby/after.png"><img src="examples/readme/baby/after.webp" width="49%" alt="婴儿日常成图"></a>
+</p>
+
+> 把宝宝玩积木的照片做成温暖的成长 Plog
+
+从手里握着的积木写出成长旁白；奶油暖光、栗棕圆润大字，在头顶留白里拉开主次。
+
+**童年探索 · 左为原图，右为成图**
+
+<p align="center">
+  <a href="examples/readme/child/before.png"><img src="examples/readme/child/before.webp" width="49%" alt="儿童雨后踩水原图，AI 生成的虚构人物"></a>
+  <a href="examples/readme/child/after.png"><img src="examples/readme/child/after.webp" width="49%" alt="童年探索成图"></a>
+</p>
+
+> 把雨后踩水的照片做成活泼一点的童年 Plog
+
+保留雨后的自然光色，砖红笔字呼应雨靴；大字的轻快笔势与踩水动作相呼应，保留句末感叹号。
+
+两张文案都是创作旁白，人物均为虚构。[生成与修订记录](examples/readme/MANIFEST.md#第四轮婴儿与儿童日常)
+
+</details>
+
 ## 从一张照片，到一页 Plog
 
 **左：拍下的瞬间　→　右：Agent 完成的 Plog**
@@ -174,9 +214,9 @@ npx skills add https://github.com/JoeWu-explorer/photo-dialogue --skill photo-di
 <details>
 <summary>素材、版本与验证说明</summary>
 
-当前展示：人物相聚 v003；人文手艺、山海、街景与宠物 v002；早餐 v001。人物和宠物的最新一次修改仅处理句末句号。其余原图及创作指令可在各组作品下展开。
+当前展示：人物相聚 v003；人文手艺、山海、街景与宠物 v002；早餐、婴儿与儿童 v001。人物相聚和宠物的最新一次修改仅处理句末句号。儿童案例经过一次未通过候选后的定向修订，未将其记作单次成功。其余原图及创作指令可在各组作品下展开。
 
-这些是合成素材的实际编辑展示，尚未完成正式视觉验收。[完整版本与处理记录](examples/readme/MANIFEST.md) · [更多风格示意](examples/readme/README.md)
+这些是合成素材的实际编辑展示，尚未完成正式视觉验收。[完整版本与处理记录](examples/readme/MANIFEST.md) · [素材来源与使用范围](docs/image-rights.md) · [更多风格示意](examples/readme/README.md)
 
 </details>
 
