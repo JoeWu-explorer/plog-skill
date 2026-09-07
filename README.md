@@ -82,6 +82,48 @@ npx skills add https://github.com/JoeWu-explorer/photo-dialogue --skill photo-di
 
 </details>
 
+### 你一句，我一句
+
+<p align="center">
+  <a href="examples/readme/kitchen/after.png"><img src="examples/readme/kitchen/after.webp" width="49%" alt="三个人包饺子，左右两人一问一答的 Plog"></a>
+  <a href="examples/readme/playmates/after.png"><img src="examples/readme/playmates/after.webp" width="49%" alt="两只小狗拔河，互相斗嘴的拟人 Plog"></a>
+</p>
+
+**左 · 多人互动**　这算饺子吗？ / 限量款！
+
+**右 · 多宠互动**　松口！ / 你先！
+
+<sub>从互相打趣的目光、共同玩着的物件里找到对白。这里的人物对白与动物拟人对白都是创作配文。</sub>
+
+<details>
+<summary>查看这两张的原图与创作指令</summary>
+
+**多人互动 · 左为原图，右为成图**
+
+<p align="center">
+  <a href="examples/readme/kitchen/before.png"><img src="examples/readme/kitchen/before.webp" width="49%" alt="三人包饺子原图，AI 生成的虚构人物"></a>
+  <a href="examples/readme/kitchen/after.png"><img src="examples/readme/kitchen/after.webp" width="49%" alt="三人包饺子成图"></a>
+</p>
+
+> 把三个人包饺子的照片做成有一问一答的 Plog
+
+托起的饺子、对视和笑容构成互动。左侧问句用靛蓝手写字，右侧答句用更厚重的赭红笔字；中间的人以表情回应，不给每个人硬加一句话。
+
+**多宠互动 · 左为原图，右为成图**
+
+<p align="center">
+  <a href="examples/readme/playmates/before.png"><img src="examples/readme/playmates/before.webp" width="49%" alt="两只小狗拔河原图，AI 生成的虚构场景"></a>
+  <a href="examples/readme/playmates/after.png"><img src="examples/readme/playmates/after.webp" width="49%" alt="小狗拔河成图"></a>
+</p>
+
+> 把两只狗拔河的照片做成互相斗嘴的 Plog
+
+同一根绳子连接两只狗，左右两块大字互相应答。森林绿与铁锈色呼应草地和毛色，保留原有光色、动物姿态与拔河动作。
+
+[生成与修订记录](examples/readme/MANIFEST.md#第五轮多人和多宠互动)
+
+</details>
+
 ### 走向山海，走进街巷
 
 <p align="center">
@@ -214,7 +256,7 @@ npx skills add https://github.com/JoeWu-explorer/photo-dialogue --skill photo-di
 <details>
 <summary>素材、版本与验证说明</summary>
 
-当前展示：人物相聚 v003；人文手艺、山海、街景与宠物 v002；早餐、婴儿与儿童 v001。人物相聚和宠物的最新一次修改仅处理句末句号。儿童案例经过一次未通过候选后的定向修订，未将其记作单次成功。其余原图及创作指令可在各组作品下展开。
+当前展示：人物相聚 v003；人文手艺、山海、街景与宠物 v002；早餐、婴儿、儿童、多人互动与多宠互动 v001。人物相聚和宠物的最新一次修改仅处理句末句号。儿童与多人互动案例各经过一次未通过候选后的定向修订，未将其记作单次成功。其余原图及创作指令可在各组作品下展开。
 
 这些是合成素材的实际编辑展示，尚未完成正式视觉验收。[完整版本与处理记录](examples/readme/MANIFEST.md) · [素材来源与使用范围](docs/image-rights.md) · [更多风格示意](examples/readme/README.md)
 
