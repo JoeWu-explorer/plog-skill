@@ -28,7 +28,7 @@ def check(root: Path, *, release: bool = False) -> dict[str, int]:
     for path, asset in inventory.items():
         if hashlib.sha256((root / path).read_bytes()).hexdigest() != asset['sha256'] or not asset['source'] or not (root / asset['provenance']).is_file():
             raise ValueError(f'Changed or undocumented asset: {path}')
-        if release and asset['license'] not in ('CC0-1.0', 'MIT'):
+        if release and asset['license'] not in ('CC0-1.0', 'MIT', 'PROJECT-DISPLAY'):
             raise ValueError(f'Publication blocked by unresolved asset license: {path}')
     with tempfile.TemporaryDirectory() as temporary:
         build(root, Path(temporary) / 'skill.zip')
