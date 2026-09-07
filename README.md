@@ -1,10 +1,21 @@
 # 照片有话说 · Plog
 
-**把拍下的日常，写成有画面的日记。**
+### 把拍下的日常，写成有画面的日记。
 
-把人物、山海、街景和日常小事，做成有故事的中文 Plog。单张记录一个瞬间，组图串起一天；文字、氛围和排版都可以边聊边改，也能从旧版继续。
+发照片，说一句想记录什么。**文案、色调、氛围和排版，由 Agent 根据照片自动完成。**
 
-[快速开始](#快速开始) · [使用示例](#你可以这样记录) · [安装指南](docs/install.md) · [Agent 适配](docs/agent-compatibility.md)
+[快速开始](#快速开始) · [看前后变化](#从一张照片到一页-plog) · [Agent 适配](#在你常用的-agent-里使用)
+
+<p align="center">
+  <a href="#人物相聚"><img src="examples/readme/together/after-v3.webp" width="58%" alt="人物 Plog：茶还没凉，话还没聊完；大字与相聚瞬间呼应。"></a>
+  <a href="#山海旅行"><img src="examples/readme/coast/after-v2.webp" width="38%" alt="山海 Plog：山海很大，今天很慢。舒展笔势落在天空留白。"></a>
+</p>
+
+<p align="center"><sub>有人相聚，也有山海独处。每一张照片，都有自己的语气。</sub></p>
+
+人物、街头人文、山海、食物与宠物，都能成为一页 Plog。你不必先写配文、挑滤镜或选模板；做好后，直接说“换句话”“字更有张力”“从第一版继续”。
+
+<sub>展示原图为原创 AI 素材，含虚构人物；成图由对应原图实际编辑生成。[素材与过程说明](examples/readme/MANIFEST.md)</sub>
 
 ## 快速开始
 
@@ -18,27 +29,165 @@ npx skills add https://github.com/JoeWu-explorer/photo-dialogue --skill photo-di
 用 photo-dialogue 把这些照片做成一组中文 Plog，文字自然一点，像我的日记。
 ```
 
-也可以把安装交给 Agent：
+<details>
+<summary>也可以让 Agent 帮你安装</summary>
 
 ```text
 请运行 npx skills add https://github.com/JoeWu-explorer/photo-dialogue --skill photo-dialogue 安装「照片有话说」。
 安装后读取 SKILL.md，在独立环境准备必要依赖并自检，检查读图与图片编辑工具是否可用。
 ```
 
-想调整时直接说：“第二张少写一点”“氛围淡一点”“从第一版继续”。首次环境配置见 [安装指南](docs/install.md)。
+</details>
 
-## 你可以这样记录
+<sub>仓库当前为私有，安装需要访问权限。首次环境配置见 [安装指南](docs/install.md)。</sub>
 
-| 想记录的瞬间 | 发照片时可以这样说 |
-| --- | --- |
-| 山海与旅行 | “用 photo-dialogue 做一张海边 Plog，留住风很大的感觉，只写一句。” |
-| 街景与城市观察 | “这是下班路上的雨天路口，配一句自然的旁白，别写成旅游宣传。” |
-| 食物与日常物件 | “记录今天的早餐，轻松一点，像日记里的随手一页。” |
-| 人物与相聚 | “给这张朋友合照配一句轻松的对白，不用给每个人都加字。” |
-| 宠物 | “给它配一句俏皮的内心戏，让人看得出这是玩笑。” |
-| 一组照片 | “按海边、街头、咖啡的顺序做三张周末 Plog，风格连贯，每张只留一句。” |
+## 从一张照片，到一页 Plog
 
-这些是提问示例，实际文字与版式会随你的照片变化。人物对白、内心戏和拟人化文字属于创作配文；你提供的原话会按要求保留。
+**你给照片，Agent 找到要说的话，也安排它在画面里的位置。**
+
+配文来自照片里的细节；光色沿着场景的气氛；字形、大小和断行围绕一句话的重点展开。下面是同一张照片的处理前后，点击图片可查看 PNG 原文件。
+
+<sub>人物、手艺、山海和街景展示根据“字和排版更有张力”修改后的第二版；宠物与早餐展示第一版。此处为效果展示，尚未完成正式视觉验收。[版本记录](examples/readme/MANIFEST.md)</sub>
+
+### 人与日常
+
+#### 人物相聚
+
+<table>
+  <tr><th width="50%">拍下的瞬间</th><th width="50%">自动生成的 Plog</th></tr>
+  <tr>
+    <td width="50%"><a href="examples/readme/together/before.png"><img src="examples/readme/together/before.webp" width="100%" alt="人物相聚原图"></a></td>
+    <td width="50%"><a href="examples/readme/together/after-v3.png"><img src="examples/readme/together/after-v3.webp" width="100%" alt="人物相聚成图"></a></td>
+  </tr>
+</table>
+
+**茶还没凉， 话还没聊完**<br><sub>温润院落光 · 细字起句，浓墨大字落句 · 留住人物的目光与动作</sub>
+
+<details>
+<summary>查看这张的创作指令</summary>
+
+> 这是朋友聚在一起喝茶，帮我做成温暖自然的 Plog。
+
+随后统一提出：“字和排版更有张力。”具体配文与设计由 Agent 决定。
+
+</details>
+
+#### 人文手艺
+
+<table>
+  <tr><th width="50%">拍下的瞬间</th><th width="50%">自动生成的 Plog</th></tr>
+  <tr>
+    <td width="50%"><a href="examples/readme/craft/before.png"><img src="examples/readme/craft/before.webp" width="100%" alt="人文手艺原图"></a></td>
+    <td width="50%"><a href="examples/readme/craft/after-v2.png"><img src="examples/readme/craft/after-v2.webp" width="100%" alt="人文手艺成图"></a></td>
+  </tr>
+</table>
+
+**一挑一压 慢慢成形**<br><sub>靛蓝与竹色 · 侧置字阵，呼应编织节奏 · 让手艺成为画面中心</sub>
+
+<details>
+<summary>查看这张的创作指令</summary>
+
+> 记录这位手艺人做竹编的瞬间，做成安静一点的人文 Plog。
+
+随后统一提出：“字和排版更有张力。”具体配文与设计由 Agent 决定。
+
+</details>
+
+---
+
+### 旅行与街景
+
+#### 山海旅行
+
+<table>
+  <tr><th width="50%">拍下的瞬间</th><th width="50%">自动生成的 Plog</th></tr>
+  <tr>
+    <td width="50%"><a href="examples/readme/coast/before.png"><img src="examples/readme/coast/before.webp" width="100%" alt="山海旅行原图"></a></td>
+    <td width="50%"><a href="examples/readme/coast/after-v2.png"><img src="examples/readme/coast/after-v2.webp" width="100%" alt="山海旅行成图"></a></td>
+  </tr>
+</table>
+
+**山海很大 今天很慢**<br><sub>清透青绿 · 小字铺垫，笔势舒展 · 天空与海岸形成尺度对照</sub>
+
+<details>
+<summary>查看这张的创作指令</summary>
+
+> 把这张海边照片做成 Plog，留住那种开阔感。
+
+随后统一提出：“字和排版更有张力。”具体配文与设计由 Agent 决定。
+
+</details>
+
+#### 城市街景
+
+<table>
+  <tr><th width="50%">拍下的瞬间</th><th width="50%">自动生成的 Plog</th></tr>
+  <tr>
+    <td width="50%"><a href="examples/readme/city/before.png"><img src="examples/readme/city/before.webp" width="100%" alt="城市街景原图"></a></td>
+    <td width="50%"><a href="examples/readme/city/after-v2.png"><img src="examples/readme/city/after-v2.webp" width="100%" alt="城市街景成图"></a></td>
+  </tr>
+</table>
+
+**雨落下来 街慢下来**<br><sub>冷蓝雨色与暖窗光 · 米白双列竖排 · 沿着街巷读下去</sub>
+
+<details>
+<summary>查看这张的创作指令</summary>
+
+> 把这张雨天街景做成 Plog，文字像随手记下的一句话。
+
+随后统一提出：“字和排版更有张力。”具体配文与设计由 Agent 决定。
+
+</details>
+
+---
+
+### 生活里的小事
+
+#### 宠物陪伴
+
+<table>
+  <tr><th width="50%">拍下的瞬间</th><th width="50%">自动生成的 Plog</th></tr>
+  <tr>
+    <td width="50%"><a href="examples/readme/cat/before.png"><img src="examples/readme/cat/before.webp" width="100%" alt="宠物陪伴原图"></a></td>
+    <td width="50%"><a href="examples/readme/cat/after-v2.png"><img src="examples/readme/cat/after-v2.webp" width="100%" alt="宠物陪伴成图"></a></td>
+  </tr>
+</table>
+
+**今天的安排： 晒太阳**<br><sub>奶油暖光 · 轻快手写字 · 把留白留给这份悠闲</sub>
+
+<details>
+<summary>查看这张的创作指令</summary>
+
+> 把猫咪晒太阳这张做成 Plog，俏皮一点。
+
+具体配文与设计由 Agent 决定。
+
+</details>
+
+#### 食物日常
+
+<table>
+  <tr><th width="50%">拍下的瞬间</th><th width="50%">自动生成的 Plog</th></tr>
+  <tr>
+    <td width="50%"><a href="examples/readme/table/before.png"><img src="examples/readme/table/before.webp" width="100%" alt="食物日常原图"></a></td>
+    <td width="50%"><a href="examples/readme/table/after.png"><img src="examples/readme/table/after.webp" width="100%" alt="食物日常成图"></a></td>
+  </tr>
+</table>
+
+**早餐还热 慢慢吃吧**<br><sub>暖木色与柔亮日光 · 咖啡色手写字 · 日常的一点热气</sub>
+
+<details>
+<summary>查看这张的创作指令</summary>
+
+> 把这张早餐照片做成日常 Plog。
+
+具体配文与设计由 Agent 决定。
+
+</details>
+
+[更多风格示意](examples/readme/README.md) · [查看素材与版本过程](examples/readme/MANIFEST.md)
+
+---
 
 ## 一天，几张照片，一条线索
 
@@ -59,13 +208,18 @@ npx skills add https://github.com/JoeWu-explorer/photo-dialogue --skill photo-di
 **读照片 → 确定文字与视觉方向 → 以照片编辑 → 对照检查 → 保存 PNG 与版本 → 根据反馈继续修改。**
 
 - **先找到这一页要记住的事。** 根据照片和你的说明选择旁白、对白或无字处理，未知的地名、人物关系和经历不补写成事实。
-- **逐张安排文字与画面。** 根据主体、光线和留白设计字体、位置与氛围，避开脸、地标轮廓和重要细节。
+- **逐张安排文字与画面。** 根据主体、光线和留白设计字形、主次层级与氛围，让文字和画面形成呼应，避开脸、地标轮廓和重要细节。
 - **带着原图检查结果。** 检查中文可读性、山形、建筑、物体与人物特征；修改时也对照所选旧版。
 - **把作品留给下一次对话。** 检查通过才保存为可交付版本，保留修改记录，支持查看旧版、继续编辑和导出文字。
 
 ## 在你常用的 Agent 里使用
 
 照片有话说使用标准 `SKILL.md`，技能名称统一为 `photo-dialogue`。不同宿主使用同一套创作与版本流程，图像工具按当前环境接入。
+
+**OpenClaw · Hermes · Claude Code · DeepSeek Harness · Codex · 其他符合能力要求的 Agent**
+
+<details>
+<summary>查看各 Agent 的接入方式</summary>
 
 | Agent | 接入方式 |
 | --- | --- |
@@ -76,11 +230,13 @@ npx skills add https://github.com/JoeWu-explorer/photo-dialogue --skill photo-di
 | Codex | 可用的原生看图与编辑工具，或兼容 API。 |
 | 其他 Agent | 能加载技能、执行 Python、读写文件、看图、以图编辑并交付附件即可按同一流程接入。 |
 
+</details>
+
 **目前已提供上述适配路径，真实宿主与图像服务的完整创作流程仍待逐项实测。** 安装成功不代表图像服务已就绪，具体目录、能力要求和验证记录见 [适配说明](docs/agent-compatibility.md)。
 
 ## 使用前了解这几件事
 
-- **版本：** 当前预发布为 [v0.1.0-alpha.4](https://github.com/JoeWu-explorer/photo-dialogue/releases/tag/v0.1.0-alpha.4)；上面的 npx 命令安装 main 分支源码。仓库当前为私有，安装需要访问权限。
+- **版本：** 当前预发布为 [v0.1.0-alpha.5](https://github.com/JoeWu-explorer/photo-dialogue/releases/tag/v0.1.0-alpha.5)；上面的 npx 命令安装 main 分支源码。
 - **照片与环境：** 静态 JPEG、PNG、WebP；HEIC/HEIF 可选。文件工具需要 macOS、Linux 或 WSL 中的 CPython 3.11–3.13。
 - **图片服务：** 使用你配置的读图与编辑服务，模型与费用取决于该服务。需要外发照片时会说明接收服务和用途，承接已有授权。
 - **生成效果：** 生成式编辑不保证像素完全不变；检查无法通过时会说明问题，不自动重复生成或消耗第二次额度。

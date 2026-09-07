@@ -1,0 +1,36 @@
+{
+  "created": "2026-09-07",
+  "tool": "OpenAI built-in image_gen",
+  "mode": "Three direct text-to-image illustrations; hero composited with image_gen from those three illustrations.",
+  "not_product_validation": true,
+  "assets": [
+    {
+      "file": "sea-plog.png",
+      "generation_id": "exec-0026b7ca-7631-4572-9b30-164780401faa.png",
+      "reference_assets": [],
+      "prompt": "Use case: ads-marketing. Create ONE finished Chinese Plog diary photograph for an original photo storytelling skill, not an app mockup. Portrait 3:4 composition. Photorealistic quiet ocean coast, pale blue windy sky occupying upper 45%, low distant dark headland, translucent teal water, warm sandy foreground with small gentle foam lines, no people, no buildings, no recognizable location. Candid travel photography, soft late-afternoon light, slightly imperfect natural film grain, restrained cyan and cream tones. Integrate gorgeous readable Chinese typography directly into the photograph: large off-white expressive handwritten title in two lines in the open sky, exactly '今天' and '不赶路'; under it a much smaller clean readable line exactly '走到海边，就坐一会儿。'. Keep headland and water unobstructed. Small editorial English marker 'PLOG / 01' near a margin. Thoughtful generous spacing, legible lettering at mobile size, emotionally quiet contemporary Chinese photo diary, not tourist advertising, not ornate poster. Exact Chinese text only as given, no additional Chinese, no invented date/location, no logo, no watermark, no UI, no paper mockup, full bleed photo. Deliver a single high-quality image."
+    },
+    {
+      "file": "street-plog.png",
+      "generation_id": "exec-bfa484a3-1eb2-429d-891e-18520dbd2360.png",
+      "reference_assets": [],
+      "prompt": "Use case: ads-marketing. Create ONE finished Chinese Plog diary photograph for an original photo storytelling skill, not an app mockup. Portrait 3:4 composition. Photorealistic intimate rainy city side street at blue hour, narrow ordinary storefront with warm amber light on right, tiny unbranded awning, asphalt and puddles reflecting warm light, an indistinct distant umbrella silhouette seen from behind, no identifiable face, no readable shop signs or location. Shot casually at pedestrian eye level, atmospheric natural 35mm documentary photograph with subtle film grain, deep navy, muted teal and amber. Integrate expressive but clean cream Chinese diary typography in the quieter upper left area: large two-line title exactly '雨天' and '绕个远路'; a smaller readable caption near lower-left exactly '熟悉的街，也有新鲜的光。'. Text should feel part of a personal record, medium-weight modern Chinese serif with a little irregular human rhythm, no excessive stickers. Small English marker 'PLOG / 02'. Strong photo storytelling, retain lots of real street texture, avoid image under-exposure, readable at mobile size. Exact Chinese only, no extra Chinese, no false brand or place, no watermark, no logo, no borders, no UI. Single full-bleed image."
+    },
+    {
+      "file": "breakfast-plog.png",
+      "generation_id": "exec-f6525293-7b47-44fe-adc2-14072627795c.png",
+      "reference_assets": [],
+      "prompt": "Use case: ads-marketing. Create ONE finished Chinese Plog diary photograph for an original photo storytelling skill, not an app mockup. Portrait 3:4 composition. Photorealistic relaxed weekend breakfast on a lightly scratched honey-colored wooden table beside a sunlit window. One cream ceramic coffee cup, a simple plate with slightly uneven toast and a fried egg, linen napkin, sunlight and soft plant shadows, natural candid home photography rather than luxury food advertisement. Asymmetrical framing, food and cup in lower 60%, visually quiet top 35% of table for readable Chinese typography. Warm ivory, toast brown, subtle olive green, fine analog grain. Integrate dark espresso-brown Chinese title with friendly slightly handwritten confident strokes, exactly '把早晨' on one line and '过慢一点' below. Small caption exactly '咖啡还热，今天不急。'. Small English marker 'PLOG / 03'. Generous natural spacing, no calligraphy flourishes, human everyday diary mood, text highly legible at mobile size. No extra words, no invented date, no product branding, no logos or watermark, no UI, no frames. Full-bleed photograph with integrated editorial typography, deliver one image."
+    },
+    {
+      "file": "hero.png",
+      "generation_id": "exec-b8abb5f1-4d8b-4314-8e90-a309ca62f064.png",
+      "reference_assets": [
+        "sea-plog.png",
+        "street-plog.png",
+        "breakfast-plog.png"
+      ],
+      "prompt": "Use case: compositing. Create a wide 2.4:1 GitHub README hero image showcasing exactly these three supplied original Chinese Plog images as tangible premium photo diary prints. Image 1 = sea print, Image 2 = rainy street print, Image 3 = breakfast print. Preserve the photographs, their exact Chinese titles and captions, colors and compositions as printed artwork. Arrange three large portrait 3:4 prints side by side left-to-right sea/street/breakfast on a warm pale ivory matte surface, slight natural rotations (-5 degrees, +2 degrees, +6 degrees), modest soft realistic shadows, narrow off-white print edges, very minimal overlap so all titles and all three scenes remain visible. Prints fill most of the frame with generous but not excessive margins; photograph from directly overhead, almost flat, no severe perspective. Sophisticated editorial portfolio wall, tactile paper, calm and warm, beautiful rhythm from cyan to navy/amber to golden breakfast. Hero is just a composition of the three provided prints, no additional headlines, no new text, no extra mini photos, no hands, props, tape, pins, devices, interface elements or logos. Ensure no cropped Chinese titles and no altered Chinese characters. Landscape image, high quality."
+    }
+  ]
+}

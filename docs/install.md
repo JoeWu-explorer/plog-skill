@@ -2,7 +2,7 @@
 
 [返回首页](../README.md) · [Agent 适配](agent-compatibility.md) · [使用指南](guide.md)
 
-**当前预发布：[v0.1.0-alpha.4](https://github.com/JoeWu-explorer/photo-dialogue/releases/tag/v0.1.0-alpha.4)。** npx 安装 main 分支源码；需要固定版本可下载该 Release 的 ZIP 与 `SHA256SUMS`。仓库当前为私有，需要仓库访问权限和可供 Git 使用的认证。
+**当前预发布：[v0.1.0-alpha.5](https://github.com/JoeWu-explorer/photo-dialogue/releases/tag/v0.1.0-alpha.5)。** npx 安装 main 分支源码；需要固定版本可下载该 Release 的 ZIP 与 `SHA256SUMS`。仓库当前为私有，需要仓库访问权限和可供 Git 使用的认证。
 
 ## 推荐：npx 安装
 
@@ -44,14 +44,14 @@ npx skills add https://github.com/JoeWu-explorer/photo-dialogue --skill photo-di
 先取得源码（已有检出目录时使用它）：
 
 ```sh
-git clone --branch v0.1.0-alpha.4 https://github.com/JoeWu-explorer/photo-dialogue.git
+git clone --branch v0.1.0-alpha.5 https://github.com/JoeWu-explorer/photo-dialogue.git
 cd photo-dialogue
 ```
 
 使用 Release 附件时，先在下载目录运行 `shasum -a 256 -c SHA256SUMS`（Linux 可用 `sha256sum -c SHA256SUMS`），再用该版本源码的安装器安装：
 
 ```sh
-python3.13 scripts/distribution.py install '/下载目录/photo-dialogue-v0.1.0-alpha.4.zip' --agent hermes
+python3.13 scripts/distribution.py install '/下载目录/photo-dialogue-v0.1.0-alpha.5.zip' --agent hermes
 ```
 
 也可自行构建。在源码根目录运行；每次使用新的临时构建目录，避免同名 ZIP 已存在导致构建失败：

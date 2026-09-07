@@ -1,0 +1,141 @@
+{
+  "request": "去掉画内配文句末句号，保留其他文字与排版",
+  "authorization": "User approved publication after the proposed local repair was explained",
+  "formal_visual_acceptance": "not_run",
+  "repairs": {
+    "together": {
+      "method": "user-approved local background clone with Poisson blending",
+      "mask_ellipses": [
+        [
+          918,
+          451,
+          974,
+          514
+        ]
+      ],
+      "donor_offset": [
+        -1,
+        57
+      ],
+      "unmasked_rgb_pixels_identical": true,
+      "modified_pixels": 2465,
+      "base": "examples/readme/together/after-v2.png",
+      "base_sha256": "50e5dd191293364fd60798e93c6111e854ce368dff00906dfabd0e8fc0588956",
+      "candidate_generation_id_not_used": "exec-d8a669f4-f9ba-4b93-8ba8-42b6cbd10fab.png",
+      "native_edit_calls": 1,
+      "output": "examples/readme/together/after-v3.png",
+      "output_sha256": "19efadf71839d392fdd06879ce391341e2c24e785e188ccf95a4a9cfc74eaf31"
+    },
+    "cat": {
+      "method": "user-approved local background clone with Poisson blending",
+      "mask_ellipses": [
+        [
+          487,
+          339,
+          540,
+          393
+        ]
+      ],
+      "donor_offset": [
+        -14,
+        55
+      ],
+      "unmasked_rgb_pixels_identical": true,
+      "modified_pixels": 2225,
+      "base": "examples/readme/cat/after.png",
+      "base_sha256": "0b8a32bf26f9ac30572c3e69f04cd045898698f2f2ea7a6d1c9895f3054ad8da",
+      "candidate_generation_id_not_used": "exec-55eb94a9-91fb-4dd6-8840-689cae954dd5.png",
+      "native_edit_calls": 1,
+      "output": "examples/readme/cat/after-v2.png",
+      "output_sha256": "6d85aea7bc537a0a054bb282217da06a71deecd6198d1e0a811ca7843f817bca"
+    },
+    "sea": {
+      "method": "user-approved local OpenCV Navier-Stokes inpainting",
+      "mask_ellipses": [
+        [
+          441,
+          584,
+          453,
+          596
+        ]
+      ],
+      "unmasked_rgb_pixels_identical": true,
+      "modified_pixels": 129,
+      "base": "examples/readme/sea-plog.png",
+      "base_sha256": "7fb85e443eb59a5fde2bb8df5d48b92d0b170cf7e34897f646da5fad69972d63",
+      "candidate_generation_id_not_used": "exec-91052ccd-18c0-4387-9e0c-b99225b5cc19.png",
+      "native_edit_calls": 1,
+      "output": "examples/readme/sea-plog-v2.png",
+      "output_sha256": "73e6c2d8ce2cb4e7663c15d0922942dfbc32e9ebf8df402d7f5dab0b7519be64"
+    },
+    "street": {
+      "method": "user-approved local OpenCV Navier-Stokes inpainting",
+      "mask_ellipses": [
+        [
+          482,
+          1057,
+          495,
+          1070
+        ]
+      ],
+      "unmasked_rgb_pixels_identical": true,
+      "modified_pixels": 148,
+      "base": "examples/readme/street-plog.png",
+      "base_sha256": "9ec0631076b8561261ed3fcd591a1d563d4fb3c1e8f869eb156190229d7e9d09",
+      "candidate_generation_id_not_used": "exec-8acb5af0-08a4-4218-bc52-79b1b9c1d308.png",
+      "native_edit_calls": 1,
+      "output": "examples/readme/street-plog-v2.png",
+      "output_sha256": "a7892821891e208bd0151b7357bae2ed68e69da61a099594d46c44e6d2013ad1"
+    },
+    "breakfast": {
+      "method": "user-approved local OpenCV Navier-Stokes inpainting",
+      "mask_ellipses": [
+        [
+          431,
+          522,
+          445,
+          536
+        ]
+      ],
+      "unmasked_rgb_pixels_identical": true,
+      "modified_pixels": 172,
+      "base": "examples/readme/breakfast-plog.png",
+      "base_sha256": "8b4fbc90eff475f17a5bc95f7f4a36b4e2e4876bfeb0364f6244cef05b782a76",
+      "candidate_generation_id_not_used": "exec-d90f14c2-afb4-4d4f-9cbb-338a9584dd00.png",
+      "native_edit_calls": 1,
+      "output": "examples/readme/breakfast-plog-v2.png",
+      "output_sha256": "a814eae19c2c12caf7c7532b5f8321614d16c490045b58ea87d7f2a72bd61b9e"
+    },
+    "hero": {
+      "method": "user-approved local OpenCV Navier-Stokes inpainting",
+      "mask_ellipses": [
+        [
+          316,
+          337,
+          324,
+          345
+        ],
+        [
+          943,
+          546,
+          951,
+          555
+        ],
+        [
+          1534,
+          301,
+          1543,
+          310
+        ]
+      ],
+      "unmasked_rgb_pixels_identical": true,
+      "modified_pixels": 201,
+      "base": "examples/readme/hero.png",
+      "base_sha256": "a5169b56ce0d302d6a1182ea1e93b1d637ee568b0d0b323333221a3cdda6daba",
+      "candidate_generation_id_not_used": "exec-c5e36032-6160-4ede-8a2c-5350549f9579.png",
+      "native_edit_calls": 1,
+      "output": "examples/readme/hero-v2.png",
+      "output_sha256": "7755d6b83e58a20a535ca48f981b017c5ab68c475b0e631b857b1db4a197fe02"
+    }
+  }
+}

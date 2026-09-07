@@ -1,0 +1,246 @@
+{
+  "created": "2026-09-07",
+  "source_type": "original AI-generated photographs, including fictional people",
+  "editing_service": "OpenAI built-in image_gen",
+  "visual_review_surface": "Codex browser; 390 CSS px pairs and 540 CSS px human detail views",
+  "formal_acceptance": "not_run",
+  "cases": [
+    {
+      "key": "coast",
+      "category": "山海旅行",
+      "example_request": "把这张海边照片做成 Plog，留住那种开阔感。",
+      "automatic_text": "山海很大\n今天很慢",
+      "automatic_look": "清透青绿；小字铺垫、舒展的大字横跨天空，与弧形海岸形成尺度对照。",
+      "before": "coast/before.png",
+      "after": "coast/after-v2.png",
+      "source_generation_id": "exec-b66e3f89-e628-4da3-b416-364b9c3ebd02.png",
+      "edit_generation_id": "exec-eae67ef3-c474-45b5-942e-10a913c12161.png",
+      "source_sha256": "0b8df73e75e8e50c850892a94f64b2c31e65802ad2dc6f0dcfd0dfbb08ed35e6",
+      "after_sha256": "623fc0c1d0af4c3bb1bf073abb7e55a17e0d9a97cd18d86336e996ce838295f0",
+      "native_edit_calls": 2,
+      "saved_version": "v002",
+      "agent_visual_check": "reviewed_in_side_by_side_view_at_390_css_px",
+      "human_review": "not_scored",
+      "previous_version": {
+        "after": "coast/after.png",
+        "after_sha256": "ca5e5d48ac53b3a83ed317940d20b56ff332746339b039b664aa1f191cd8634c",
+        "automatic_look": "清透青绿、柔和层次；大字落在天空留白，不遮挡山线。",
+        "edit_generation_id": "exec-44c5fdaf-5629-4f5f-a807-94af89c76065.png",
+        "saved_version": "v001"
+      },
+      "typography_revision": {
+        "parent": "v001",
+        "request": "字和排版要更有张力一点，让用户更高感知我们的产品",
+        "generation_id": "exec-eae67ef3-c474-45b5-942e-10a913c12161.png",
+        "native_edit_calls": 1,
+        "intended_look": "清透青绿；小字铺垫、舒展的大字横跨天空，与弧形海岸形成尺度对照。",
+        "status": "accepted",
+        "saved_version": "v002"
+      }
+    },
+    {
+      "key": "city",
+      "category": "城市街景",
+      "example_request": "把这张雨天街景做成 Plog，文字像随手记下的一句话。",
+      "automatic_text": "雨落下来\n街慢下来",
+      "automatic_look": "冷蓝雨色与暖窗光；两列错位竖排米白字，沿屋檐和街巷建立阅读节奏。",
+      "before": "city/before.png",
+      "after": "city/after-v2.png",
+      "source_generation_id": "exec-9cc2ee90-f296-4487-9592-6a44c57beba9.png",
+      "edit_generation_id": "exec-522c4bc2-c170-4199-b62a-efc5203ba5b1.png",
+      "source_sha256": "a440442dd3ba764ca2dfc33dafe4fee993b6bf352801cdb9b01b1759e2051e4c",
+      "after_sha256": "4642784b7f55139f600f987d5ad5b00c7bcb6e96c13d001bf5f6d220edea1e36",
+      "native_edit_calls": 2,
+      "saved_version": "v002",
+      "agent_visual_check": "reviewed_in_side_by_side_view_at_390_css_px",
+      "human_review": "not_scored",
+      "previous_version": {
+        "after": "city/after.png",
+        "after_sha256": "a94b971c7a667dbc742a79e0e300ce03693a8b921dd2b225245ed0a9e351a4ba",
+        "automatic_look": "冷蓝雨色与暖窗光；米白小字置于左上暗墙。",
+        "edit_generation_id": "exec-3e4b66cd-00c3-47bb-a90a-339db9af35f3.png",
+        "saved_version": "v001"
+      },
+      "typography_revision": {
+        "parent": "v001",
+        "request": "字和排版要更有张力一点，让用户更高感知我们的产品",
+        "generation_id": "exec-522c4bc2-c170-4199-b62a-efc5203ba5b1.png",
+        "native_edit_calls": 1,
+        "intended_look": "冷蓝雨色与暖窗光；两列错位竖排米白字，沿屋檐和街巷建立阅读节奏。",
+        "status": "accepted",
+        "saved_version": "v002"
+      }
+    },
+    {
+      "key": "table",
+      "category": "食物日常",
+      "example_request": "把这张早餐照片做成日常 Plog。",
+      "automatic_text": "早餐还热\n慢慢吃吧",
+      "automatic_look": "暖木色与柔亮日光；咖啡色手写字放在空桌面。",
+      "before": "table/before.png",
+      "after": "table/after.png",
+      "source_generation_id": "exec-72a4398f-6394-4eab-b457-a32d6a13ef4a.png",
+      "edit_generation_id": "exec-f156f725-d3e8-484f-bd02-44e45445f445.png",
+      "source_sha256": "14f62263fb0ea60c6d60d075aa3f398409f7dccc6d51e184109b702cbf9c7d5d",
+      "after_sha256": "e30ce8340944cd7e9fefdec1a493b089692c16f8df9ab0a7388431ab745278be",
+      "native_edit_calls": 2,
+      "saved_version": "v001",
+      "agent_visual_check": "reviewed_in_side_by_side_view_at_390_css_px",
+      "human_review": "not_scored",
+      "typography_revision": {
+        "parent": "v001",
+        "request": "字和排版要更有张力一点，让用户更高感知我们的产品",
+        "generation_id": "exec-ac8010ba-357b-495e-be27-91386ebd597b.png",
+        "native_edit_calls": 1,
+        "intended_look": "暖木色与柔亮日光；细字铺垫、厚笔手写落句，顺着桌面留白舒展开。",
+        "status": "not_accepted",
+        "reason": "杯子相对所选旧版向下移动，超出仅排版的修改范围。",
+        "candidate": "table/candidate-v2-not-approved.png",
+        "candidate_sha256": "49926ea41d69a6fdfd45b5e3f0a501853da1a8938e08299af21cb786cc6c681e"
+      }
+    },
+    {
+      "key": "together",
+      "category": "人物相聚",
+      "example_request": "这是朋友聚在一起喝茶，帮我做成温暖自然的 Plog。",
+      "automatic_text": "茶还没凉，\n话还没聊完",
+      "automatic_look": "温润院落光；细字起句、宽幅浓墨展示字落句，让文字与三人的相聚形成重心呼应。",
+      "before": "together/before.png",
+      "after": "together/after-v3.png",
+      "source_generation_id": "exec-96aac780-4f51-4b38-b528-1e3ba62b2049.png",
+      "edit_generation_id": null,
+      "source_sha256": "e6477a90017ad705ee7071052051cc744fb705873f8be911e525eca6321d93e4",
+      "after_sha256": "19efadf71839d392fdd06879ce391341e2c24e785e188ccf95a4a9cfc74eaf31",
+      "native_edit_calls": 3,
+      "saved_version": "v003",
+      "agent_visual_check": "reviewed_in_side_by_side_view_at_390_css_px",
+      "human_review": "not_scored",
+      "previous_version": {
+        "after": "together/after.png",
+        "after_sha256": "1298d6fc2d49fb749abf3014afe7901006e18f30c036b4cdb202f189779f9047",
+        "automatic_look": "温润肤色、柔和院落光；克制旁白留在人物上方。",
+        "edit_generation_id": "exec-dae6d225-d180-4e85-a3fe-819f00a21255.png",
+        "saved_version": "v001"
+      },
+      "typography_revision": {
+        "parent": "v001",
+        "request": "字和排版要更有张力一点，让用户更高感知我们的产品",
+        "generation_id": "exec-4b99ca31-f37d-414e-a688-6a254d21f09f.png",
+        "native_edit_calls": 1,
+        "intended_look": "温润院落光；细字起句、宽幅浓墨展示字落句，让文字与三人的相聚形成重心呼应。",
+        "status": "accepted",
+        "saved_version": "v002"
+      },
+      "before_punctuation_revision": {
+        "after": "together/after-v2.png",
+        "after_sha256": "50e5dd191293364fd60798e93c6111e854ce368dff00906dfabd0e8fc0588956",
+        "automatic_text": "茶还没凉，\n话还没聊完。",
+        "saved_version": "v002",
+        "edit_generation_id": "exec-4b99ca31-f37d-414e-a688-6a254d21f09f.png"
+      },
+      "punctuation_revision": {
+        "parent": "v002",
+        "saved_version": "v003",
+        "method": "user-approved local background clone with Poisson blending",
+        "unmasked_rgb_pixels_identical": true,
+        "visual_review": "source, accepted base and result compared at 390 px; local detail inspection",
+        "native_candidate_not_used": "exec-d8a669f4-f9ba-4b93-8ba8-42b6cbd10fab.png"
+      }
+    },
+    {
+      "key": "cat",
+      "category": "宠物陪伴",
+      "example_request": "把猫咪晒太阳这张做成 Plog，俏皮一点。",
+      "automatic_text": "今天的安排：\n晒太阳",
+      "automatic_look": "奶油暖光、保留橘白毛色；轻快文字避开猫咪。",
+      "before": "cat/before.png",
+      "after": "cat/after-v2.png",
+      "source_generation_id": "exec-8a9d58c1-613c-4ae0-8342-f565fe6856cd.png",
+      "edit_generation_id": null,
+      "source_sha256": "4a3246e1505d6415f7f688bb93a11a6ef1dae51549fb6eb41df8f19d5f426ed9",
+      "after_sha256": "6d85aea7bc537a0a054bb282217da06a71deecd6198d1e0a811ca7843f817bca",
+      "native_edit_calls": 3,
+      "saved_version": "v002",
+      "agent_visual_check": "reviewed_in_side_by_side_view_at_390_css_px",
+      "human_review": "not_scored",
+      "typography_revision": {
+        "parent": "v001",
+        "request": "字和排版要更有张力一点，让用户更高感知我们的产品",
+        "generation_id": "exec-4d2b34ef-883d-4507-aced-d9da9c2bf696.png",
+        "native_edit_calls": 1,
+        "intended_look": "奶油暖光；小字引子与厚实圆润的「晒太阳」形成鲜明大小差，字势轻快。",
+        "status": "not_accepted",
+        "reason": "椅背左侧轮廓相对所选旧版向右移动，超出仅排版的修改范围。",
+        "candidate": "cat/candidate-v2-not-approved.png",
+        "candidate_sha256": "b679281a478f734bfd4f29b3f85bee3278e685341a4a84dd15f2f1b9c30fcdd6"
+      },
+      "before_punctuation_revision": {
+        "after": "cat/after.png",
+        "after_sha256": "0b8a32bf26f9ac30572c3e69f04cd045898698f2f2ea7a6d1c9895f3054ad8da",
+        "automatic_text": "今天的安排：\n晒太阳。",
+        "saved_version": "v001",
+        "edit_generation_id": "exec-1ea90f7e-d41a-4185-b130-ea45f2af7235.png"
+      },
+      "punctuation_revision": {
+        "parent": "v001",
+        "saved_version": "v002",
+        "method": "user-approved local background clone with Poisson blending",
+        "unmasked_rgb_pixels_identical": true,
+        "visual_review": "source, accepted base and result compared at 390 px; local detail inspection",
+        "native_candidate_not_used": "exec-55eb94a9-91fb-4dd6-8840-689cae954dd5.png"
+      }
+    },
+    {
+      "key": "craft",
+      "category": "人文手艺",
+      "example_request": "记录这位手艺人做竹编的瞬间，做成安静一点的人文 Plog。",
+      "automatic_text": "一挑一压\n慢慢成形",
+      "automatic_look": "靛蓝与竹色保持安静；右侧窄幅纵向字阵、粗细对比，呼应竹编的纵横节奏。",
+      "before": "craft/before.png",
+      "after": "craft/after-v2.png",
+      "source_generation_id": "exec-dcab158d-94dc-4d58-b600-4f93af2f65b9.png",
+      "edit_generation_id": "exec-8af9ca06-5699-4061-bf8e-9ff83c89b63b.png",
+      "source_sha256": "0470c0f30c5498b35cd82810c460a1fbfe0e93e2bbc11fa4eace84b8aed14a5e",
+      "after_sha256": "e6a9aa922ec48f1857033ae0efe6335cf74bb4492a11c317b87d3d99a87dc694",
+      "native_edit_calls": 2,
+      "saved_version": "v002",
+      "agent_visual_check": "reviewed_in_side_by_side_view_at_390_css_px",
+      "human_review": "not_scored",
+      "previous_version": {
+        "after": "craft/after.png",
+        "after_sha256": "f4ac8c18553a2bb893de225415917283674372889bebd671a2c381ac6d17cfac",
+        "automatic_look": "低饱和靛蓝与竹色；窄幅旁白避开脸和编织动作。",
+        "edit_generation_id": "exec-5cd9bdaa-70b9-4321-b403-fe3a5a11f606.png",
+        "saved_version": "v001"
+      },
+      "typography_revision": {
+        "parent": "v001",
+        "request": "字和排版要更有张力一点，让用户更高感知我们的产品",
+        "generation_id": "exec-8af9ca06-5699-4061-bf8e-9ff83c89b63b.png",
+        "native_edit_calls": 1,
+        "intended_look": "靛蓝与竹色保持安静；右侧窄幅纵向字阵、粗细对比，呼应竹编的纵横节奏。",
+        "status": "accepted",
+        "saved_version": "v002"
+      }
+    }
+  ],
+  "runtime_commit_v001": "46b8bb0bebee53a0254d64b44b31d87826511d46",
+  "typography_revision": {
+    "request": "字和排版要更有张力一点，让用户更高感知我们的产品",
+    "runtime_state": "uncommitted working tree after alpha.4",
+    "art_direction_sha256": "5f0872ae0f5f2b0f6766d1682ddf3cfb27af1b9c75ede4f72f1681c7b9c1d8ad",
+    "accepted_cases": [
+      "city",
+      "coast",
+      "craft",
+      "together"
+    ],
+    "retained_v001_cases": [
+      "cat",
+      "table"
+    ],
+    "native_edit_calls": 6,
+    "automatic_retries": 0,
+    "visual_review_surface": "Codex browser; originals, v001 and candidate at 390 CSS px; human photos additionally at 540 CSS px"
+  }
+}

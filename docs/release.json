@@ -1,11 +1,11 @@
 {
-  "version": "v0.1.0-alpha.4",
+  "version": "v0.1.0-alpha.5",
   "prerelease": true,
   "repository_visibility": "private",
-  "runtime_commit": "46b8bb0bebee53a0254d64b44b31d87826511d46",
-  "package": "photo-dialogue-v0.1.0-alpha.4.zip",
-  "package_sha256": "52ce673156dc6b3dd7f24d9f6e223f17ec7b0487cc3fb8310caf2cfa43d9df90",
-  "package_bytes": 73311,
+  "runtime_commit": "9db3c16d6d6b2c8108b43e290245bab71cb76bf0",
+  "package": "photo-dialogue-v0.1.0-alpha.5.zip",
+  "package_sha256": "5b01222381817c25a3734034caf481333d10db9b387ae8e17796bd35ede27771",
+  "package_bytes": 74418,
   "package_files": 22,
   "deterministic_tests": 56,
   "local_validation": {
@@ -15,14 +15,12 @@
     "repository_checks": "pass",
     "reproducible_build": "pass",
     "fresh_install_selfcheck_uninstall": "pass",
-    "published_alpha_3_upgrade_selfcheck_uninstall": "pass",
-    "skills_cli_remote_discovery": "pass",
-    "skills_cli_local_claude_code_copy_and_selfcheck": "pass",
-    "native_image_calls": 0
+    "published_alpha_4_upgrade_selfcheck_uninstall": "pass",
+    "skill_frontmatter_validation": "pass"
   },
   "runtime_ci": {
-    "commit": "f6d8bc1526850a9e6f21c4e29717223cdfb224c7",
-    "source_pr": "https://github.com/JoeWu-explorer/photo-dialogue/pull/32",
+    "commit": "9db3c16d6d6b2c8108b43e290245bab71cb76bf0",
+    "source_pr": "https://github.com/JoeWu-explorer/photo-dialogue/pull/34",
     "os": [
       "ubuntu-latest",
       "macos-latest"
@@ -33,9 +31,9 @@
       "3.13"
     ],
     "result": "pass_before_merge",
-    "note": "PR head checks passed; its runtime content is unchanged in runtime_commit."
+    "note": "PR runtime commit passed the full OS/Python matrix; subsequent README, assets and release metadata changes do not alter runtime content."
   },
-  "visual_evaluation": "not_run_for_this_candidate",
+  "visual_evaluation": "formal_matrix_not_run; README synthetic demonstrations recorded separately in examples/readme/MANIFEST.md",
   "multi_agent_end_to_end": "not_run_for_this_candidate",
   "prior_visual_evidence": {
     "version": "v0.1.0-alpha.1",
