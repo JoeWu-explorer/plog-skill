@@ -2,7 +2,7 @@
 
 [返回首页](../README.md) · [Agent 适配](agent-compatibility.md) · [使用指南](guide.md)
 
-**当前预发布：[v0.1.0-alpha.6](https://github.com/JoeWu-explorer/plog-skill/releases/tag/v0.1.0-alpha.6)。** npx 安装 main 分支源码；需要固定版本可下载该 Release 的 ZIP 与 `SHA256SUMS`。仓库当前为私有，需要仓库访问权限和可供 Git 使用的认证。
+**当前预发布：[v0.1.0-alpha.6](https://github.com/JoeWu-explorer/plog-skill/releases/tag/v0.1.0-alpha.6)。** npx 安装 main 分支源码；需要固定版本可下载该 Release 的 ZIP 与 `SHA256SUMS`。仓库已公开，下载与安装无需申请仓库访问权限，也无需配置 GitHub 登录凭据。运行时使用的 Agent 与图片编辑服务仍需各自可用，服务认证和费用取决于所选服务。
 
 ## 推荐：npx 安装
 
@@ -33,9 +33,21 @@ npx skills add https://github.com/JoeWu-explorer/plog-skill --skill plog --agent
 - `--copy` 安装独立副本。已有同名技能时先保留本地修改，再决定更新方式。
 - 手动准备运行环境时，接着看 [准备 Python 环境](#准备-python-环境) 和 [检查图像能力](#检查图像能力)。
 
-仓库 URL 与本地目录均为 [Skills CLI 支持的来源](https://github.com/vercel-labs/skills#supported-sources)。已验证远端技能发现，以及临时项目中的 Claude Code 目录复制安装、19 个技能文件内容一致和本地自检；这不等于完成了真实 Agent 图片创作验证。
+仓库 URL 与本地目录均为 [Skills CLI 支持的来源](https://github.com/vercel-labs/skills#supported-sources)。已验证远端技能发现，以及临时项目中的 Claude Code 目录复制安装、19 个技能文件内容一致和本地自检；单独的安装检查不等于真实 Agent 图片创作验证。
 
 试用自己的本地改动时，在源码根目录将命令中的仓库 URL 换成 `./plog`。GitHub 安装只包含已推送的内容。
+
+### 已走通的组合：Codex 桌面端 + 原生 OpenAI 图片工具
+
+2026-09-08 在一个全新项目目录中，未使用 GitHub 凭据安装：
+
+```sh
+npx skills add https://github.com/JoeWu-explorer/plog-skill --skill plog --agent codex --copy --yes
+```
+
+安装目录为当前项目的 `.agents/skills/plog`。让 Codex 读取其中的 `SKILL.md`，按下方步骤准备 Python、检查本次会话是否有可用的读图与原生图片编辑工具；具备这些工具时无需另配兼容 API。安装本身不会为账号开通图片能力。
+
+该组合已实际完成一张早餐样例的出图、仅改文字、恢复旧版和交付。实测环境、固定源码与限制见 [记录](codex-native-smoke-2026-09-08.md)：使用现有桌面会话显式加载技能，尚不代表全新会话自动发现、其他平台或全部照片类型通过。
 
 ## 手动安装完整包
 

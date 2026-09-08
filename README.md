@@ -38,7 +38,7 @@ npx skills add https://github.com/JoeWu-explorer/plog-skill --skill plog
 
 </details>
 
-<sub>仓库当前为私有，安装需要访问权限。首次环境配置见 [安装指南](docs/install.md)。</sub>
+<sub>仓库已公开，可直接安装，无需申请仓库访问权限。首次环境配置与图片编辑能力要求见 [安装指南](docs/install.md)。</sub>
 
 ## 每一种日常，都有自己的语气
 
