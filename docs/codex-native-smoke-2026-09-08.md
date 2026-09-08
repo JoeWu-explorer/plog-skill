@@ -58,6 +58,6 @@ npx --yes skills add https://github.com/JoeWu-explorer/plog-skill --skill plog -
 
 - 干净 Agent 会话中的技能发现、自动选用，以及完整 Plog 场景和行为矩阵。
 - 真人、宠物、密集人群、多图系列、HEIC/HEIF；仅氛围和仅移动文字修改。
-- 产品负责人五项视觉评分、其他 Agent／provider、托管 CI 平台矩阵。
+- 产品负责人五项视觉评分、其他 Agent／provider 的真实图片链路。
 
-本轮仓库 58 项确定性测试通过，引用与资产清单检查通过。这些检查和本次真实图像结果分别记录，不互相替代。
+本轮仓库 58 项确定性测试、类型检查、引用与资产清单检查通过。GitHub 托管 [确定性检查](https://github.com/JoeWu-explorer/plog-skill/actions/runs/34195501223)也已完成：Ubuntu/macOS × Python 3.11、3.12、3.13 共六个组合通过，包含打包、安装、自检、可选 HEIF 依赖与卸载。这不等于图片链路已在这些平台实测，也不追认 alpha.6 发布时未启动的 CI；上述图像实测环境仍未安装 HEIF。

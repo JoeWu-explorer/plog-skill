@@ -25,6 +25,6 @@ npx skills add https://github.com/JoeWu-explorer/plog-skill --skill plog
 
 本版本发布时未执行新的图像生成或多 Agent 端到端视觉验收；展示图片的来源与范围见仓库清单。托管 CI 状态和固定运行提交见 [版本清单](https://github.com/JoeWu-explorer/plog-skill/blob/v0.1.0-alpha.6/docs/release.json)。
 
-GitHub Actions 因账户账单／额度限制未启动，本版不宣称托管 CI 矩阵通过；本地验证结果如上。
+本版本发布时 GitHub Actions 因账户账单／额度限制未启动，当时不宣称托管 CI 矩阵通过；本地验证结果如上。
 
 2026-09-08 补充：[Codex + 原生 OpenAI 图片工具实测](codex-native-smoke-2026-09-08.md)已走通单张早餐样例的安装、出图、文字修改和旧版恢复。完整 Plog 矩阵、新会话发现与真人评分仍待完成；固定发布标签和附件未因此更新。
