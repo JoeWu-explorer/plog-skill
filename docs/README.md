@@ -13,10 +13,11 @@
 
 - [下载](https://github.com/JoeWu-explorer/plog-skill/releases/tag/v0.1.0-alpha.6) · [固定包与验证范围](release.json) · [更新记录](../CHANGELOG.md)
 - [本次发布说明](prerelease-alpha-6.md) · [适配与证据状态](agent-compatibility.md) · [Plog 开发检查](plog-development.md)
+- [Codex 原生图片工具单样例实测](codex-native-smoke-2026-09-08.md)：安装、出图、文字修改与旧版恢复。
 - [验收标准](acceptance.md) · [发布检查](release-checklist.md)
 - [alpha.4 发布说明](prerelease-alpha-4.md) · [alpha.3 发布说明](prerelease-alpha-3.md) · [alpha.1 历史视觉验证](person-fidelity-fixes.md) · [历史固定包记录](candidate.json)
 
-运行目标为 macOS/Linux 与 CPython 3.11–3.13，基础格式 JPEG/PNG/WebP，HEIF 可选。56 项确定性测试及安装升级检查通过；真实 Agent／图像服务全链路和 Plog 场景视觉矩阵仍待执行。旧版成绩不转移到本版本。
+运行目标为 macOS/Linux 与 CPython 3.11–3.13，基础格式 JPEG/PNG/WebP，HEIF 可选。58 项确定性测试及安装升级检查通过；Codex 原生图片工具已完成单样例手动链路实测，完整 Plog 场景视觉矩阵、新会话技能发现及真人评分仍待执行。旧版成绩不转移到本版本。
 
 ## 开发与维护
 

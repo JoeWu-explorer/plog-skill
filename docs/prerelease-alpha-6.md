@@ -8,7 +8,7 @@
 npx skills add https://github.com/JoeWu-explorer/plog-skill --skill plog
 ```
 
-安装后发照片，说「用 plog 把这些照片做成一组中文日记」。需要支持 Skills、读图与照片编辑的 Agent。仓库保持私有，安装需要访问权限；完整 Agent／图像服务组合仍待逐项实测。
+安装后发照片，说「用 plog 把这些照片做成一组中文日记」。需要支持 Skills、读图与照片编辑的 Agent。仓库现已公开，下载与安装无需申请访问权限；完整 Agent／图像服务组合仍待逐项实测。本版本发布时的验证范围见下文，当前安装说明见 [安装指南](install.md)。
 
 ## 本版更新
 
@@ -23,6 +23,8 @@ npx skills add https://github.com/JoeWu-explorer/plog-skill --skill plog
 
 58 项确定性测试、类型检查、仓库引用与 70 项资产清单检查通过；Skill 格式检查、可复现构建、全新安装／自检／卸载、真实 alpha.5 发布包升级及目录迁移通过。Skills CLI 已在临时目录验证 Claude Code 复制安装。
 
-本次未执行新的图像生成或多 Agent 端到端视觉验收；展示图片的来源与范围见仓库清单。托管 CI 状态和固定运行提交见 [版本清单](https://github.com/JoeWu-explorer/plog-skill/blob/v0.1.0-alpha.6/docs/release.json)。
+本版本发布时未执行新的图像生成或多 Agent 端到端视觉验收；展示图片的来源与范围见仓库清单。托管 CI 状态和固定运行提交见 [版本清单](https://github.com/JoeWu-explorer/plog-skill/blob/v0.1.0-alpha.6/docs/release.json)。
 
 GitHub Actions 因账户账单／额度限制未启动，本版不宣称托管 CI 矩阵通过；本地验证结果如上。
+
+2026-09-08 补充：[Codex + 原生 OpenAI 图片工具实测](codex-native-smoke-2026-09-08.md)已走通单张早餐样例的安装、出图、文字修改和旧版恢复。完整 Plog 矩阵、新会话发现与真人评分仍待完成；固定发布标签和附件未因此更新。
