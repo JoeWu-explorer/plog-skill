@@ -17,13 +17,16 @@ RUNTIME_FILES = (
     'references/art-direction.md', 'references/people-and-privacy.md',
     'references/revisions.md', 'references/runtime.md', 'references/conversation.md', 'references/agents.md',
     'schemas/revision-record.schema.json',
+    # Text-suffixed HTML template also fits the Red Skill source-file allowlist.
+    'references/albums.md', 'scripts/album.py', 'assets/album.html.txt',
     'scripts/photo_files.py', 'scripts/revision_record.py', 'scripts/self_check.py', 'scripts/image_backend.py',
     'requirements.txt', 'requirements.lock', 'requirements-heif.txt', 'requirements-heif.lock',
     'notices/Pillow.txt', 'notices/pillow-heif.txt',
 )
 PACKAGE_FILES = (*RUNTIME_FILES, 'LICENSE', 'THIRD_PARTY_NOTICES.md')
 # Preserve exact historical layouts for safe upgrades, never arbitrary subsets.
-ALPHA3_PACKAGE_FILES = frozenset(PACKAGE_FILES) - {'references/agents.md', 'scripts/image_backend.py'}
+ALPHA6_PACKAGE_FILES = frozenset(PACKAGE_FILES) - {'references/albums.md', 'scripts/album.py', 'assets/album.html.txt'}
+ALPHA3_PACKAGE_FILES = ALPHA6_PACKAGE_FILES - {'references/agents.md', 'scripts/image_backend.py'}
 LEGACY_PACKAGE_FILES = ALPHA3_PACKAGE_FILES - {'references/conversation.md'}
 MANIFEST = 'INSTALL-MANIFEST.json'
 SKILL_NAMES = ('plog', 'photo-dialogue')
@@ -103,14 +106,14 @@ def _unchanged(target: Path) -> None:
         if not isinstance(manifest, dict) or not isinstance(manifest.get('files'), dict):
             raise DistributionError('Invalid installation manifest.')
         expected = manifest['files']
-        if manifest.get('name') not in SKILL_NAMES or manifest.get('schema_version') != 1 or set(expected) not in (set(PACKAGE_FILES), ALPHA3_PACKAGE_FILES, LEGACY_PACKAGE_FILES):
+        if manifest.get('name') not in SKILL_NAMES or manifest.get('schema_version') != 1 or set(expected) not in (set(PACKAGE_FILES), ALPHA6_PACKAGE_FILES, ALPHA3_PACKAGE_FILES, LEGACY_PACKAGE_FILES):
             raise DistributionError('Unknown installation manifest.')
         actual = {}
         for path in target.rglob('*'):
             if not path.is_file():
                 continue
             relative = path.relative_to(target).as_posix()
-            cache = re.fullmatch(r'scripts/__pycache__/(photo_files|revision_record|self_check|image_backend)\.cpython-3(11|12|13)(\.opt-[12])?\.pyc', relative)
+            cache = re.fullmatch(r'scripts/__pycache__/(photo_files|revision_record|self_check|image_backend|album)\.cpython-3(11|12|13)(\.opt-[12])?\.pyc', relative)
             if relative != MANIFEST and cache is None:
                 actual[relative] = _digest(path.read_bytes())
         if actual != expected:

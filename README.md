@@ -276,6 +276,19 @@ npx skills add https://github.com/JoeWu-explorer/plog-skill --skill plog
 文字有一点联系，但不要每张都写同一句标题。
 ```
 
+## 把几张照片，做成一本 Plog 故事书
+
+```text
+把这些照片串成一本可以打开和翻页的书。
+每一页都做成 Plog，故事要能接起来，再导出翻书动画。
+```
+
+先为整本书安排故事，再逐张设计文案、光色和排版。封面、材质、配色、字体与翻阅节奏都根据这一册的照片和故事重新决定，用户偏好优先；示例书的外观不是固定模板。每页是一张完整 Plog，短旁白在页间承接；已有作品可以直接装订。未知的日期、地点与人物关系不会补写成事实。
+
+HTML 自带照片，离线打开就是一本有封面、书脊、左右书页和翻页动作的书。支持手动翻阅、自动翻阅、大图阅读、保存书本与打印。点击“导出翻书动画”，可将开书、翻页到合书的完整过程保存为无声视频，选择横屏或竖屏与停留时间；MP4/WebM 选项取决于浏览器支持。
+
+之后可改书名、顺序、旁白，或只修订某一页，另存新版。每册支持 2–50 张内容页，HTML 上限 64 MiB。生成文件不会自动公开发布。[制作与导出说明](plog/references/albums.md) · [可复现示例](examples/album/README.md)
+
 ## 从照片到成图，会发生什么
 
 **读照片 → 确定文字与视觉方向 → 以照片编辑 → 对照检查 → 保存 PNG 与版本 → 根据反馈继续修改。**
@@ -309,7 +322,7 @@ npx skills add https://github.com/JoeWu-explorer/plog-skill --skill plog
 
 ## 使用前了解这几件事
 
-- **版本：** 当前预发布为 [v0.1.0-alpha.6](https://github.com/JoeWu-explorer/plog-skill/releases/tag/v0.1.0-alpha.6)；上面的 npx 命令安装 main 分支源码。
+- **版本：** 当前预发布为 [v0.1.0-alpha.7](https://github.com/JoeWu-explorer/plog-skill/releases/tag/v0.1.0-alpha.7)；上面的 npx 命令安装 main 分支源码。
 - **照片与环境：** 静态 JPEG、PNG、WebP；HEIC/HEIF 可选。文件工具需要 macOS、Linux 或 WSL 中的 CPython 3.11–3.13。
 - **图片服务：** 使用你配置的读图与编辑服务，模型与费用取决于该服务。需要外发照片时会说明接收服务和用途，承接已有授权。
 - **生成效果：** 生成式编辑不保证像素完全不变；检查无法通过时会说明问题，不自动重复生成或消耗第二次额度。
