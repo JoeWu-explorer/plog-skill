@@ -38,6 +38,17 @@ python3.13 -m venv .venv
 
 测试文件与版本记录的公开行为、真实输出、调用次数及原图保护；不固定自由创作文案或用像素完全相等代替人物核验。真实成图与人工评分另按 [验收标准](docs/acceptance.md) 执行。
 
+## 故事书与视频检查
+
+图册文件、原图保护及打包边界包含在 Python 测试中。浏览器已安装 Playwright 与 Chromium 时，可另检查实际翻页、下载视频、取消录制、离线重开、打印、窄屏及减少动态效果：
+
+```sh
+.venv/bin/python plog/scripts/album.py examples/album/story.json --output /tmp/plog-storybook-check.html
+node tests/album_browser.cjs /tmp/plog-storybook-check.html /tmp/plog-storybook-browser-results
+```
+
+输出文件及目录应为全新位置；实际录制约需半分钟。脚本使用当前可解析的 `playwright` 包，截图、视频和检查结果留在指定目录；视频仍需解码检查和目视确认。运行模板采用 `.html.txt` 后缀，以兼容 Red Skill 的源文件允许名单。
+
 ## 构建运行包
 
 ```sh

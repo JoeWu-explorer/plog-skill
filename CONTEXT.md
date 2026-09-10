@@ -1,8 +1,12 @@
 # Photo Dialogue
 
-Photo Dialogue is an agent-neutral Plog skill for turning real photographs of people, landscapes, streets, food, objects and pets into static, share-ready photo journals while preserving the source scene. Agent capabilities and configured image services determine execution, not an agent brand. Multiple photos are processed independently as a coordinated series, with one source and revision record per photo.
+Photo Dialogue is an agent-neutral Plog skill for turning real photographs of people, landscapes, streets, food, objects and pets into static, share-ready photo journals while preserving the source scene. Agent capabilities and configured image services determine execution, not an agent brand. Multiple photos can be processed independently as a coordinated series, with one source and revision record per photo, or organized into a Photo Album.
 
 ## Language
+
+**Photo Album**:
+An agent-authored narrative connecting two or more real photos or accepted Plog images through an evidence-grounded theme, order and text, bound as a physical-style book with covers, facing pages and animated page turns in a standalone offline HTML file. Each content page is a complete Plog; the same renderer records the opening, turns and closing to a local video. Its binding, palette, typography, cover composition and pacing are authored for the actual photos, story and user preferences, with decisions retained in the private manifest; no sample look is a universal default. Its local story manifest supports text and order revisions independently of individual image revision records. Rendering the album does not require generative image editing.
+
 
 **Plog**:
 A photo journal grounded in real photographs, combining a scene-specific short caption or diary voice with typography and photographic treatment. A series coordinates independent Finished Images without merging source identities or revision histories.

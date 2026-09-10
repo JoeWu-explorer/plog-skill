@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "title": "把日子\n放慢一点",
+  "subtitle": "一餐、一条街、一片海",
+  "intro": "先让一顿早餐慢下来。\n再把这个“慢”，带进雨里的街巷。\n直到翻过这一页，看见一整片海。\n\n三个不同的片刻，因为同一种心情，被收进这本书。",
+  "cover": 2,
+  "reading": "book",
+  "pages": [
+    {
+      "image": "../readme/table/after.webp",
+      "alt": "木桌上有咖啡、面包和煎蛋，桌面留着大片空白，带有已设计的中文 Plog 配文",
+      "title": "先坐一会儿",
+      "text": "先从手边开始。\n一顿早餐，也可以慢慢过。"
+    },
+    {
+      "image": "../readme/city/after-v2.webp",
+      "alt": "撑伞的人走在湿润的石板街上，右侧窗户亮着暖光，带有已设计的中文 Plog 配文",
+      "title": "沿着一点灯光",
+      "text": "这一页的慢，藏在雨里。\n脚步往前，目光多停一会儿。"
+    },
+    {
+      "image": "../readme/coast/after-v2.webp",
+      "alt": "青绿色海湾沿草坡弯曲，白色浪线环绕岸边，带有已设计的中文 Plog 配文",
+      "title": "把目光放远",
+      "text": "翻过街巷，把目光放远。\n原来，慢下来也可以这么辽阔。"
+    }
+  ],
+  "ending": "从“慢慢吃吧”，到“街慢下来”，\n再到“今天很慢”。\n\n翻完这本书，\n也给自己的日子留一点空白。",
+  "intro_title": "从手边，望向远处",
+  "ending_title": "把慢留在日子里",
+  "design": {
+    "rationale": "早餐的暖木色成为浅砂色纸封，雨巷和海岸的蓝色成为书名与正文墨色；慢下来的故事采用松散留白与较慢翻页。这里只记录此册的选择，不是通用风格。",
+    "palette": {
+      "cover": "#e5d8bf",
+      "cover_text": "#2e5161",
+      "paper": "#faf7ee",
+      "ink": "#304a51",
+      "accent": "#a26c38",
+      "stage": "#f2ece1",
+      "stage_edge": "#d4dbdc"
+    },
+    "material": "paper",
+    "typeface": "serif",
+    "title_box": [
+      52,
+      58,
+      496,
+      205
+    ],
+    "subtitle_box": [
+      60,
+      283,
+      480,
+      60
+    ],
+    "photo_box": [
+      171,
+      362,
+      258,
+      330
+    ],
+    "title_size": 62,
+    "title_align": "center",
+    "page_margin": 22,
+    "turn_ms": 1300,
+    "hold_seconds": 3
+  }
+}

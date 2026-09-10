@@ -80,7 +80,7 @@ class DistributionTests(unittest.TestCase):
         install(package, target)
         manifest_path = target / MANIFEST
         manifest = json.loads(manifest_path.read_text())
-        for name in ('references/conversation.md', 'references/agents.md', 'scripts/image_backend.py'):
+        for name in ('references/conversation.md', 'references/agents.md', 'scripts/image_backend.py', 'references/albums.md', 'scripts/album.py', 'assets/album.html.txt'):
             del manifest['files'][name]
             (target / name).unlink()
         manifest_path.write_text(json.dumps(manifest))
@@ -126,7 +126,7 @@ class DistributionTests(unittest.TestCase):
             target = root / 'skills' / 'plog'
             install(package, target)
             self.assertTrue((target / 'SKILL.md').is_file())
-            self.assertFalse((target / 'assets').exists())
+            self.assertTrue((target / 'assets/album.html.txt').is_file())
             self.assertFalse((target / '.venv').exists())
             install(package, target, update=True)
             (target / 'SKILL.md').write_text('my local changes')
@@ -232,10 +232,27 @@ class DistributionTests(unittest.TestCase):
             root=Path(folder); package=build(ROOT,root/'candidate.zip'); target=root/'plog'
             install(package,target)
             manifest=json.loads((target/MANIFEST).read_text())
-            for name in ('references/agents.md','scripts/image_backend.py'):
+            for name in ('references/agents.md','scripts/image_backend.py','references/albums.md','scripts/album.py','assets/album.html.txt'):
                 del manifest['files'][name]
                 (target/name).unlink()
             (target/MANIFEST).write_text(json.dumps(manifest))
             install(package,target,update=True)
             self.assertTrue((target/'scripts/image_backend.py').is_file())
+            uninstall(target)
+
+    def test_alpha6_installation_upgrades_with_album_resources(self):
+        from distribution import ALPHA6_PACKAGE_FILES
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            package = build(ROOT, root / 'new.zip')
+            target = root / 'plog'
+            install(package, target)
+            manifest = json.loads((target / MANIFEST).read_text())
+            for name in set(manifest['files']) - ALPHA6_PACKAGE_FILES:
+                del manifest['files'][name]
+                (target / name).unlink()
+            (target / MANIFEST).write_text(json.dumps(manifest))
+            install(package, target, update=True)
+            self.assertTrue((target / 'scripts/album.py').is_file())
+            self.assertTrue((target / 'assets/album.html.txt').is_file())
             uninstall(target)

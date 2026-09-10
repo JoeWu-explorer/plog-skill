@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src data:; style-src 'unsafe-inline'; script-src 'unsafe-inline'; media-src blob:; base-uri 'none'; form-action 'none'">
+<title>{{TITLE}} · Plog 故事书</title>
+<style>
+:root{color-scheme:light;--ink:#303030;--paper:#f5f5f2;--line:#ccc;--muted:#555;--accent:#555;font-family:"PingFang SC","Microsoft YaHei",sans-serif}
+*{box-sizing:border-box}body{margin:0;color:var(--ink);background:var(--paper)}button,select{font:inherit;color:inherit}button,summary,select{cursor:pointer}button{border:1px solid var(--line);border-radius:5px;background:transparent;padding:10px 16px;min-height:44px}button:hover:not(:disabled){background:var(--hover,#dedede)}button.primary:hover:not(:disabled){background:var(--ink);filter:brightness(1.15)}button:disabled{opacity:.4;cursor:default}button.primary{background:var(--ink);color:var(--button-ink,#fff);border-color:var(--ink)}a{color:inherit;text-underline-offset:5px}button:focus-visible,select:focus-visible,summary:focus-visible,a:focus-visible,canvas:focus-visible{outline:2px solid var(--accent);outline-offset:4px}::selection{background:var(--selection,#ddd)}header{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:18px 4vw;border-bottom:1px solid var(--line)}.brand{font-size:13px;letter-spacing:.04em}.top-actions{display:flex;gap:8px}.top-actions button{font-size:12px;padding:8px 13px;min-height:38px}main{max-width:1600px;margin:auto}.viewer{position:relative}.stage{width:100%;height:clamp(370px,calc(100svh - 255px),900px);display:block;touch-action:pan-y pinch-zoom;cursor:pointer}.loading{text-align:center;font-size:14px;color:var(--muted);margin:30px}.controls{display:flex;justify-content:center;gap:12px;align-items:center;padding:2px 20px 12px}.position{min-width:150px;text-align:center;font-size:13px;font-variant-numeric:tabular-nums}.hint{text-align:center;font-size:12px;color:var(--muted);margin:0 20px 18px;line-height:1.8}.export-settings{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:18px 20px;border-top:1px solid var(--line)}label{font-size:12px;color:var(--muted)}select{background:transparent;border:1px solid var(--line);border-radius:4px;padding:8px;margin-left:6px;min-height:40px}.export-settings button{font-size:13px}#status{min-height:26px;text-align:center;font-size:13px;color:var(--muted);padding:0 20px;margin:0 0 14px}#status a{display:inline-block;padding:6px}progress{display:block;width:min(380px,80%);height:5px;accent-color:var(--ink);margin:0 auto 16px}.text-edition{border-top:1px solid var(--line);padding:18px max(24px,4vw);max-width:1180px;margin:auto}.text-edition>summary{font-size:13px;width:fit-content;padding:6px}.cover,.spread,.ending{padding:40px 0}.cover h1{font-family:"Songti SC",serif;white-space:pre-line;font-size:40px}.cover-image{max-width:400px;margin:20px 0}.cover-image img,.spread img{max-width:100%;height:auto;display:block}.spread{display:grid;grid-template-columns:1fr 1fr;gap:32px;border-top:1px solid var(--line);scroll-margin-top:20px}.spread figure{margin:0}.spread p,.cover p,.ending p{white-space:pre-line;line-height:1.9}.spread img{max-height:80svh;object-fit:contain}.folio{font-size:12px}.contents a{display:inline-block;padding:8px;font-size:14px}.contents a span{margin-right:8px}.ready .loading{display:none}[hidden]{display:none!important}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:600px){header{padding:13px 18px;gap:8px}.brand{font-size:12px}.top-actions{gap:5px}.top-actions button{font-size:11px;padding:7px 9px}.stage{height:clamp(340px,calc(100svh - 290px),640px)}.controls{gap:8px;padding-inline:10px}.controls button{font-size:12px;padding:9px 11px}.position{min-width:105px;font-size:12px}.export-settings{padding:12px 10px;gap:8px}.export-settings select{margin-left:3px;font-size:12px;padding:6px}.export-settings label{font-size:11px}.export-settings button{font-size:12px;padding:9px 10px}.spread{grid-template-columns:1fr}.hint{font-size:11px;margin-bottom:13px}}
+@media print{header,.viewer,.export-settings,#status,progress,.text-edition>summary,.contents{display:none!important}.text-edition{border:0;padding:0}.text-edition>.source-content{display:block!important}.spread,.cover,.ending{display:block;break-after:page;break-inside:avoid;padding:0;border:0}.spread img{max-height:210mm;margin:auto}.cover-image img{max-height:180mm}.story p{font-size:11pt}body{background:white}@page{size:A4;margin:12mm}}
+</style>
+</head>
+<body data-reading="{{READING}}" data-design="{{DESIGN}}" data-intro-title="{{INTROTITLE}}" data-ending-title="{{ENDINGTITLE}}">
+<header><span class="brand">照片有话说 / 故事书</span><div class="top-actions"><button id="save-html" type="button" hidden>保存书本</button><button id="print" type="button" hidden>打印书页</button></div></header>
+<main>
+<section class="viewer" aria-label="可翻阅的 Plog 故事书">
+<p class="loading" role="status">正在装订书页…</p>
+<canvas id="book" class="stage" role="img" tabindex="0" aria-label="{{TITLE}}，使用下方按钮打开和翻阅" hidden></canvas>
+<div class="controls" hidden><button id="previous" type="button" disabled>上一页</button><output id="position" class="position" aria-live="polite">封面</output><button id="next" class="primary" type="button">打开书本</button><button id="play" type="button">自动翻阅</button></div>
+<p class="hint" hidden>点击书页或使用左右方向键翻阅 · 手机可左右滑动 · 下方可看大图</p>
+</section>
+<div class="export-settings" hidden><label>画面<select id="aspect"><option value="landscape">横屏 1280 × 960</option><option value="portrait">竖屏 1080 × 1440</option></select></label><label>停留<select id="hold"><option value="2.5">每跨页 2.5 秒</option><option value="4">每跨页 4 秒</option><option value="6">每跨页 6 秒</option></select></label><label>格式<select id="format"></select></label><button id="export" class="primary" type="button">导出翻书动画</button><button id="cancel" type="button" hidden>取消导出</button></div>
+<p id="status" role="status" aria-live="polite"></p><progress id="progress" max="1" value="0" hidden aria-label="导出进度"></progress>
+<details class="text-edition" open><summary>查看完整 Plog 与故事 / 大图阅读</summary><div class="source-content">
+<section class="cover" id="cover"><h1 id="album-title">{{TITLE}}</h1><p class="subtitle">{{SUBTITLE}}</p><p class="intro">{{INTRO}}</p><figure class="cover-image">{{COVER}}</figure></section>
+<nav class="contents" aria-label="书页目录">{{CONTENTS}}</nav>
+<div id="spreads">{{PAGES}}</div>
+<section class="ending" id="ending"><p>{{ENDING}}</p></section>
+</div></details>
+</main>
+<script>
+(() => {
+'use strict';
+const $ = selector => document.querySelector(selector);
+const canvas = $('#book');
+const ctx = canvas.getContext('2d');
+const W = 600, H = 800;
+const design = JSON.parse(document.body.dataset.design);
+const palette = design.palette;
+const PAPER = palette.paper, INK = palette.ink, BINDING = palette.cover, LETTERING = palette.cover_text;
+const serif = '"Songti SC", "Noto Serif CJK SC", serif';
+const sans = '"PingFang SC", "Microsoft YaHei", sans-serif';
+const face = {serif, sans, handwritten: '"Kaiti SC", "STKaiti", "KaiTi", serif'}[design.typeface];
+const title = $('#album-title').textContent;
+const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+const sources = [...document.querySelectorAll('.spread')];
+let spreads = [], labels = [], state = 0, busy = false, playing = false, recording = false;
+let activeAnimation = null, lastVideoURL = null, cancellation = null;
+const TURN = design.turn_ms;
+
+function texture() {
+  const surface = document.createElement('canvas'); surface.width = W; surface.height = H;
+  const c = surface.getContext('2d'); c.fillStyle = PAPER; c.fillRect(0, 0, W, H);
+  return [surface, c];
+}
+function lines(c, text, maxWidth) {
+  const result = [];
+  for (const paragraph of text.split('\n')) {
+    let line = '';
+    for (const char of Array.from(paragraph)) {
+      if (line && c.measureText(line + char).width > maxWidth) { result.push(line); line = char; }
+      else line += char;
+    }
+    result.push(line);
+  }
+  return result;
+}
+function textBox(c, text, x, y, width, height, size, color = INK, family = sans, center = false) {
+  if (!text.trim()) return;
+  let wrapped, lineHeight;
+  do { c.font = `${size}px ${family}`; wrapped = lines(c, text, width); lineHeight = size * 1.5; if (wrapped.length * lineHeight <= height) break; size -= 1; } while (size > 8);
+  if (wrapped.length * lineHeight > height) throw new Error('文字太长，书页放不下；请缩短该页配文后重新导出。');
+  c.fillStyle = color; c.textAlign = center ? 'center' : 'left'; c.textBaseline = 'top';
+  wrapped.forEach((line, i) => c.fillText(line, center ? x + width / 2 : x, y + i * lineHeight));
+  c.textAlign = 'left';
+}
+function contain(c, img, x, y, width, height) {
+  const scale = Math.min(width / img.naturalWidth, height / img.naturalHeight);
+  const w = img.naturalWidth * scale, h = img.naturalHeight * scale;
+  c.drawImage(img, x + (width - w) / 2, y + (height - h) / 2, w, h);
+}
+function binding(c) {
+  c.fillStyle = BINDING; c.fillRect(0, 0, W, H);
+  // Material belongs to this book's cover, never to its photographs.
+  c.lineWidth = .6;
+  if (design.material === 'cloth') {
+  for (let x = 0; x < W; x += 4) { c.strokeStyle = x % 8 ? '#ffffff08' : '#00000013'; c.beginPath(); c.moveTo(x,0);c.lineTo(x,H);c.stroke(); }
+  for (let y = 0; y < H; y += 4) { c.strokeStyle = '#ffffff07'; c.beginPath();c.moveTo(0,y);c.lineTo(W,y);c.stroke(); }
+  } else if (design.material === 'paper') {
+    let seed = 23;
+    for(let i=0;i<7500;i++) {
+      seed = (seed*1664525+1013904223)>>>0; const x=(seed/4294967296)*W;
+      seed = (seed*1664525+1013904223)>>>0; const y=(seed/4294967296)*H;
+      c.fillStyle=i%2?'#ffffff16':'#0000000a';c.fillRect(x,y,.8,1.8);
+    }
+  }
+  const groove = c.createLinearGradient(0,0,35,0); groove.addColorStop(0,'#0007');groove.addColorStop(.55,'#ffffff0b');groove.addColorStop(1,'#0000');c.fillStyle=groove;c.fillRect(0,0,35,H);
+}
+function cover(back = false) {
+  const [surface,c] = texture(); binding(c);
+  if (back) {
+    textBox(c, title.replaceAll('\n',' '),70,310,460,140,30,LETTERING,face,true);
+    textBox(c,'照片有话说 · Plog',70,690,460,40,16,LETTERING,sans,true);
+    return surface;
+  }
+  textBox(c,title,...design.title_box,design.title_size,LETTERING,face,design.title_align==='center');
+  textBox(c,$('.subtitle').textContent,...design.subtitle_box,18,LETTERING,face,design.title_align==='center');
+  if(design.photo_box) {
+    const [x,y,width,height]=design.photo_box;
+    c.fillStyle=PAPER;c.fillRect(x,y,width,height);
+    contain(c,$('.cover-image img'),x+6,y+6,width-12,height-12);
+  }
+  textBox(c,'照片有话说',64,721,300,35,17,LETTERING);
+  textBox(c,`${sources.length} 个片刻`,385,721,150,35,15,LETTERING);
+  return surface;
+}
+function writtenPage(heading, body, end = false) {
+  const [surface,c] = texture();
+  textBox(c,heading,70,150,460,150,40,INK,face);
+  c.fillStyle=palette.accent;c.fillRect(72,330,45,2);
+  textBox(c,body,72,375,456,315,23,INK,face);
+  textBox(c,end ? '照片有话说 · Plog' : title.replaceAll('\n',' '),72,747,460,28,13,INK);
+  return surface;
+}
+function plogPage(source, index) {
+  const [surface,c] = texture(); const img = source.querySelector('img');
+  const caption = source.querySelector('.prose').textContent.trim();
+  const margin=design.page_margin;
+  const photoHeight = (caption ? 676 : 762)-margin;
+  contain(c,img,margin,margin,W-2*margin,photoHeight);
+  if (caption) textBox(c,caption,38,697,524,73,18,INK,face);
+  textBox(c,String(index+1).padStart(2,'0'),W-58,778,35,18,11,INK);
+  return surface;
+}
+function buildBook() {
+  const pages = sources.map(plogPage);
+  const intro = writtenPage(document.body.dataset.introTitle,$('.intro').textContent);
+  const end = writtenPage(document.body.dataset.endingTitle,$('.ending p').textContent,true);
+  const insideBack = writtenPage(title.replaceAll('\n',' '),$('.subtitle').textContent,true);
+  spreads = [[null,cover()],[intro,pages[0]]];
+  labels = ['封面',`序言 · 第 1 页`];
+  for(let i=1;i<pages.length;i+=2) {
+    spreads.push([pages[i],pages[i+1] || end]);
+    labels.push(`第 ${i+1}${pages[i+1] ? '–'+(i+2) : ''} 页${pages[i+1] ? '' : ' · 结语'}`);
+  }
+  if (pages.length % 2 === 1) {spreads.push([end,insideBack]); labels.push('结语');}
+  spreads.push([cover(true),null]); labels.push('封底');
+}
+function spineOffset(index) {return index === 0 ? -.5 : index === spreads.length-1 ? .5 : 0;}
+function scene(c,width,height,index,progress=0) {
+  if(progress>=1 && index<spreads.length-1){scene(c,width,height,index+1,0);return;}
+  c.save(); c.clearRect(0,0,width,height);
+  const background=c.createRadialGradient(width*.48,height*.40,20,width*.5,height*.5,width*.72);
+  background.addColorStop(0,palette.stage);background.addColorStop(1,palette.stage_edge);c.fillStyle=background;c.fillRect(0,0,width,height);
+  const next = Math.min(index+1,spreads.length-1), t=progress;
+  const isClosed = i => i===0 || i===spreads.length-1 ? 1 : 0;
+  const closed = isClosed(index)*(1-t)+isClosed(next)*t;
+  const openScale=Math.min(width/(W*2.45),height/(H*1.36));
+  const closedScale=Math.min(width/(W*1.7),height/(H*1.32));
+  const s=openScale+(closedScale-openScale)*closed;
+  const pw=W*s, ph=H*s, sy=height*.46;
+  const offset=spineOffset(index)*(1-t)+spineOffset(next)*t;
+  const sx=width/2+offset*pw;
+  const left=(index>0 || t>0), right=(index<spreads.length-1 && (t<1 || next<spreads.length-1));
+  const lx=sx-(left?pw:0), bookWidth=(left?pw:0)+(right?pw:0);
+  c.save();c.shadowColor='#00000060';c.shadowBlur=32*s;c.shadowOffsetX=12*s;c.shadowOffsetY=25*s;c.fillStyle=BINDING;c.fillRect(lx-6*s,sy-ph/2+5*s,bookWidth+12*s,ph+10*s);c.restore();
+  // Cloth boards and a stack of fine paper edges under the current opening.
+  c.fillStyle=BINDING;c.fillRect(lx-7*s,sy-ph/2+6*s,bookWidth+14*s,ph+12*s);
+  for(let i=7;i>=1;i--){c.fillStyle=PAPER;c.fillRect(lx,sy-ph/2+i*s,bookWidth,ph);c.fillStyle=i%2?'#00000018':'#ffffff18';c.fillRect(lx,sy-ph/2+i*s,bookWidth,ph);}
+  function flat(tex,side) {
+    if(!tex) return;
+    const x=sx+(side<0?-pw:0), y=sy-ph/2;
+    c.drawImage(tex,x,y,pw,ph);
+    if(index===0 && t===0 || index===spreads.length-1) return;
+    const g=c.createLinearGradient(side<0?sx-40*s:sx,0,side<0?sx:sx+40*s,0);
+    g.addColorStop(0,side<0?'#0000':'#0000003c');g.addColorStop(.2,side<0?'#0000':'#00000018');g.addColorStop(1,side<0?'#0000003c':'#0000');
+    c.fillStyle=g;c.fillRect(side<0?sx-40*s:sx,y,40*s,ph);
+  }
+  flat(spreads[index][0],-1);
+  flat(t>0 ? spreads[next][1] : spreads[index][1],1);
+  if(t>0 && t<1) {
+    const angle=t*Math.PI, cos=Math.cos(angle), sin=Math.sin(angle), rigid=index===0 || next===spreads.length-1;
+    const front=cos>=0, tex=front?spreads[index][1]:spreads[next][0];
+    const shadowWidth=pw*(.08+.72*sin);
+    const g=c.createLinearGradient(sx-shadowWidth,0,sx+shadowWidth,0);
+    g.addColorStop(0,'#0000');g.addColorStop(.5,`rgba(0,0,0,${.21*sin})`);g.addColorStop(1,'#0000');
+    c.fillStyle=g;c.fillRect(sx-shadowWidth,sy-ph*.54,shadowWidth*2,ph*1.08);
+    if(tex) {
+      function point(u) {
+        const bend=rigid?0:Math.sin(Math.PI*u/W)*sin*W*.105;
+        const z=u*sin+bend, x=u*cos+bend*.25;
+        const perspective=2400/(2400-z);
+        return {x:sx+x*perspective*s,top:sy-H/2*perspective*s,h:H*perspective*s};
+      }
+      const strips=120;
+      for(let i=0;i<strips;i++){
+        const u=i*W/strips,du=W/strips,a=point(u),b=point(u+du),x=Math.min(a.x,b.x),dw=Math.abs(b.x-a.x)+.7;
+        const sourceX=front?u:W-u-du;
+        c.drawImage(tex,sourceX,0,du,H,x,(a.top+b.top)/2,dw,(a.h+b.h)/2);
+
+      }
+      c.beginPath();
+      for(let i=0;i<=strips;i++){const p=point(i*W/strips);if(i===0)c.moveTo(p.x,p.top);else c.lineTo(p.x,p.top);}
+      for(let i=strips;i>=0;i--){const p=point(i*W/strips);c.lineTo(p.x,p.top+p.h);}
+      c.closePath();c.fillStyle=`rgba(0,0,0,${.14*sin})`;c.fill();
+      const edge=point(W);c.strokeStyle=PAPER+'88';c.lineWidth=Math.max(1,s);c.beginPath();c.moveTo(edge.x,edge.top);c.lineTo(edge.x,edge.top+edge.h);c.stroke();
+    }
+  }
+  c.restore();
+}
+function draw(index=state,progress=0) {scene(ctx,canvas.width,canvas.height,index,progress);}
+function resize() {
+  const box=canvas.getBoundingClientRect(),ratio=Math.min(devicePixelRatio||1,2);
+  canvas.width=Math.round(box.width*ratio);canvas.height=Math.round(box.height*ratio);
+  if(activeAnimation) draw(activeAnimation.index,activeAnimation.progress); else draw();
+}
+function update() {
+  $('#position').textContent=labels[state];
+  $('#previous').disabled=busy||recording||playing||state===0;
+  $('#next').disabled=busy||recording||playing||state===spreads.length-1;
+  $('#next').textContent=state===0?'打开书本':state===spreads.length-2?'合上书本':'下一页';
+  $('#play').textContent=playing?'停止翻阅':'自动翻阅';
+  $('#play').disabled=recording;
+  $('#export').disabled=busy||playing||recording||!$('#format').value;
+  ['aspect','hold','format'].forEach(id=>$('#'+id).disabled=recording);
+  canvas.setAttribute('aria-label',title.replaceAll('\n',' ')+'，'+labels[state]+'。使用左右方向键翻阅，完整文字在下方。');
+  canvas.dataset.state=String(state);canvas.dataset.busy=String(busy);
+}
+function frameAnimation(duration,callback,signal) {
+  return new Promise((resolve,reject)=>{
+    const start=performance.now();
+    function frame(now) {
+      if(signal?.aborted) {reject(new DOMException('已取消','AbortError'));return;}
+      const p=Math.min(1,(now-start)/Math.max(duration,1));callback(p);
+      if(p<1) requestAnimationFrame(frame);else resolve();
+    }
+    requestAnimationFrame(frame);
+  });
+}
+function ease(t){return t*t*(3-2*t);}
+async function turn(direction,automatic=false) {
+  if(busy||recording||(!automatic&&playing))return;
+  const destination=state+direction;if(destination<0||destination>=spreads.length)return;
+  busy=true;update();
+  const index=direction>0?state:destination;
+  try {
+    await frameAnimation(reduced.matches?1:TURN,p=>{const progress=direction>0?ease(p):1-ease(p);activeAnimation={index,progress};draw(index,progress);});
+    state=destination;
+  } finally {activeAnimation=null;busy=false;draw();update();}
+}
+let playTimer;
+function stopPlaying(){playing=false;clearTimeout(playTimer);update();}
+async function playStep() {
+  if(!playing)return;
+  if(state===spreads.length-1){stopPlaying();return;}
+  await turn(1,true);
+  if(playing)playTimer=setTimeout(playStep,Number($('#hold').value)*1000);
+}
+function download(blob,name) {
+  const url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download=name;document.body.append(link);link.click();link.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),60000);
+}
+function filename(extension){return (title.replace(/[\\/:*?"<>|\u0000-\u001f]/g,'-').slice(0,80)||'Plog故事书')+'.'+extension;}
+function saveHTML() {
+  const clone=document.documentElement.cloneNode(true);
+  clone.querySelector('body').classList.remove('ready');
+  clone.querySelectorAll('#book,.controls,.hint,.export-settings,#save-html,#print,#progress,#cancel').forEach(el=>el.hidden=true);
+  clone.querySelector('.text-edition').open=true;clone.querySelector('#status').textContent='';
+  clone.querySelector('#format').replaceChildren();
+  download(new Blob(['<!doctype html>\n',clone.outerHTML],{type:'text/html;charset=utf-8'}),filename('html'));
+}
+function recorderFormats() {
+  if(!window.MediaRecorder||!HTMLCanvasElement.prototype.captureStream)return [];
+  return [['video/mp4;codecs=avc1.42001E','MP4','mp4'],['video/webm;codecs=vp9','WebM','webm'],['video/webm;codecs=vp8','WebM','webm']]
+    .filter(([type])=>MediaRecorder.isTypeSupported(type)).filter((item,index,all)=>all.findIndex(x=>x[2]===item[2])===index);
+}
+async function exportVideo() {
+  if(busy||playing||recording)return;
+  recording=true;const oldState=state;state=0;draw();
+  cancellation=new AbortController();const signal=cancellation.signal;
+  const stopButton=$('#cancel');stopButton.hidden=false;
+  $('#progress').hidden=false;$('#progress').value=0;
+  $('#status').textContent='正在导出翻书动画，请保持此页面在前台…';
+  update();
+  const out=document.createElement('canvas'),portrait=$('#aspect').value==='portrait';
+  out.width=portrait?1080:1280;out.height=portrait?1440:960;
+  const c=out.getContext('2d'),format=recorderFormats().find(x=>x[0]===$('#format').value);
+  let stream,recorder,stopPromise;
+  const chunks=[];let recordingError=null;
+  try {
+    if(!format)throw new Error('此浏览器不支持视频录制；请用 Chrome 或 Edge 打开本书。');
+    scene(c,out.width,out.height,0);
+    stream=out.captureStream(30);
+    recorder=new MediaRecorder(stream,{mimeType:format[0],videoBitsPerSecond:8000000});
+    recorder.ondataavailable=event=>{if(event.data.size)chunks.push(event.data);};
+    stopPromise=new Promise(resolve=>{recorder.onstop=resolve;});
+    recorder.onerror=()=>{recordingError=new Error('浏览器未能完成视频编码，请换用 WebM 格式重试。');cancellation.abort();};
+    recorder.start(250);
+    const hold=Number($('#hold').value)*1000,total=spreads.length*hold+(spreads.length-1)*TURN;
+    let elapsed=0;
+    function render(index,progress){scene(c,out.width,out.height,index,progress);draw(index,progress);}
+    for(let index=0;index<spreads.length;index++){
+      state=index;update();
+      await frameAnimation(hold,p=>{render(index,0);$('#progress').value=(elapsed+p*hold)/total;},signal);elapsed+=hold;
+      if(index<spreads.length-1){
+        await frameAnimation(TURN,p=>{render(index,ease(p));$('#progress').value=(elapsed+p*TURN)/total;},signal);elapsed+=TURN;
+      }
+    }
+    recorder.stop();await stopPromise;
+    if(!chunks.length)throw new Error('没有录制到画面，请重新导出。');
+    const blob=new Blob(chunks,{type:format[0]});
+    if(lastVideoURL)URL.revokeObjectURL(lastVideoURL);
+    lastVideoURL=URL.createObjectURL(blob);
+    const link=document.createElement('a');link.href=lastVideoURL;link.download=filename(format[2]);link.textContent='再次下载翻书动画';
+    $('#status').replaceChildren(document.createTextNode('动画已生成。'),link);
+    link.click();$('#progress').value=1;
+  } catch(error) {
+    $('#status').textContent=recordingError?.message||(error.name==='AbortError'?'已取消导出，书本和已有文件都保留。':`导出失败：${error.message}`);
+  } finally {
+    if(recorder&&recorder.state!=='inactive'){recorder.stop();await stopPromise;}
+    if(stream)stream.getTracks().forEach(track=>track.stop());
+    cancellation=null;recording=false;state=oldState;stopButton.hidden=true;$('#progress').hidden=true;draw();update();
+  }
+}
+async function start() {
+  try {
+    await Promise.all([...document.images].map(img=>img.decode()));await document.fonts.ready;
+    buildBook();
+    const root=document.documentElement;
+    for(const [key,value] of Object.entries({ink:INK,paper:PAPER,accent:palette.accent,line:INK+'38',muted:INK,hover:INK+'12','button-ink':PAPER,selection:palette.accent+'40'}))root.style.setProperty('--'+key,value);
+    const hold=$('#hold'),holdValue=String(design.hold_seconds);
+    if(![...hold.options].some(option=>option.value===holdValue)){const option=document.createElement('option');option.value=holdValue;option.textContent=`每跨页 ${holdValue} 秒`;hold.append(option);}
+    hold.value=holdValue;
+    document.body.classList.add('ready');
+    ['#book','.controls','.hint','.export-settings','#save-html','#print'].forEach(selector=>$(selector).hidden=false);
+    $('.text-edition').open=false;
+    for(const [type,label] of recorderFormats()){const option=document.createElement('option');option.value=type;option.textContent=label;$('#format').append(option);}
+    if(!$('#format').value)$('#status').textContent='此浏览器可翻阅；导出动画请用 Chrome 或 Edge 打开本书。';
+    resize();update();
+    new ResizeObserver(resize).observe(canvas);
+  }catch(error){$('.loading').textContent='书本未能打开：'+error.message+' 下方仍可查看全部 Plog。';}
+}
+$('#previous').addEventListener('click',()=>turn(-1));$('#next').addEventListener('click',()=>turn(1));
+$('#play').addEventListener('click',()=>{if(playing){stopPlaying();return;}if(busy)return;if(state===spreads.length-1){state=0;draw();}playing=true;update();playTimer=setTimeout(playStep,500);});
+$('#export').addEventListener('click',exportVideo);$('#cancel').addEventListener('click',()=>cancellation?.abort());
+$('#save-html').addEventListener('click',saveHTML);
+let beforePrintOpen=false;
+window.addEventListener('beforeprint',()=>{beforePrintOpen=$('.text-edition').open;$('.text-edition').open=true;});
+window.addEventListener('afterprint',()=>{$('.text-edition').open=beforePrintOpen;});
+$('#print').addEventListener('click',()=>window.print());
+canvas.addEventListener('keydown',event=>{if(event.key==='ArrowRight'||event.key==='ArrowLeft'){event.preventDefault();turn(event.key==='ArrowRight'?1:-1);}});
+document.addEventListener('keydown',event=>{if(event.target===canvas||event.target.closest('input,select,textarea,button,a,[contenteditable]')||event.altKey||event.ctrlKey||event.metaKey)return;if(event.key==='ArrowRight'||event.key==='ArrowLeft'){event.preventDefault();turn(event.key==='ArrowRight'?1:-1);}});
+let pointerStart=null;
+canvas.addEventListener('pointerdown',event=>{pointerStart={x:event.clientX,y:event.clientY};});
+canvas.addEventListener('pointercancel',()=>{pointerStart=null;});
+canvas.addEventListener('pointerup',event=>{if(!pointerStart)return;const dx=event.clientX-pointerStart.x,dy=event.clientY-pointerStart.y;pointerStart=null;if(Math.abs(dy)>Math.max(25,Math.abs(dx)))return;if(Math.abs(dx)>28)turn(dx<0?1:-1);else {const box=canvas.getBoundingClientRect();turn(state===0?1:event.clientX-box.left>box.width/2?1:-1);}});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){stopPlaying();if(recording){cancellation?.abort();}}});
+window.addEventListener('pagehide',()=>{cancellation?.abort();if(lastVideoURL)URL.revokeObjectURL(lastVideoURL);});
+start();
+})();
+</script>
+</body>
+</html>

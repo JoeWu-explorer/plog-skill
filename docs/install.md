@@ -2,7 +2,7 @@
 
 [返回首页](../README.md) · [Agent 适配](agent-compatibility.md) · [使用指南](guide.md)
 
-**当前预发布：[v0.1.0-alpha.6](https://github.com/JoeWu-explorer/plog-skill/releases/tag/v0.1.0-alpha.6)。** npx 安装 main 分支源码；需要固定版本可下载该 Release 的 ZIP 与 `SHA256SUMS`。仓库已公开，下载与安装无需申请仓库访问权限，也无需配置 GitHub 登录凭据。运行时使用的 Agent 与图片编辑服务仍需各自可用，服务认证和费用取决于所选服务。
+**当前预发布：[v0.1.0-alpha.7](https://github.com/JoeWu-explorer/plog-skill/releases/tag/v0.1.0-alpha.7)。** npx 安装 main 分支源码；需要固定版本可下载该 Release 的 ZIP 与 `SHA256SUMS`。仓库已公开，下载与安装无需申请仓库访问权限，也无需配置 GitHub 登录凭据。运行时使用的 Agent 与图片编辑服务仍需各自可用，服务认证和费用取决于所选服务。
 
 ## 推荐：npx 安装
 
@@ -56,14 +56,14 @@ npx skills add https://github.com/JoeWu-explorer/plog-skill --skill plog --agent
 先取得源码（已有检出目录时使用它）：
 
 ```sh
-git clone --branch v0.1.0-alpha.6 https://github.com/JoeWu-explorer/plog-skill.git
+git clone --branch v0.1.0-alpha.7 https://github.com/JoeWu-explorer/plog-skill.git
 cd plog-skill
 ```
 
 使用 Release 附件时，先在下载目录运行 `shasum -a 256 -c SHA256SUMS`（Linux 可用 `sha256sum -c SHA256SUMS`），再用该版本源码的安装器安装：
 
 ```sh
-python3.13 scripts/distribution.py install '/下载目录/plog-v0.1.0-alpha.6.zip' --agent hermes
+python3.13 scripts/distribution.py install '/下载目录/plog-v0.1.0-alpha.7.zip' --agent hermes
 ```
 
 也可自行构建。在源码根目录运行；每次使用新的临时构建目录，避免同名 ZIP 已存在导致构建失败：
