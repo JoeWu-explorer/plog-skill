@@ -1,0 +1,47 @@
+{
+  "version": "v0.1.0-alpha.6",
+  "prerelease": true,
+  "repository_visibility": "private",
+  "runtime_commit": "fa4ed604b1c22bccf1946b084031f1e4a7213839",
+  "package": "plog-v0.1.0-alpha.6.zip",
+  "package_sha256": "9f5e9e45666a9da3798987f73e246e982ad3002d03a8f94d11ca3569bb920e0c",
+  "package_bytes": 74150,
+  "package_files": 22,
+  "deterministic_tests": 58,
+  "local_validation": {
+    "platform": "macOS arm64",
+    "python": "3.13.13",
+    "typecheck": "pass",
+    "repository_checks": "pass",
+    "reproducible_build": "pass",
+    "fresh_install_selfcheck_uninstall": "pass",
+    "skill_frontmatter_validation": "pass",
+    "published_alpha_5_upgrade_rename_selfcheck_uninstall": "pass",
+    "skills_cli_local_claude_code_copy": "pass"
+  },
+  "runtime_ci": {
+    "result": "blocked_before_execution",
+    "source_pr": "https://github.com/JoeWu-explorer/plog-skill/pull/39",
+    "run_url": "https://github.com/JoeWu-explorer/plog-skill/actions/runs/34091327637",
+    "checked_commit": "465696aa2f6e2868e73a5616edc8abce673018d6",
+    "note": "GitHub reports jobs did not start due to account payments or spending limit. Local macOS validation passed; the hosted OS/Python matrix is not claimed as passing."
+  },
+  "visual_evaluation": "formal_matrix_not_run; README synthetic demonstrations recorded separately in examples/readme/MANIFEST.md",
+  "multi_agent_end_to_end": "not_run_for_this_candidate",
+  "prior_visual_evidence": {
+    "version": "v0.1.0-alpha.1",
+    "runtime_commit": "2a6156c",
+    "first_attempts": 18,
+    "delivery_pass_awaiting_human": 11,
+    "failed": 7,
+    "human_review": "pending",
+    "counts_not_transferred_to_current_version": true
+  },
+  "known_limits": [
+    "real_agent_and_image_service_matrix_pending",
+    "plog_scene_visual_review_pending",
+    "low_light_identity_fidelity",
+    "dense_composition_and_small_text",
+    "historical_image_publication_licenses_pending"
+  ]
+}
